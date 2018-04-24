@@ -9,7 +9,7 @@ var towerAction = {
             if(tower) {
                 //console.log(towerTargets[tower]);
                 var closestDamagedStructure = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) =>  structure.hits < structure.hitsMax &&  structure.structureType == STRUCTURE_ROAD
+                    filter: (structure) =>  structure.hits < structure.hitsMax
                 });
                 console.log(closestDamagedStructure);
                 if(closestDamagedStructure) {
