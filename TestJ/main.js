@@ -9,7 +9,7 @@ var creepExplorer = require('creep.explorer');
 var towerAction = require('tower.action');
 
 module.exports.loop = function () {
-    
+    //meow
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
     
