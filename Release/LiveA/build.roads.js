@@ -83,7 +83,7 @@ var buildRoads = {
                         console.log('[build.roads.sources] - build road around each extension');
                     } else {
                         //console.log('[build.extensions] - bAHHHHHHHHH');
-                        console.log("[build.roads.sources] - no space to build surrounding road" + roadConstruct.toString());
+                        //console.log("[build.roads.sources] - no space to build surrounding road" + roadConstruct.toString());
                     }
                 }
             }
