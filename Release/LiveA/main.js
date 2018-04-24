@@ -9,14 +9,10 @@ var creepExplorer = require('creep.explorer');
 var towerAction = require('tower.action');
 
 module.exports.loop = function () {
-    
-     
-    // Testign the sync
-    // AHHHHH
-    console.log("spppppaaaaaaam");
+
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
-    
+
     cleanMemory.clean(); // Clean dead creeps from memory
     spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
     buildExtensions.new(); // Check if you can build things
@@ -24,7 +20,7 @@ module.exports.loop = function () {
     buildTowers.new(); // Check if you can build things
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
-    
+
     // Find exits to the room, give these to explorers
     /*var exits = Game.map.describeExits(Game.spawns['Spawn1'].room.name);
     var roomToExplore = '';
@@ -33,12 +29,12 @@ module.exports.loop = function () {
         roomToExplore = exits[otherRooms];
         break;
         //console.log(Game.map.findExit(Game.spawns['Spawn1'].room.name, exits[otherRooms]));
-        
+
     }*/
-    
+
     // Run each tower
     towerAction.run();
-    
+
     // Run each creep
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -54,5 +50,5 @@ module.exports.loop = function () {
         }
     }
 
-   
+
 }
