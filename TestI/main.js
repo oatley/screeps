@@ -12,6 +12,7 @@ module.exports.loop = function () {
     
      
     // Testign the sync
+    // AHHHHH
     console.log("spppppaaaaaaam");
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
