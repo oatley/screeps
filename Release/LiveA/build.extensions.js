@@ -53,14 +53,14 @@ var buildExtensions = {
                 spawnX = spawnTargets[0].pos.x + extPos.x + extNum[e].x;
                 spawnY = spawnTargets[0].pos.y + extPos.y + extNum[e].y;
                 //console.log(spawnY, spawnX);
-                for (var v in roadTargets) {
+                /*for (var v in roadTargets) {
                     if (roadTargets[v].pos.x == spawnX && roadTargets[v].pos.y == spawnY) {
                         destroyRoad = roadTargets[v].destroy();
                         if ( destroyRoad == OK ){
                             console.log('[build.extensions] - destroyed road', roadTargets[v].pos.x, roadTargets[v].pos.y, spawnX, spawnY);
                         }
                     }
-                }
+                }*/
                 extConstruct = room.createConstructionSite(spawnX, spawnY, STRUCTURE_EXTENSION);
                 if ( extConstruct == OK ) {
                     console.log('[build.extensions] - construction site created');
@@ -68,14 +68,14 @@ var buildExtensions = {
                     //console.log('[build.extensions] - room level too low to build');
                 } else if ( extConstruct == ERR_INVALID_TARGET ) {
                     console.log('[build.extensions] - structure cannot be placed there', spawnX, spawnY, extensionTargets.length );
-                    for (var v in roadTargets) {
+                    /*for (var v in roadTargets) {
                         if (roadTargets[v].pos.x == spawnX && roadTargets[v].pos.y == spawnY) {
                             destroyRoad = roadTargets[v].destroy();
                             if ( destroyRoad == OK ){
                                 console.log('[build.extensions] - destroyed road', roadTargets[v].pos.x, roadTargets[v].pos.y, spawnX, spawnY);
                             }
                         }
-                    }
+                    }*/
                     extConstruct = room.createConstructionSite(spawnX, spawnY, STRUCTURE_EXTENSION);
                     if ( extConstruct == OK ){
                         console.log('[build.extensions] - construction site created');
