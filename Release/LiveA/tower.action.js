@@ -12,9 +12,9 @@ var towerAction = {
                     filter: (structure) =>  structure.hits < structure.hitsMax ||  structure.structureType == STRUCTURE_ROAD
                 });
                 console.log(closestDamagedStructure);
-                towerTargets[tower].repair(closestDamagedStructure);
                 if(closestDamagedStructure) {
-                    towerTargets[tower].repair(closestDamagedStructure);
+                    let repair = towerTargets[tower].repair(closestDamagedStructure);
+                    console.log('trying to repair', repair);
                 }
 
                 var closestHostile = towerTargets[tower].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
