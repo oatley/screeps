@@ -10,7 +10,9 @@ var towerAction = require('tower.action');
 
 module.exports.loop = function () {
     
+     
     // Testign the sync
+    console.log("spppppaaaaaaam");
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
     
