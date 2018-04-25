@@ -10,7 +10,7 @@ var towerAction = require('tower.action');
 
 module.exports.loop = function () {
 
-    // Testing githook psuh bAHHHHHHHHH
+    // Testing githook psuh bAHHHHHHHHHs
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
     cleanMemory.clean(); // Clean dead creeps from memory
