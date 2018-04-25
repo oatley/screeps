@@ -10,6 +10,7 @@ var towerAction = require('tower.action');
 
 module.exports.loop = function () {
 
+    // Testing git hook
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
 
