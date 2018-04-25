@@ -293,6 +293,7 @@ var buildRoads = {
                         console.log('[build.roads.roomControllers] - ERR_RCL_NOT_ENOUGH' + construct.toString());
                     } else if (construct == ERR_INVALID_TARGET) {
                         console.log('[build.roads.roomControllers] - ERR_INVALID_TARGET' + construct.toString());
+                        room.memory.roomControllers[roomControllerToUse.id].createdPath = true;
                     } else {
                         console.log('[build.roads.roomControllers] - something went wrong' + construct.toString());
                     }
