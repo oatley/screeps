@@ -10,9 +10,15 @@ var towerAction = require('tower.action');
 
 module.exports.loop = function () {
 
-    // Testing githook Update
+    // ToDo list
+    // - 1x Creep type builder, takes from storage builds/repairs
+    // - 1x Creep type upgrader, takes from storage and upgrades the roomController
+    // - 6x Creep type harvester, takes
+    // - Energy storage building (harvesters should store in here)
+    //
 
-    //if (spawn.room.energyCapacityAvailable >)
+
+    // Testing githook Update
     Memory.data = {maxCreeps: 8, bodyParts: 3};
     cleanMemory.clean(); // Clean dead creeps from memory
     spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
