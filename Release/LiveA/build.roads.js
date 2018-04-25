@@ -137,7 +137,7 @@ var buildRoads = {
                 pathToSpawn = extensionToUse.memory.pathToSpawn;
             }
 
-            console.log(room.memory.extensions[extensionToUse.id].createdPath);
+            console.log(extensionToUse.id, room.memory.extensions[extensionToUse.id].createdPath);
             //return;
             //room.memory.extensions[extensionToUse.id].createdPath = false;
             if(!room.memory.extensions[extensionToUse.id].createdPath || forceRebuild) {
