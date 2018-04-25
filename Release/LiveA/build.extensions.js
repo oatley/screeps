@@ -37,7 +37,7 @@ var buildExtensions = {
         } else if (extensionTargets.length >= 40);
             console.log('[build.extensions] - more redesign need to support this number of extensions');
             return;
-        else {
+        } else {
             let distanceFromSpawn = 3;
         }
 
