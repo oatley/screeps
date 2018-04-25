@@ -56,6 +56,7 @@ var buildExtensions = {
             console.log('[build.extensions] - trying to build extensions');
         }
 
+        return;
 
         for (let i in extDirList) {
             extDir = extDirList[i];
