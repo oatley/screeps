@@ -2,25 +2,30 @@
 var gatherEnergy = require('gather.energy');
 
 var creepHarvester = {
-    
+
     work: function (creep) {
-        
+
         var targetStructures = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION ||
-                                structure.structureType == STRUCTURE_SPAWN ||
-                                structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
+                                structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
                     }
         });
-        
+
+        var targetTowers = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity;
+                    }
+        });
+
         var targetConstruction = creep.room.find(FIND_CONSTRUCTION_SITES);
         var targetConstructionExtensions = creep.room.find(FIND_CONSTRUCTION_SITES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION);
                     }
-        
+
         });
-        
+
         // Set building and upgrading to false if you run out of energy
         if (creep.carry.energy == 0) {
             creep.memory.building = false;
@@ -34,7 +39,7 @@ var creepHarvester = {
             creep.memory.upgrading = false;
             creep.memory.storing = false;
         }
-    
+
         // if creep energy cap is not full and creep is not building/upgrading = go get energy
         if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
