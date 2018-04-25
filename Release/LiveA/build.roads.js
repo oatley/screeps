@@ -42,7 +42,7 @@ var buildRoads = {
                 sourceToUse.memory = room.memory.sources[sourceToUse.id] = {};
                 sourceToUse.memory.createdPath = false;
                 //pathToSpawn = PathFinder.search(spawnTargets[0].pos, sourceToUse.pos, {range: 2});
-                pathToSpawn = room.findPath(spawnTargets[0].pos, sourceToUse.pos, {range: 1, ignoreCreeps: true});
+                pathToSpawn = room.findPath(spawnTargets[0].pos, sourceToUse.pos, {range: 1, ignoreCreeps: true, ignoreRoads: true});
                 sourceToUse.memory.pathToSpawn = pathToSpawn;
                 //console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y);
                 //console.log(sourceToUse.pos.x, sourceToUse.pos.y);
@@ -121,7 +121,7 @@ var buildRoads = {
             if (!room.memory.extensions[extensionToUse.id]) {
                 extensionToUse.memory = room.memory.extensions[extensionToUse.id] = {};
                 extensionToUse.memory.createdPath = false;
-                pathToSpawn = room.findPath(spawnTargets[0].pos, extensionToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1});
+                pathToSpawn = room.findPath(spawnTargets[0].pos, extensionToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
                 extensionToUse.memory.pathToSpawn = pathToSpawn;
 
                 console.log('[build.roads.extensions] - creating new memory for extension ids');
@@ -196,7 +196,7 @@ var buildRoads = {
                 towerToUse.memory = room.memory.towers[towerToUse.id] = {};
                 towerToUse.memory.createdPath = false;
                 //pathToSpawn = PathFinder.search(spawnTargets[0].pos, towerToUse.pos, {range: 2});
-                pathToSpawn = room.findPath(spawnTargets[0].pos, towerToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1});
+                pathToSpawn = room.findPath(spawnTargets[0].pos, towerToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
                 towerToUse.memory.pathToSpawn = pathToSpawn;
                 console.log('[build.roads.towers] - creating new memory for tower ids');
             } else {

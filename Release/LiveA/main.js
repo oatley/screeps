@@ -12,7 +12,6 @@ module.exports.loop = function () {
 
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
-
     cleanMemory.clean(); // Clean dead creeps from memory
     spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
     buildExtensions.new(); // Check if you can build things
