@@ -28,7 +28,7 @@ var buildRoads = {
         }
 
 
-        for ( var i in sources) {
+        for (var i in sources) {
             var sourceToUse = sources[i];
             var pathToSpawn = {};
             // Create the path memory variable
@@ -42,7 +42,7 @@ var buildRoads = {
                 sourceToUse.memory = room.memory.sources[sourceToUse.id] = {};
                 sourceToUse.memory.createdPath = false;
                 //pathToSpawn = PathFinder.search(spawnTargets[0].pos, sourceToUse.pos, {range: 2});
-                pathToSpawn = room.findPath(spawnTargets[0].pos, sourceToUse.pos, {range: 1, ignoreCreeps: true});
+                pathToSpawn = room.findPath(spawnTargets[0].pos, sourceToUse.pos, {range: 1, ignoreCreeps: true, ignoreRoads: true});
                 sourceToUse.memory.pathToSpawn = pathToSpawn;
                 //console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y);
                 //console.log(sourceToUse.pos.x, sourceToUse.pos.y);
@@ -82,7 +82,6 @@ var buildRoads = {
                     if (roadConstruct == OK) {
                         console.log('[build.roads.sources] - build road around each extension');
                     } else {
-                        //console.log('[build.extensions] - bAHHHHHHHHH');
                         //console.log("[build.roads.sources] - no space to build surrounding road" + roadConstruct.toString());
                     }
                 }
@@ -112,7 +111,6 @@ var buildRoads = {
         // Make the function accept arguments that let it build to other things
         for ( var i in extensions ) {
             var extensionToUse = extensions[i];
-            //console.log(extensionToUse.id);
             var pathToSpawn = {};
             // Create the path memory variable
             if (!room.memory.extensions) {
@@ -120,15 +118,11 @@ var buildRoads = {
                 room.memory.extensions = {};
                 console.log('[build.roads.extensions] - creating new memory for extensions');
             }
-            //if (!room.memory.extensionTargets[extensionToUse.id]) {
             if (!room.memory.extensions[extensionToUse.id]) {
                 extensionToUse.memory = room.memory.extensions[extensionToUse.id] = {};
                 extensionToUse.memory.createdPath = false;
-                //pathToSpawn = PathFinder.search(spawnTargets[0].pos, extensionToUse.pos, {range: 2});
-                pathToSpawn = room.findPath(spawnTargets[0].pos, extensionToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1});
+                pathToSpawn = room.findPath(spawnTargets[0].pos, extensionToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
                 extensionToUse.memory.pathToSpawn = pathToSpawn;
-                //console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y);
-                //console.log(extensionToUse.pos.x, extensionToUse.pos.y);
 
                 console.log('[build.roads.extensions] - creating new memory for extension ids');
             } else {
@@ -137,8 +131,6 @@ var buildRoads = {
                 pathToSpawn = extensionToUse.memory.pathToSpawn;
             }
 
-            //return;
-            //room.memory.extensions[extensionToUse.id].createdPath = false;
             if(!room.memory.extensions[extensionToUse.id].createdPath || forceRebuild) {
                 //console.log('create a new path here');
                 if (forceRebuild) {
@@ -154,6 +146,7 @@ var buildRoads = {
                         console.log('[build.roads.extensions] - ERR_RCL_NOT_ENOUGH' + construct.toString());
                     } else if (construct == ERR_INVALID_TARGET) {
                         console.log('[build.roads.extensions] - ERR_INVALID_TARGET' + construct.toString());
+                        room.memory.extensions[extensionToUse.id].createdPath = true;
                     } else {
                         console.log('[build.roads.extensions] - something went wrong' + construct.toString());
                     }
@@ -166,13 +159,13 @@ var buildRoads = {
                         console.log('[build.roads.extensions] - build road around each extension');
                     } else {
                         //console.log('[build.extensions] - bAHHHHHHHHH');
-                        console.log("[build.roads.extensions] - no space to build surrounding road" + roadConstruct.toString());
+                        //console.log("[build.roads.extensions] - no space to build surrounding road" + roadConstruct.toString());
                     }
                 }
             }
         }
     }, // buildToExtension
-    buildToTower: function () {
+    buildToTower: function (forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
         var room = Game.rooms[Object.keys(Game.rooms)[0]];
         var spawnTargets = room.find(FIND_STRUCTURES, {
@@ -182,10 +175,10 @@ var buildRoads = {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
         });
 
+        var sources = room.find(FIND_SOURCES);
+
         // Create road around the tower
-        let roadNum = [{x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}, {x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
-
-
+        let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
 
         // Make the function accept arguments that let it build to other things
         for ( var i in towers ) {
@@ -203,22 +196,15 @@ var buildRoads = {
                 towerToUse.memory = room.memory.towers[towerToUse.id] = {};
                 towerToUse.memory.createdPath = false;
                 //pathToSpawn = PathFinder.search(spawnTargets[0].pos, towerToUse.pos, {range: 2});
-                pathToSpawn = room.findPath(spawnTargets[0].pos, towerToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1});
+                pathToSpawn = room.findPath(spawnTargets[0].pos, towerToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
                 towerToUse.memory.pathToSpawn = pathToSpawn;
-                //console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y);
-                //console.log(towerToUse.pos.x, towerToUse.pos.y);
-
                 console.log('[build.roads.towers] - creating new memory for tower ids');
             } else {
                 //console.log('didntwork');
                 towerToUse.memory = room.memory.towers[towerToUse.id]
                 pathToSpawn = towerToUse.memory.pathToSpawn;
             }
-
-            //return;
-            //room.memory.towers[towerToUse.id].createdPath = false;
-            if(!room.memory.towers[towerToUse.id].createdPath) {
-                //console.log('create a new path here');
+            if(!room.memory.towers[towerToUse.id].createdPath || forceRebuild) {
                 for ( var i  in pathToSpawn ) {
                     var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
                     if ( construct == OK ){
@@ -241,6 +227,20 @@ var buildRoads = {
                     } else {
                         //console.log('[build.towers] - bAHHHHHHHHH');
                         console.log("[build.roads.towers] - no space to build surrounding road" + roadConstruct.toString());
+                    }
+                }
+                for (let s in sources) {
+                    let sourceToUse = sources[s];
+                    let pathToSource = {};
+                    pathToSource = room.findPath(sourceToUse.pos, towerToUse.pos, {range: 2, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
+                    for (r in pathToSource) {
+                        let roadConstruct = room.createConstructionSite(pathToSource[i]['x'], pathToSource[i]['y'], STRUCTURE_ROAD);
+                        if (roadConstruct == OK) {
+                            console.log('[build.roads.towers] - construction site tower -> sources');
+                        } else {
+                            //console.log('[build.towers] - bAHHHHHHHHH');
+                            console.log('[build.roads.towers] -  failed to build tower -> sources', roadConstruct);
+                        }
                     }
                 }
             }

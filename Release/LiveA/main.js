@@ -10,10 +10,9 @@ var towerAction = require('tower.action');
 
 module.exports.loop = function () {
 
-    // Testing git hook
+    // Testing githook Update
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
-
     cleanMemory.clean(); // Clean dead creeps from memory
     spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
     buildExtensions.new(); // Check if you can build things
@@ -21,6 +20,7 @@ module.exports.loop = function () {
     buildTowers.new(); // Check if you can build things
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
+    buildRoads.buildToTower();
 
     // Find exits to the room, give these to explorers
     /*var exits = Game.map.describeExits(Game.spawns['Spawn1'].room.name);
