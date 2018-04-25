@@ -254,8 +254,6 @@ var buildRoads = {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
         var towers = [roomController];
-        });
-
         var sources = room.find(FIND_SOURCES);
 
         // Create road around the tower
