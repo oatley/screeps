@@ -13,11 +13,40 @@ var buildExtensions = {
         });
         let constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
 
+        // Do not try and build if you are at max number for the level
+        if (room.controller.level == 2 && extensionTargets.length >= 5) {
+            return;
+        } else if(room.controller.level == 3 && extensionTargets.length >= 10) {
+            return;
+        } else if(room.controller.level == 4 && extensionTargets.length >= 20) {
+            return;
+        } else if(room.controller.level == 5 && extensionTargets.length >= 30) {
+            return;
+        } else if(room.controller.level == 6 && extensionTargets.length >= 40) {
+            return;
+        } else if(room.controller.level == 7 && extensionTargets.length >= 50) {
+            return;
+        } else if(room.controller.level == 8 && extensionTargets.length >= 60) {
+            return;
+        } else {
+            //console.log('[build.extensions] - trying to build extensions');
+        }
+        let distanceFromSpawn = 3;
+        if (extensionTargets.length >= 20) {
+            distanceFromSpawn = 7;
+        } else if (extensionTargets.length >= 40) {
+            console.log('[build.extensions] - more redesign need to support this number of extensions');
+            return;
+        } else {
+            distanceFromSpawn = 3;
+        }
+
+
         // Control extension direction to place relative to spawn
         let extDir = '';
         let extDirList = ['UP', 'RIGHT', 'DOWN', 'LEFT'];
         let noBuild = false;
-        let distanceFromSpawn = 3;
+
 
         // Create a pattern using these arrays objects (eg. this is an X)
         let extNum = [{x: 0, y: 0}, {x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}];
@@ -35,7 +64,7 @@ var buildExtensions = {
 
         // Construct
         let extConstruct = 0;
-        let destroyRoad = 0
+        let destroyRoad = 0;
 
         for (let i in extDirList) {
             extDir = extDirList[i];
