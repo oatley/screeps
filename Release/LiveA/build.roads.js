@@ -234,7 +234,7 @@ var buildRoads = {
                     let pathToSource = {};
                     pathToSource = room.findPath(sourceToUse.pos, towerToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1});
                     for (r in pathToSource) {
-                        let roadConstruct = room.createConstructionSite(pathToSource[i]['x'], pathToSpawn[i]['x'], STRUCTURE_ROAD);
+                        let roadConstruct = room.createConstructionSite(pathToSource[i]['x'], pathToSource[i]['x'], STRUCTURE_ROAD);
                         if (roadConstruct == OK) {
                             console.log('[build.roads.towers] - construction site tower -> sources');
                         } else {
