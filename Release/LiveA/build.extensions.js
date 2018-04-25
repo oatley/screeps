@@ -13,30 +13,6 @@ var buildExtensions = {
         });
         let constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
 
-        // Control extension direction to place relative to spawn
-        let extDir = '';
-        let extDirList = ['UP', 'RIGHT', 'DOWN', 'LEFT'];
-        let noBuild = false;
-        let distanceFromSpawn = 3;
-
-        // Create a pattern using these arrays objects (eg. this is an X)
-        let extNum = [{x: 0, y: 0}, {x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}];
-
-        // Create road around the extension MOVED TO ROADS
-        //let roadNum = [{x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}, {x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
-
-        // New construction pos
-        let extPos = {x: 0, y: 0};
-
-
-        // Relative to spawn pos
-        let spawnX = 0;
-        let spawnY = 0;
-
-        // Construct
-        let extConstruct = 0;
-        let destroyRoad = 0
-
         // Do not try and build if you are at max number for the level
         if (room.controller.level == 2 && extensionTargets.length >= 5) {
             return;
@@ -56,7 +32,39 @@ var buildExtensions = {
             //console.log('[build.extensions] - trying to build extensions');
         }
 
-        return;
+        if (extensionTargets.length >= 20) {
+            let distanceFromSpawn = 7;
+        } else if (extensionTargets.length >= 40);
+            console.log('[build.extensions] - more redesign need to support this number of extensions');
+            return;
+        else {
+            let distanceFromSpawn = 3;
+        }
+
+
+        // Control extension direction to place relative to spawn
+        let extDir = '';
+        let extDirList = ['UP', 'RIGHT', 'DOWN', 'LEFT'];
+        let noBuild = false;
+
+
+        // Create a pattern using these arrays objects (eg. this is an X)
+        let extNum = [{x: 0, y: 0}, {x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}];
+
+        // Create road around the extension MOVED TO ROADS
+        //let roadNum = [{x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}, {x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        // New construction pos
+        let extPos = {x: 0, y: 0};
+
+
+        // Relative to spawn pos
+        let spawnX = 0;
+        let spawnY = 0;
+
+        // Construct
+        let extConstruct = 0;
+        let destroyRoad = 0;
 
         for (let i in extDirList) {
             extDir = extDirList[i];
