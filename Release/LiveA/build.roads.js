@@ -155,6 +155,7 @@ var buildRoads = {
                         console.log('[build.roads.extensions] - ERR_RCL_NOT_ENOUGH' + construct.toString());
                     } else if (construct == ERR_INVALID_TARGET) {
                         console.log('[build.roads.extensions] - ERR_INVALID_TARGET' + construct.toString());
+                        room.memory.extensions[extensionToUse.id].createdPath = true;
                     } else {
                         console.log('[build.roads.extensions] - something went wrong' + construct.toString());
                     }
