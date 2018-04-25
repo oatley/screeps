@@ -204,7 +204,7 @@ var buildRoads = {
                 towerToUse.memory = room.memory.towers[towerToUse.id]
                 pathToSpawn = towerToUse.memory.pathToSpawn;
             }
-            if(!room.memory.towers[towerToUse.id].createdPath) {
+            if(!room.memory.towers[towerToUse.id].createdPath || forceRebuild) {
                 for ( var i  in pathToSpawn ) {
                     var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
                     if ( construct == OK ){

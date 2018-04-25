@@ -20,7 +20,7 @@ module.exports.loop = function () {
     buildTowers.new(); // Check if you can build things
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
-    buildRoads.buildToTower();
+    buildRoads.buildToTower(forceRebuild = true);
 
     // Find exits to the room, give these to explorers
     /*var exits = Game.map.describeExits(Game.spawns['Spawn1'].room.name);
