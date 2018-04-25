@@ -231,6 +231,7 @@ var buildRoads = {
                 }
                 for (let s in sources) {
                     let sourceToUse = sources[i];
+                    console.log(sourceToUse);
                     let pathToSource = {};
                     pathToSource = room.findPath(sourceToUse.pos, towerToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1});
                     for (r in pathToSource) {
