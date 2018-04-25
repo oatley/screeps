@@ -243,8 +243,6 @@ var buildRoads = {
                         }
                     }
                 }
-<<<<<<< HEAD
-=======
             }
         }
     }, //buildToTower
@@ -325,7 +323,6 @@ var buildRoads = {
                         }
                     }
                 }
->>>>>>> 43a1890f8252a356f54488e6c9cfb0690076f244
             }
         }
     } //buildToRoomController
