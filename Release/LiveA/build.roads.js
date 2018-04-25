@@ -249,11 +249,11 @@ var buildRoads = {
     buildToRoomController: function (forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
         var room = Game.rooms[Object.keys(Game.rooms)[0]];
+        let roomController = room.controller;
         var spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
-        var towers = room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
+        var towers = [roomController];
         });
 
         var sources = room.find(FIND_SOURCES);

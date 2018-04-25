@@ -21,6 +21,7 @@ module.exports.loop = function () {
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
     buildRoads.buildToTower();
+    buildRoads.buildToRoomController();
 
     // Find exits to the room, give these to explorers
     /*var exits = Game.map.describeExits(Game.spawns['Spawn1'].room.name);
