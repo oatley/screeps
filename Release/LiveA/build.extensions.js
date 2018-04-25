@@ -37,6 +37,26 @@ var buildExtensions = {
         let extConstruct = 0;
         let destroyRoad = 0
 
+        // Do not try and build if you are at max number for the level
+        if (room.controller.level == 2 && extensionTargets.length >= 5) {
+            return;
+        } else if(room.controller.level == 3 && extensionTargets.length >= 10) {
+            return;
+        } else if(room.controller.level == 4 && extensionTargets.length >= 20) {
+            return;
+        } else if(room.controller.level == 5 && extensionTargets.length >= 30) {
+            return;
+        } else if(room.controller.level == 6 && extensionTargets.length >= 40) {
+            return;
+        } else if(room.controller.level == 7 && extensionTargets.length >= 50) {
+            return;
+        } else if(room.controller.level == 8 && extensionTargets.length >= 60) {
+            return;
+        } else {
+            console.log('[build.extensions] - trying to build extensions');
+        }
+
+
         for (let i in extDirList) {
             extDir = extDirList[i];
             if (extDir == 'UP') {

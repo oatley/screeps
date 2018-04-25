@@ -165,7 +165,7 @@ var buildRoads = {
             }
         }
     }, // buildToExtension
-    buildToTower: function (forceRebuild = false) {
+    buildToRoomController: function (forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
         var room = Game.rooms[Object.keys(Game.rooms)[0]];
         var spawnTargets = room.find(FIND_STRUCTURES, {
@@ -245,7 +245,7 @@ var buildRoads = {
                 }
             }
         }
-    }
+    } //buildToRoomController
 };
 
 module.exports = buildRoads;
