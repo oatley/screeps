@@ -53,7 +53,7 @@ var buildExtensions = {
         } else if(room.controller.level == 8 && extensionTargets.length >= 60) {
             return;
         } else {
-            console.log('[build.extensions] - trying to build extensions');
+            //console.log('[build.extensions] - trying to build extensions');
         }
 
         return;
