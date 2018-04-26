@@ -1,7 +1,9 @@
 var buildWalls = {
     new: function(room) {
         let exits = Game.map.describeExits(room);
-        console.log(exits);
+        for (let exit in exits) {
+            console.log(exit, exits[exit]);
+        }
     }
 };
 
