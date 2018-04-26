@@ -80,7 +80,7 @@ var buildWalls = {
                         console.log('[build.walls] - construction site created for rampart');
                     }
                 } else { // build walls
-                    console.log('[build.walls] - Found middle building rampart', roomPos.roomName, x, y, i);
+                    console.log('[build.walls] - build wall', roomPos.roomName, x, y, i);
                     //construct = room.createConstructionSite(x, y, STRUCTURE_WALL);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for walls');
