@@ -63,7 +63,7 @@ module.exports.loop = function () {
     for (let room in Game.rooms) {
         //buildWalls.new(room);
         findExits.updateMemoryLocations(Game.rooms[room]);
-        buildWalls.new(Game.rooms[room]);
+        //buildWalls.new(Game.rooms[room]);
     }
 
     if ((Memory.data.buildRoadTick % 100) == 0 ){
@@ -98,7 +98,7 @@ module.exports.loop = function () {
     }*/
 
     // Run each tower
-    towerAction.run();
+    //towerAction.run();
 
     // Run each creep
     for (var name in Game.creeps) {
