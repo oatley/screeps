@@ -9,6 +9,7 @@ var buildStorage = require('build.storage');
 var creepHarvester = require('creep.harvester');
 var creepExplorer = require('creep.explorer');
 var towerAction = require('tower.action');
+var findExits = require('find.exits');
 
 
 module.exports.loop = function () {
@@ -56,7 +57,8 @@ module.exports.loop = function () {
     buildStorage.new(); // Check if you can build things
 
     for (let room in Game.rooms) {
-        buildWalls.new(room);
+        //buildWalls.new(room);
+        findExits.updateMemoryLocations(room);
     }
 
     if (Memory.data.buildRoadTick == 100){
