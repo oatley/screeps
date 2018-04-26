@@ -64,6 +64,7 @@ var buildWalls = {
                 x = roomPos.x + wallX;
                 y = roomPos.y + wallY;
                 //console.log(roomPos.roomName, x, y, i);
+                console.log(Math.round((room.memory.exits[side].positions.length + 1) / 2), (i+1))
                 if ((i+1) == Math.round((room.memory.exits[side].positions.length + 1) / 2)) { // Find centre of index, build rampart here instead of wall
                     console.log('[build.walls] - Found middle building rampart', x, y, i);
                     //extConstruct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
