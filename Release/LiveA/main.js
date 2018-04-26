@@ -36,7 +36,7 @@ module.exports.loop = function () {
     buildExtensions.new(); // Check if you can build things
     //console.log('---------------------------------');
     buildTowers.new(); // Check if you can build things
-    //buildStorage.new(); // Check if you can build things
+    buildStorage.new(); // Check if you can build things
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
     buildRoads.buildToTower();
