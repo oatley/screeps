@@ -23,6 +23,8 @@ module.exports.loop = function () {
     // - Backup redis and mongodb and mods
     // - If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
     // - Fix the static number of creeps and scale down as they get more bodyParts
+    // - Upgrade scripts to support multi room
+
 
     // Optimize road code
     if (!Memory.data) {

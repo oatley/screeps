@@ -28,6 +28,9 @@ var buildWalls = {
             // Add these to increase wall edge size
             let startEdge = {};
             let endEdge = {};
+            // Close the start and end edges, move wall back to edge
+            let closeEdge = {};
+
 
             console.log(side);
             if (side == FIND_EXIT_TOP) {
@@ -35,16 +38,19 @@ var buildWalls = {
                 wallY = 2;
                 startEdge = [{x: -1, y: 0}, {x: -2, y: 0}];
                 endEdge = [{x: 1, y: 0}, {x: 2, y: 0}];
+                closeEdge = [{x: 0, y: -1}, {x: 0, y: -2}];
             } else if (side == FIND_EXIT_RIGHT) {
                 wallX = -2;
                 wallY = 0;
                 startEdge = [{x: 0, y: -1}, {x: 0, y: -2}];
                 endEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
+                closeEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
             } else if (side == FIND_EXIT_BOTTOM) {
                 wallX = 0;
                 wallY = -2;
                 startEdge = [{x: -1, y: 0}, {x: -2, y: 0}];
                 endEdge = [{x: 1, y: 0}, {x: 2, y: 0}];
+                closeEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
             } else if (side == FIND_EXIT_LEFT) {
                 wallX = 2;
                 wallY = 0;
@@ -66,6 +72,13 @@ var buildWalls = {
                     endX = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].x + wallX + endEdge[modEndPos].x;
                     endY = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].y + wallY + endEdge[modEndPos].y;
                     console.log(startX, startY, endX, endY);
+                    for (let modCloseEdge in closeEdge) {
+                        startX = startX + closeEdge[modCloseEdge].x;
+                        startY = startY + closeEdge[modCloseEdge].y;
+                        endX = endX + closeEdge[modCloseEdge].x;
+                        endY = endY + closeEdge[modCloseEdge].y;
+                        console.log(startX, startY, endX, endY);
+                    }
                 }
             }
         }
