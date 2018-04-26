@@ -42,7 +42,7 @@ var creepHarvester = {
 
 
         var closestHostile = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        // AHHH FIND_HOSTILE_CREEPS
+        // AHHH FIND_HOSTILE_CREEPS EMERGENCY
         if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
             creep.memory.storing = true;
             let randomEnergyStorage = creep.memory.randomEnergyStorage;
@@ -54,6 +54,7 @@ var creepHarvester = {
             if(creep.transfer(targetTowers[randomEnergyStorage], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(targetTowers[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
             }
+            return;
         }
 
 
