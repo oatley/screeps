@@ -49,7 +49,8 @@ var findExits = {
                         console.log('[find.exits] - ', side, room.name, terrain, x, y);
                         console.log (0,49,Game.map.getTerrainAt(0, 49, 'W5N8'));
                         console.log (49,49,Game.map.getTerrainAt(49, 49, 'W5N8'));
-                        terrain = Game.map.getTerrainAt(49, 49, 'W5N8');
+                        let roomPos = new RoomPositin(x, y, 'W5N8');
+                        terrain = Game.map.getTerrainAt(roomPos);
                         console.log(x,y,terrain);
 
                     }
