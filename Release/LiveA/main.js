@@ -17,11 +17,10 @@ module.exports.loop = function () {
     // - Energy storage building (harvesters should store in here)
     //
 
-    if (Game.rooms.length < Game.gcl.level) {
+    if (Object.keys(Game.rooms).length < Game.gcl.level) {
         console.log('[main] - Time to get a second room!', Game.rooms.length, Game.gcl.level);
-
     } else {
-        console.log(Game.rooms, Game.gcl.level);
+        console.log(Object.keys(Game.rooms).length, Game.gcl.level);
     }
 
     // Testing githook Update
