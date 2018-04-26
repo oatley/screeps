@@ -74,7 +74,7 @@ var buildWalls = {
 
                 //console.log(Math.round((room.memory.exits[side].positions.length + 1) / 2), (Number(i) + 1))
                 if ((Number(i) + 1) == Math.round((room.memory.exits[side].positions.length + 1) / 2)) { // Find centre of index, build rampart here instead of wall
-                    console.log('[build.walls] - Found middle building rampart', x, y, i);
+                    console.log('[build.walls] - build rampart', x, y, i);
                     //construct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for rampart');
@@ -96,12 +96,12 @@ var buildWalls = {
                     endY = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].y + wallY + endEdge[modEndPos].y;
                     //console.log(startX, startY, endX, endY);
                     //construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
-                    console.log('[build.walls] - Found middle building extra walls', startX, startY);
+                    console.log('[build.walls] - extra walls', startX, startY);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for extra walls');
                     }
                     //construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
-                    console.log('[build.walls] - Found middle building extra walls', endX, endY);
+                    console.log('[build.walls] - extra walls', endX, endY);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for extra walls');
                     }
@@ -112,12 +112,12 @@ var buildWalls = {
                         closeEndY = endY + closeEdge[modCloseEdge].y;
                         //    console.log(startX, startY, endX, endY);
                         //construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
-                        console.log('[build.walls] - Found middle building edge walls', closeStartX, closeStartY);
+                        console.log('[build.walls] - edge walls', closeStartX, closeStartY);
                         if ( construct == OK ) {
                             console.log('[build.walls] - construction site created for edge walls');
                         }
                         //construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
-                        console.log('[build.walls] - Found middle building edge walls', closeEndX, closeEndY);
+                        console.log('[build.walls] - edge walls', closeEndX, closeEndY);
                         if ( construct == OK ) {
                             console.log('[build.walls] - construction site created for edge walls');
                         }
