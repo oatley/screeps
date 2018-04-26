@@ -1,16 +1,16 @@
 var buildTowers = {
     new: function () {
-        //Object.keys(Game.rooms)[0]
-        var spawnTargets = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_STRUCTURES, {
+        let room = Object.keys(Game.rooms)[0]
+        var spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
-        var towerTargets = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_STRUCTURES, {
+        var towerTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
         });
-        var extensionTargets = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_STRUCTURES, {
+        var extensionTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION);}
         });
-        var constructionTargets = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_CONSTRUCTION_SITES);
+        var constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
 
         // Do not try and build if you are at max number for the level
         if (room.controller.level == 2 && towerTargets.length >= 1) {

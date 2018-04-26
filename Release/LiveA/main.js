@@ -26,13 +26,16 @@ module.exports.loop = function () {
         //console.log(Object.keys(Game.rooms).length, Game.gcl.level);
     }
 
+    for (let room in Game.rooms) {
+        console.log(room);
+    }
     // Testing githook Update
     Memory.data = {maxCreeps: 8, bodyParts: 3};
     cleanMemory.clean(); // Clean dead creeps from memory
     spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
     buildExtensions.new(); // Check if you can build things
     //console.log('---------------------------------');
-    //buildTowers.new(); // Check if you can build things
+    buildTowers.new(); // Check if you can build things
     //buildStorage.new(); // Check if you can build things
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
