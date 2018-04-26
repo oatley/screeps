@@ -70,12 +70,14 @@ module.exports.loop = function () {
             constructionTargets[i].destroy();
             console.log(constructionTargets[i], i);
         }*/
-
-        findExits.updateMemoryLocations(Game.rooms[room]);
-        buildWalls.new(Game.rooms[room]);
+        if (Memory.data.buildRoadTick == 150 ){
+            findExits.updateMemoryLocations(Game.rooms[room]);
+        } else if (Memory.data.buildRoadTick == 250){
+            buildWalls.new(Game.rooms[room]);
+        }
     }
 
-    if ((Memory.data.buildRoadTick % 100) == 0 ){
+    if (Memory.data.buildRoadTick == 100 ){
         console.log('[main] - buildRoads.buildToSource()');
         buildRoads.buildToSource();
     } else if (Memory.data.buildRoadTick == 200){
