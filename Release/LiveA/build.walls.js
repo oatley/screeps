@@ -50,7 +50,6 @@ var buildWalls = {
                 startEdge = [{x: 0, y: -1}, {x: 0, y: -2}];
                 endEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
                 closeEdge = [{x: 1, y: 0}, {x: 2, y: 0}];
-                continue;
             } else if (side == FIND_EXIT_BOTTOM) {
                 wallX = 0;
                 wallY = -2;
@@ -63,7 +62,6 @@ var buildWalls = {
                 startEdge = [{x: 0, y: -1}, {x: 0, y: -2}];
                 endEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
                 closeEdge = [{x: -1, y: 0}, {x: -2, y: 0}];
-                continue;
             }
             // Line across all exits
             for (let i in room.memory.exits[side].positions) {
