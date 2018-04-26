@@ -10,7 +10,7 @@ var buildWalls = {
             if (exit == FIND_EXIT_RIGHT) {
                 let x = 49;
                 for (let y in _.range(0,50)) {
-                    let terrain = Game.map.getTerrainAt(x, y, room.name);
+                    let terrain = Game.map.getTerrainAt(x, y, room);
                     if (terrain == 'plain') {
                         console.log('[build.walls] - Found exit', room, terrain, x, y);
                     } else {
