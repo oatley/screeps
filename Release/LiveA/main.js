@@ -71,7 +71,7 @@ module.exports.loop = function () {
             console.log(constructionTargets[i], i);
         }*/
 
-        findExits.updateMemoryLocations(Game.rooms[room]);
+        findExits.updateMemoryLocations(Game.rooms[room], forceUpdate = true);
         //buildWalls.new(Game.rooms[room]);
     }
 
