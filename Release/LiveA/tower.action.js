@@ -8,7 +8,7 @@ var towerAction = {
         for (var tower in towerTargets) {
             if(tower) {
                 var closestDamagedRampart = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) =>  (structure.hits < 100 &&  structure.structureType == STRUCTURE_RAMPART) });
+                    filter: (structure) =>  (structure.hits < 5000 &&  structure.structureType == STRUCTURE_RAMPART) });
                 //console.log(towerTargets[tower]);
                 var closestDamagedStructure = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) =>  (structure.hits < structure.hitsMax && structure.structureType == STRUCTURE_ROAD) ||
