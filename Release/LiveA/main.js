@@ -53,14 +53,19 @@ module.exports.loop = function () {
 
 
     if (Memory.data.buildRoadTick == 100){
+        console.log('[main] - buildRoads.buildToSource()');
         buildRoads.buildToSource();
     } else if (Memory.data.buildRoadTick == 200){
+        console.log('[main] - buildRoads.buildToExtension()');
         buildRoads.buildToExtension();
     } else if (Memory.data.buildRoadTick == 300){
+        console.log('[main] - buildRoads.buildToTower()');
         buildRoads.buildToTower();
     } else if (Memory.data.buildRoadTick == 400){
+        console.log('[main] - buildRoads.buildToRoomController()');
         buildRoads.buildToRoomController();
     } else if (Memory.data.buildRoadTick >= 500){
+        console.log('[main] - reset memory road build timer');
         Memory.data.buildRoadTick = 0;
     }
 
