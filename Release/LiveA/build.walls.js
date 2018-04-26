@@ -63,7 +63,7 @@ var buildWalls = {
                 let roomPos = room.memory.exits[side].positions[i];
                 x = roomPos.x + wallX;
                 y = roomPos.y + wallY;
-                console.log(roomPos.roomName, x, y);
+                console.log(roomPos.roomName, x, y, i);
             }
             // Extra 2 on each side
             for (let modStartPos in startEdge) {
