@@ -1,6 +1,6 @@
 var buildWalls = {
     new: function() {
-        let exits = Game.rooms.describeExits();
+        let exits = Game.map.describeExits();
         console.log(exits);
     }
 };
