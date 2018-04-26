@@ -19,7 +19,7 @@ module.exports.loop = function () {
     // -
 
     if (Object.keys(Game.rooms).length < Game.gcl.level) {
-        console.log('[main] - Time to get a second room!', Game.rooms.length, Game.gcl.level);
+        console.log('[main] - Time to get a second room!', Object.keys(Game.rooms).length, Game.gcl.level);
     } else {
         console.log(Object.keys(Game.rooms).length, Game.gcl.level);
     }
