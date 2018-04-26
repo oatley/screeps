@@ -40,7 +40,11 @@ var buildWalls = {
                 console.log(roomPos.roomName, x, y);
             }
             // Extra 2 on each side
-            console.log(room.memory.exits[side].positions[0], room.memory.exits[side].positions[room.memory.exits[side].positions.length]);
+            let startX = room.memory.exits[side].positions[0].x;
+            let startY = room.memory.exits[side].positions[0].y;
+            let endX = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].x;
+            let endY = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].y;
+            console.log(startX, startY, endX, endY);
         }
 
 
