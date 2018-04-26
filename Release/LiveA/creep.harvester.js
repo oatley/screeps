@@ -40,6 +40,22 @@ var creepHarvester = {
             creep.memory.storing = false;
         }
 
+
+        var closestHostile = towerTargets[tower].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        // AHHH FIND_HOSTILE_CREEPS
+        if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
+            creep.memory.storing = true;
+            let randomEnergyStorage = creep.memory.randomEnergyStorage;
+            if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
+                randomEnergyStorage = Math.round(Math.random(0, targetTowers.length) * targetTowers.length);
+                creep.memory.randomEnergyStorage = randomEnergyStorage;
+            }
+            //console.log('[creep.harvester] - Creep ' + creep.name + ' storing energy in:', randomEnergyStorage.toString() + '/' + targetStructures.length .toString());
+            if(creep.transfer(targetTowers[randomEnergyStorage], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(targetTowers[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
+        }
+
+
         // if creep energy cap is not full and creep is not building/upgrading = go get energy
         if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
