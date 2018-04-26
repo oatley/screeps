@@ -21,10 +21,12 @@ module.exports.loop = function () {
     // - x1 Creep type explorer, claims room, and then suicides
     // - Energy storage building (harvesters should store in here)
     // - Backup redis and mongodb and mods
+    // - If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
+    // - Fix the static number of creeps and scale down as they get more bodyParts
 
     // Optimize road code
     if (!Memory.data) {
-        Memory.data = {maxCreeps: 8, bodyParts: 3, buildRoadTick: 0};
+        Memory.data = {maxCreeps: 6, bodyParts: 3, buildRoadTick: 0};
     } else {
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
     }
@@ -59,9 +61,10 @@ module.exports.loop = function () {
     for (let room in Game.rooms) {
         //buildWalls.new(room);
         findExits.updateMemoryLocations(Game.rooms[room]);
+        buildWalls.new(Game.rooms[room]);
     }
 
-    if (Memory.data.buildRoadTick == 100){
+    if ((Memory.data.buildRoadTick % 100) == 0 ){
         console.log('[main] - buildRoads.buildToSource()');
         buildRoads.buildToSource();
     } else if (Memory.data.buildRoadTick == 200){

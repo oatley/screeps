@@ -1,24 +1,40 @@
 var buildWalls = {
     new: function(room) {
-        let exits = Game.map.describeExits(room);
-        for (let exit in exits) {
-            //FIND_EXIT_TOP: 1,
-            //FIND_EXIT_RIGHT: 3,
-            //FIND_EXIT_BOTTOM: 5,
-            //FIND_EXIT_LEFT: 7,
-            console.log(exit, exits[exit], FIND_EXIT_RIGHT);
-            if (exit == FIND_EXIT_RIGHT) {
-                let x = 49;
-                for (let y in _.range(0,50)) {
-                    let terrain = Game.map.getTerrainAt(x, y, room);
-                    if (terrain == 'plain') {
-                        console.log('[build.walls] - Found exit', room, terrain, x, y);
-                    } else {
-                        console.log('[build.walls] - NOT AN EXIT', room, terrain, x, y);
-                    }
-                }
+        // Find exits before building walls
+        if (!room.memory.exits) {
+            console.log('[build.walls] - need to find exits before building walls');
+            return;
+        }
+        // Do not try and build walls if you are unable to defend yourself anyway
+        if (room.controller.level < 3 || towerTargets.length < 1) {
+            return;
+        }
+
+        for (let side in room.memory.exits) {
+            let x = 0;
+            let y = 0;
+            if (side == FIND_EXIT_TOP) {
+                let wallX = 0;
+                let wallY = 2;
+            } else if (side == FIND_EXIT_RIGHT) {
+                let wallX = -2;
+                let wallY = 0;
+            } else if (side == FIND_EXIT_BOTTOM) {
+                let wallX = 0;
+                let wallY = -2;
+            } else if (side == FIND_EXIT_LEFT) {
+                let wallX = 2;
+                let wallY = 0;
+            }
+            // Line across all exits
+            for (let roomPos in room.memory.exits[side].positions) {
+                x = roomPos.x + wallX;
+                y = roomPos.y + wallY;
+                console.log(roomPos.roomName, x, y);
             }
         }
+
+
     }
 };
 
