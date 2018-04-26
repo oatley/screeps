@@ -10,6 +10,10 @@ var towerAction = require('tower.action');
 
 module.exports.loop = function () {
 
+    if (Game.rooms.length < Game.gcl.level) {
+        console.log('[main] - Time to get a second room!')
+    }
+
     // Testing githook Update
     //if (spawn.room.energyCapacityAvailable >)
     Memory.data = {maxCreeps: 8, bodyParts: 3};
