@@ -24,6 +24,7 @@ module.exports.loop = function () {
     // - If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
     // - Fix the static number of creeps and scale down as they get more bodyParts
     // - Upgrade scripts to support multi room
+    // - Use the delays ticker timer to optimize cpu performance 
 
 
     // Optimize road code
