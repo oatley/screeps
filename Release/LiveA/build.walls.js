@@ -1,5 +1,8 @@
 var buildWalls = {
     new: function(room) {
+        var towerTargets = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
+        });
         // Find exits before building walls
         if (!room.memory.exits) {
             console.log('[build.walls] - need to find exits before building walls');
