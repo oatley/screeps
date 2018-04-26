@@ -64,7 +64,7 @@ var creepHarvester = {
                 let transfer = creep.transfer(targetStructures[randomEnergyStorage], RESOURCE_ENERGY);
                 if(transfer == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targetTowers[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
-                } else if (transfer == ERR_FULL) {
+                } else if (transfer == ERR_FULL && !closestHostile) {
                     creep.memory.storing = false;
                 }
             } else if (targetStructures.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
