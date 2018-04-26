@@ -32,7 +32,7 @@ module.exports.loop = function () {
     spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
     buildExtensions.new(); // Check if you can build things
     //console.log('---------------------------------');
-    buildTowers.new(); // Check if you can build things
+    //buildTowers.new(); // Check if you can build things
     //buildStorage.new(); // Check if you can build things
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
