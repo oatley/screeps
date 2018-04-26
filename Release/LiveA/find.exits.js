@@ -30,6 +30,7 @@ var findExits = {
             }
 
             if (!room.memory.exits[side].storedExits) {
+                console.log('side is:', side);
                 for (let pos in _.range(0,50)) {
                     x = pos;    // Will get overwritten depending on side
                     y = pos;    // Will get overwritten depending on side
