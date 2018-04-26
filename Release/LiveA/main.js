@@ -20,6 +20,13 @@ module.exports.loop = function () {
     // - Energy storage building (harvesters should store in here)
     // -
 
+    // Optimize road code
+    if (!Memory.data) {
+        Memory.data = {maxCreeps: 8, bodyParts: 3, buildRoadTick: 0};
+    } else {
+        Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
+    }
+
     if (Object.keys(Game.rooms).length < Game.gcl.level) {
         //console.log('[main] - Time to get another room!', Object.keys(Game.rooms).length, Game.gcl.level);
     } else {
@@ -44,12 +51,7 @@ module.exports.loop = function () {
     buildTowers.new(); // Check if you can build things
     buildStorage.new(); // Check if you can build things
 
-    // Optimize road code
-    if (!Memory.data) {
-        Memory.data = {maxCreeps: 8, bodyParts: 3, buildRoadTick: 0};
-    } else {
-        Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
-    }
+
 
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
