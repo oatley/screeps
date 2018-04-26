@@ -16,18 +16,21 @@ var buildWalls = {
         for (let side in room.memory.exits) {
             let x = 0;
             let y = 0;
+            let wallX = 0;
+            let wallY = 0;
+            console.log(side);
             if (side == FIND_EXIT_TOP) {
-                let wallX = 0;
-                let wallY = 2;
+                wallX = 0;
+                wallY = 2;
             } else if (side == FIND_EXIT_RIGHT) {
-                let wallX = -2;
-                let wallY = 0;
+                wallX = -2;
+                wallY = 0;
             } else if (side == FIND_EXIT_BOTTOM) {
-                let wallX = 0;
-                let wallY = -2;
+                wallX = 0;
+                wallY = -2;
             } else if (side == FIND_EXIT_LEFT) {
-                let wallX = 2;
-                let wallY = 0;
+                wallX = 2;
+                wallY = 0;
             }
             // Line across all exits
             for (let roomPos in room.memory.exits[side].positions) {
