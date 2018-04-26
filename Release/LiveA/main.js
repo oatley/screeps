@@ -4,9 +4,11 @@ var spawnCreeper = require('spawn.creeper');
 var buildExtensions = require('build.extensions');
 var buildTowers = require('build.towers');
 var buildRoads = require('build.roads');
+var buildStorage = require('build.storage');
 var creepHarvester = require('creep.harvester');
 var creepExplorer = require('creep.explorer');
 var towerAction = require('tower.action');
+
 
 module.exports.loop = function () {
 
@@ -31,6 +33,7 @@ module.exports.loop = function () {
     buildExtensions.new(); // Check if you can build things
     //console.log('---------------------------------');
     buildTowers.new(); // Check if you can build things
+    buildStorage.new(); // Check if you can build things
     buildRoads.buildToSource();
     buildRoads.buildToExtension();
     buildRoads.buildToTower();
