@@ -30,6 +30,10 @@ var buildWalls = {
             let endEdge = {};
             // Close the start and end edges, move wall back to edge
             let closeEdge = {};
+            let closeStartX = 0;
+            let closeStartY = 0;
+            let closeEndX = 0;
+            let closeEndY = 0;
             // Construct
             let construct = -10;
 
@@ -46,33 +50,37 @@ var buildWalls = {
                 startEdge = [{x: 0, y: -1}, {x: 0, y: -2}];
                 endEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
                 closeEdge = [{x: 1, y: 0}, {x: 2, y: 0}];
+                continue;
             } else if (side == FIND_EXIT_BOTTOM) {
                 wallX = 0;
                 wallY = -2;
                 startEdge = [{x: -1, y: 0}, {x: -2, y: 0}];
                 endEdge = [{x: 1, y: 0}, {x: 2, y: 0}];
                 closeEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
+                continue;
             } else if (side == FIND_EXIT_LEFT) {
                 wallX = 2;
                 wallY = 0;
                 startEdge = [{x: 0, y: -1}, {x: 0, y: -2}];
                 endEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
                 closeEdge = [{x: -1, y: 0}, {x: -2, y: 0}];
+                continue;
             }
             // Line across all exits
             for (let i in room.memory.exits[side].positions) {
                 let roomPos = room.memory.exits[side].positions[i];
                 x = roomPos.x + wallX;
                 y = roomPos.y + wallY;
-                //console.log(roomPos.roomName, x, y, i);
+
                 //console.log(Math.round((room.memory.exits[side].positions.length + 1) / 2), (Number(i) + 1))
                 if ((Number(i) + 1) == Math.round((room.memory.exits[side].positions.length + 1) / 2)) { // Find centre of index, build rampart here instead of wall
-                    //console.log('[build.walls] - Found middle building rampart', x, y, i);
+                    console.log('[build.walls] - Found middle building rampart', x, y, i);
                     //construct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for rampart');
                     }
                 } else { // build walls
+                    console.log('[build.walls] - Found middle building rampart', roomPos.roomName, x, y, i);
                     //construct = room.createConstructionSite(x, y, STRUCTURE_WALL);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for walls');
@@ -88,24 +96,28 @@ var buildWalls = {
                     endY = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].y + wallY + endEdge[modEndPos].y;
                     //console.log(startX, startY, endX, endY);
                     //construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
+                    console.log('[build.walls] - Found middle building extra walls', startX, startY);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for extra walls');
                     }
                     //construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
+                    console.log('[build.walls] - Found middle building extra walls', endX, endY);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for extra walls');
                     }
                     for (let modCloseEdge in closeEdge) {
-                        startX = startX + closeEdge[modCloseEdge].x;
-                        startY = startY + closeEdge[modCloseEdge].y;
-                        endX = endX + closeEdge[modCloseEdge].x;
-                        endY = endY + closeEdge[modCloseEdge].y;
+                        closeStartX = startX + closeEdge[modCloseEdge].x;
+                        closeStartY = startY + closeEdge[modCloseEdge].y;
+                        closeEndX = endX + closeEdge[modCloseEdge].x;
+                        closeEndY = endY + closeEdge[modCloseEdge].y;
                         //    console.log(startX, startY, endX, endY);
                         //construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
+                        console.log('[build.walls] - Found middle building edge walls', closeStartX, closeStartY);
                         if ( construct == OK ) {
                             console.log('[build.walls] - construction site created for edge walls');
                         }
                         //construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
+                        console.log('[build.walls] - Found middle building edge walls', closeEndX, closeEndY);
                         if ( construct == OK ) {
                             console.log('[build.walls] - construction site created for edge walls');
                         }

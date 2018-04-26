@@ -61,16 +61,18 @@ module.exports.loop = function () {
     buildStorage.new(); // Check if you can build things
 
     for (let room in Game.rooms) {
-        let constructionTargets = Game.rooms[room].find(FIND_STRUCTURES, {
+        // Delete walls and construction sites
+        //let constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
+        /*let constructionTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_WALL);}
         });
         for (let i in constructionTargets) {
             constructionTargets[i].destroy();
             console.log(constructionTargets[i], i);
-        }
+        }*/
 
 
-        //buildWalls.new(room);
+        buildWalls.new(room);
         findExits.updateMemoryLocations(Game.rooms[room]);
         //buildWalls.new(Game.rooms[room]);
     }
@@ -107,7 +109,7 @@ module.exports.loop = function () {
     }*/
 
     // Run each tower
-    //towerAction.run();
+    towerAction.run();
 
     // Run each creep
     for (var name in Game.creeps) {
