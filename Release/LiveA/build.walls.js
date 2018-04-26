@@ -57,7 +57,6 @@ var buildWalls = {
                 startEdge = [{x: -1, y: 0}, {x: -2, y: 0}];
                 endEdge = [{x: 1, y: 0}, {x: 2, y: 0}];
                 closeEdge = [{x: 0, y: 1}, {x: 0, y: 2}];
-                continue;
             } else if (side == FIND_EXIT_LEFT) {
                 wallX = 2;
                 wallY = 0;
