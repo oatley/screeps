@@ -72,7 +72,7 @@ module.exports.loop = function () {
         }*/
 
         findExits.updateMemoryLocations(Game.rooms[room]);
-        buildWalls.new(Game.rooms[room]);
+        //buildWalls.new(Game.rooms[room]);
     }
 
     if ((Memory.data.buildRoadTick % 100) == 0 ){
