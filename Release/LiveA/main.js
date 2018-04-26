@@ -16,6 +16,7 @@ module.exports.loop = function () {
     // - 6x Creep type harvester, takes
     // - Energy storage building (harvesters should store in here)
     //
+
     if (Game.rooms.length < Game.gcl.level) {
         console.log('[main] - Time to get a second room!')
     }
