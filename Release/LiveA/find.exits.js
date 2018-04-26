@@ -4,7 +4,7 @@
 //FIND_EXIT_LEFT: 7,
 var findExits = {
     updateMemoryLocations: function(room) {
-        let exits = Game.map.describeExits(room);
+        let exits = Game.map.describeExits(room.name);
         let x = 0;
         let y = 0;
         let terrain = '';
@@ -37,10 +37,10 @@ var findExits = {
                     } else if (side == FIND_EXIT_LEFT) {
                         x = 0;
                     }
-                    terrain = Game.map.getTerrainAt(x, y, room);
+                    terrain = Game.map.getTerrainAt(x, y, room.name);
                     if (terrain == 'plain') {
-                        console.log('[build.walls] - Found exit', room, terrain, x, y);
-                        let position = new RoomPosition(x,y,room);
+                        console.log('[build.walls] - Found exit', room.name, terrain, x, y);
+                        let position = new RoomPosition(x,y,room.name);
                         room.memory.exits[side].positions.push(position);
                     }
                 }
