@@ -46,7 +46,7 @@ var buildExtensions = {
         let extDir = '';
         let extDirList = ['UP', 'RIGHT', 'DOWN', 'LEFT'];
         let noBuild = false;
-        
+
 
         // Create a pattern using these arrays objects (eg. this is an X)
         let extNum = [{x: 0, y: 0}, {x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}];

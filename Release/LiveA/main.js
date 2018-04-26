@@ -64,6 +64,7 @@ module.exports.loop = function () {
         let constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
         for (let i in constructionTargets) {
             constructionTargets[i].remove();
+            console.log(constructionTargets[i], i);
         }
 
 
