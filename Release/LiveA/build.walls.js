@@ -74,14 +74,14 @@ var buildWalls = {
 
                 //console.log(Math.round((room.memory.exits[side].positions.length + 1) / 2), (Number(i) + 1))
                 if ((Number(i) + 1) == Math.round((room.memory.exits[side].positions.length + 1) / 2)) { // Find centre of index, build rampart here instead of wall
-                    console.log('[build.walls] - build rampart', x, y, i);
-                    //construct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
+                    //console.log('[build.walls] - build rampart', x, y, i);
+                    construct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for rampart');
                     }
                 } else { // build walls
-                    console.log('[build.walls] - build wall', roomPos.roomName, x, y, i);
-                    //construct = room.createConstructionSite(x, y, STRUCTURE_WALL);
+                    //console.log('[build.walls] - build wall', roomPos.roomName, x, y, i);
+                    construct = room.createConstructionSite(x, y, STRUCTURE_WALL);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for walls');
                     }
@@ -95,13 +95,13 @@ var buildWalls = {
                     endX = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].x + wallX + endEdge[modEndPos].x;
                     endY = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].y + wallY + endEdge[modEndPos].y;
                     //console.log(startX, startY, endX, endY);
-                    //construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
-                    console.log('[build.walls] - extra walls', startX, startY);
+                    construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
+                    //console.log('[build.walls] - extra walls', startX, startY);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for extra walls');
                     }
-                    //construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
-                    console.log('[build.walls] - extra walls', endX, endY);
+                    construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
+                    //console.log('[build.walls] - extra walls', endX, endY);
                     if ( construct == OK ) {
                         console.log('[build.walls] - construction site created for extra walls');
                     }
@@ -111,13 +111,13 @@ var buildWalls = {
                         closeEndX = endX + closeEdge[modCloseEdge].x;
                         closeEndY = endY + closeEdge[modCloseEdge].y;
                         //    console.log(startX, startY, endX, endY);
-                        //construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
-                        console.log('[build.walls] - edge walls', closeStartX, closeStartY);
+                        construct = room.createConstructionSite(closeStartX, closeStartY, STRUCTURE_WALL);
+                        //console.log('[build.walls] - edge walls', closeStartX, closeStartY);
                         if ( construct == OK ) {
                             console.log('[build.walls] - construction site created for edge walls');
                         }
-                        //construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
-                        console.log('[build.walls] - edge walls', closeEndX, closeEndY);
+                        construct = room.createConstructionSite(closeEndX, closeEndY, STRUCTURE_WALL);
+                        //console.log('[build.walls] - edge walls', closeEndX, closeEndY);
                         if ( construct == OK ) {
                             console.log('[build.walls] - construction site created for edge walls');
                         }
