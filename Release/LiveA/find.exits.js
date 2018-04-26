@@ -43,10 +43,17 @@ var findExits = {
                     } else if (side == FIND_EXIT_LEFT) {
                         x = 0;
                     }
+
                     terrain = Game.map.getTerrainAt(x, y, room.name);
-                    console.log (Game.map.getTerrainAt(0, 49, 'W5N8'));
+                    if (side == 5) {
+                        console.log('[find.exits] - ', side, room.name, terrain, x, y);
+                        console.log (0,49,Game.map.getTerrainAt(0, 49, 'W5N8'));
+                        console.log (49,49,Game.map.getTerrainAt(49, 49, 'W5N8'));
+                        console.log(x,y,terrain);
+
+                    }
                     if (terrain == 'plain') {
-                        console.log('[find.exits] - Found exit', side, room.name, terrain, x, y);
+                        //console.log('[find.exits] - Found exit', side, room.name, terrain, x, y);
                         let position = new RoomPosition(x,y,room.name);
                         room.memory.exits[side].positions.push(position);
                     }
