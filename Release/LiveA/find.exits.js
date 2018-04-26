@@ -45,9 +45,9 @@ var findExits = {
 
                     let roomPos = new RoomPosition(x, y, room.name);
                     let terrain = Game.map.getTerrainAt(roomPos);
-                    if (side == FIND_EXIT_TOP) {
+                    /*if (side == FIND_EXIT_TOP) {
                         console.log(roomPos.x, roomPos.y, roomPos.roomName, terrain);
-                    }
+                    }*/
                     if (terrain == 'plain') {
                         //console.log('[find.exits] - Found exit', side, room.name, terrain, x, y);
                         room.memory.exits[side].positions.push(roomPos);

@@ -71,8 +71,8 @@ module.exports.loop = function () {
             console.log(constructionTargets[i], i);
         }*/
 
-        findExits.updateMemoryLocations(Game.rooms[room], forceUpdate = true);
-        //buildWalls.new(Game.rooms[room]);
+        findExits.updateMemoryLocations(Game.rooms[room]);
+        buildWalls.new(Game.rooms[room]);
     }
 
     if ((Memory.data.buildRoadTick % 100) == 0 ){
