@@ -30,7 +30,8 @@ var buildWalls = {
             let endEdge = {};
             // Close the start and end edges, move wall back to edge
             let closeEdge = {};
-
+            // Construct
+            let construct = 0;
 
             console.log(side);
             if (side == FIND_EXIT_TOP) {
@@ -64,20 +65,18 @@ var buildWalls = {
                 x = roomPos.x + wallX;
                 y = roomPos.y + wallY;
                 //console.log(roomPos.roomName, x, y, i);
-                console.log(Math.round((room.memory.exits[side].positions.length + 1) / 2), (Number(i) + 1))
+                //console.log(Math.round((room.memory.exits[side].positions.length + 1) / 2), (Number(i) + 1))
                 if ((Number(i) + 1) == Math.round((room.memory.exits[side].positions.length + 1) / 2)) { // Find centre of index, build rampart here instead of wall
-                    console.log('[build.walls] - Found middle building rampart', x, y, i);
-                    //extConstruct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
-                    /*if ( extConstruct == OK ) {
-                        console.log('[build.extensions] - construction site created');
-                        //console.log('[build.extensions] - room level too low to build');
-                    } else if ( extConstruct == ERR_INVALID_TARGET ) {
-
-                    } else {
-
-                    }*/
+                    //console.log('[build.walls] - Found middle building rampart', x, y, i);
+                    construct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
+                    if ( construct == OK ) {
+                        console.log('[build.walls] - construction site created for rampart');
+                    }
                 } else { // build walls
-
+                    construct = room.createConstructionSite(x, y, STRUCTURE_WALL);
+                    if ( construct == OK ) {
+                        console.log('[build.walls] - construction site created for walls');
+                    }
                 }
             }
             // Extra 2 on each side
@@ -88,12 +87,28 @@ var buildWalls = {
                     endX = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].x + wallX + endEdge[modEndPos].x;
                     endY = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].y + wallY + endEdge[modEndPos].y;
                     //console.log(startX, startY, endX, endY);
+                    construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
+                    if ( construct == OK ) {
+                        console.log('[build.walls] - construction site created for extra walls');
+                    }
+                    construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
+                    if ( construct == OK ) {
+                        console.log('[build.walls] - construction site created for extra walls');
+                    }
                     for (let modCloseEdge in closeEdge) {
                         startX = startX + closeEdge[modCloseEdge].x;
                         startY = startY + closeEdge[modCloseEdge].y;
                         endX = endX + closeEdge[modCloseEdge].x;
                         endY = endY + closeEdge[modCloseEdge].y;
-                    //    console.log(startX, startY, endX, endY);
+                        //    console.log(startX, startY, endX, endY);
+                        construct = room.createConstructionSite(startX, startY, STRUCTURE_WALL);
+                        if ( construct == OK ) {
+                            console.log('[build.walls] - construction site created for edge walls');
+                        }
+                        construct = room.createConstructionSite(endX, endY, STRUCTURE_WALL);
+                        if ( construct == OK ) {
+                            console.log('[build.walls] - construction site created for edge walls');
+                        }
                     }
                 }
             }
