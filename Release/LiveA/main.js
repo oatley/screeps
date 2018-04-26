@@ -27,7 +27,7 @@ module.exports.loop = function () {
     }
 
     for (let room in Game.rooms) {
-        let spawnTargets = room.find(FIND_STRUCTURES, {
+        let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
         if (spawns.length < 1) {
