@@ -7,7 +7,6 @@ var findExits = {
         let exits = Game.map.describeExits(room.name);
         let x = 0;
         let y = 0;
-        let terrain = '';
         let exitToUse = {};
 
         if (forceUpdate) {
@@ -44,15 +43,13 @@ var findExits = {
                         x = 0;
                     }
 
-                    terrain = Game.map.getTerrainAt(x, y, room.name);
+                    let roomPos = new RoomPosition(x, y, room.name);
+                    let terrain = Game.map.getTerrainAt(roomPos);
                     if (side == 5) {
                         console.log('[find.exits] - ', side, room.name, terrain, x, y);
                         console.log (0,49,Game.map.getTerrainAt(0, 49, 'W5N8'));
                         console.log (49,49,Game.map.getTerrainAt(49, 49, 'W5N8'));
-                        let roomPos = new RoomPosition(x, y, 'W5N8');
-                        terrain = Game.map.getTerrainAt(roomPos);
                         console.log(x,y,terrain);
-
                     }
                     if (terrain == 'plain') {
                         //console.log('[find.exits] - Found exit', side, room.name, terrain, x, y);
