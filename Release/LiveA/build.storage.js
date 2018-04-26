@@ -10,7 +10,7 @@ let buildStorage = {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE);}
         });
 
-        if (storageTargets.length > 0) {
+        if (room.controller.level < 4 || storageTargets.length > 0) {
             return;
         }
 
