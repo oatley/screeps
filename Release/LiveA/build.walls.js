@@ -63,7 +63,21 @@ var buildWalls = {
                 let roomPos = room.memory.exits[side].positions[i];
                 x = roomPos.x + wallX;
                 y = roomPos.y + wallY;
-                console.log(roomPos.roomName, x, y, i);
+                //console.log(roomPos.roomName, x, y, i);
+                if ((i+1) == Math.round((room.memory.exits[side].positions.length + 1) / 2)) { // Find centre of index, build rampart here instead of wall
+                    console.log('[build.walls] - Found middle building rampart', x, y, i);
+                    //extConstruct = room.createConstructionSite(x, y, STRUCTURE_RAMPART);
+                    /*if ( extConstruct == OK ) {
+                        console.log('[build.extensions] - construction site created');
+                        //console.log('[build.extensions] - room level too low to build');
+                    } else if ( extConstruct == ERR_INVALID_TARGET ) {
+
+                    } else {
+
+                    }*/
+                } else { // build walls
+
+                }
             }
             // Extra 2 on each side
             for (let modStartPos in startEdge) {
@@ -72,13 +86,13 @@ var buildWalls = {
                     startY = room.memory.exits[side].positions[0].y + wallY + startEdge[modStartPos].y;
                     endX = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].x + wallX + endEdge[modEndPos].x;
                     endY = room.memory.exits[side].positions[room.memory.exits[side].positions.length-1].y + wallY + endEdge[modEndPos].y;
-                    console.log(startX, startY, endX, endY);
+                    //console.log(startX, startY, endX, endY);
                     for (let modCloseEdge in closeEdge) {
                         startX = startX + closeEdge[modCloseEdge].x;
                         startY = startY + closeEdge[modCloseEdge].y;
                         endX = endX + closeEdge[modCloseEdge].x;
                         endY = endY + closeEdge[modCloseEdge].y;
-                        console.log(startX, startY, endX, endY);
+                    //    console.log(startX, startY, endX, endY);
                     }
                 }
             }
