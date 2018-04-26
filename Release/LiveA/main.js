@@ -3,6 +3,7 @@ var cleanMemory = require('clean.memory');
 var spawnCreeper = require('spawn.creeper');
 var buildExtensions = require('build.extensions');
 var buildTowers = require('build.towers');
+var buildWalls = require('build.walls');
 var buildRoads = require('build.roads');
 var buildStorage = require('build.storage');
 var creepHarvester = require('creep.harvester');
@@ -18,7 +19,7 @@ module.exports.loop = function () {
     // - 5x Creep type harvester, takes
     // - x1 Creep type explorer, claims room, and then suicides
     // - Energy storage building (harvesters should store in here)
-    // -
+    // - Backup redis and mongodb and mods
 
     // Optimize road code
     if (!Memory.data) {
@@ -54,6 +55,8 @@ module.exports.loop = function () {
     buildTowers.new(); // Check if you can build things
     buildStorage.new(); // Check if you can build things
 
+    //
+    buildWalls.new();
 
     if (Memory.data.buildRoadTick == 100){
         console.log('[main] - buildRoads.buildToSource()');
