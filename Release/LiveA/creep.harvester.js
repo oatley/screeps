@@ -41,7 +41,7 @@ var creepHarvester = {
         }
 
 
-        var closestHostile = towerTargets[tower].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        var closestHostile = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         // AHHH FIND_HOSTILE_CREEPS
         if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
             creep.memory.storing = true;
