@@ -7,6 +7,8 @@ var towerAction = {
         });
         for (var tower in towerTargets) {
             if(tower) {
+                var closestDamagedRampart = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) =>  (structure.hits < 100000 &&  structure.structureType == STRUCTURE_RAMPART) });
                 //console.log(towerTargets[tower]);
                 var closestDamagedStructure = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) =>  (structure.hits < structure.hitsMax && structure.structureType == STRUCTURE_ROAD) ||
@@ -15,7 +17,11 @@ var towerAction = {
                 });
                 var closestHostile = towerTargets[tower].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
                 if(closestDamagedStructure && !closestHostile) {
-                    let repair = towerTargets[tower].repair(closestDamagedStructure);
+                    if (closestDamagedRampart) {
+                        let repair = towerTargets[tower].repair(closestDamagedRampart);
+                    } else {
+                        let repair = towerTargets[tower].repair(closestDamagedStructure);
+                    }
                 }
                 if(closestHostile) {
                     towerTargets[tower].attack(closestHostile);

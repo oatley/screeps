@@ -37,7 +37,7 @@ var buildWalls = {
             // Construct
             let construct = -10;
 
-            console.log(side);
+            //console.log(side);
             if (side == FIND_EXIT_TOP) {
                 wallX = 0;
                 wallY = 2;
