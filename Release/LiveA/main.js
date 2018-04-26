@@ -58,7 +58,7 @@ module.exports.loop = function () {
 
     for (let room in Game.rooms) {
         //buildWalls.new(room);
-        findExits.updateMemoryLocations(Game.rooms[room]);
+        findExits.updateMemoryLocations(Game.rooms[room], forceUpdate = true);
     }
 
     if (Memory.data.buildRoadTick == 100){

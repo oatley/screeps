@@ -3,12 +3,17 @@
 //FIND_EXIT_BOTTOM: 5,
 //FIND_EXIT_LEFT: 7,
 var findExits = {
-    updateMemoryLocations: function(room) {
+    updateMemoryLocations: function(room, forceUpdate = false) {
         let exits = Game.map.describeExits(room.name);
         let x = 0;
         let y = 0;
         let terrain = '';
         let exitToUse = {};
+
+        if (forceUpdate) {
+            room.memory.exits = {};
+        }
+
         for (let side in exits) {
             if (!room.memory.exits) {
                 if (!room.memory) room.memory = {};
