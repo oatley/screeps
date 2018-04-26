@@ -52,11 +52,20 @@ module.exports.loop = function () {
     buildStorage.new(); // Check if you can build things
 
 
+    if (Memory.data.buildRoadTick == 100){
+        buildRoads.buildToSource();
+    } else if (Memory.data.buildRoadTick == 200){
+        buildRoads.buildToExtension();
+    } else if (Memory.data.buildRoadTick == 300){
+        buildRoads.buildToTower();
+    } else if (Memory.data.buildRoadTick == 400){
+        buildRoads.buildToRoomController();
+    } else if (Memory.data.buildRoadTick >= 500){
+        Memory.data.buildRoadTick = 0;
+    }
 
-    buildRoads.buildToSource();
-    buildRoads.buildToExtension();
-    buildRoads.buildToTower();
-    buildRoads.buildToRoomController();
+
+
 
     // Find exits to the room, give these to explorers
     /*var exits = Game.map.describeExits(Game.spawns['Spawn1'].room.name);
