@@ -13,9 +13,10 @@ module.exports.loop = function () {
     // ToDo list
     // - 1x Creep type builder, takes from storage builds/repairs
     // - 1x Creep type upgrader, takes from storage and upgrades the roomController
-    // - 6x Creep type harvester, takes
+    // - 5x Creep type harvester, takes
+    // - x1 Creep type explorer, claims room, and then suicides
     // - Energy storage building (harvesters should store in here)
-    //
+    // -
 
     if (Object.keys(Game.rooms).length < Game.gcl.level) {
         console.log('[main] - Time to get a second room!', Game.rooms.length, Game.gcl.level);
