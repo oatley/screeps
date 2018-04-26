@@ -18,7 +18,10 @@ module.exports.loop = function () {
     //
 
     if (Game.rooms.length < Game.gcl.level) {
-        console.log('[main] - Time to get a second room!')
+        console.log('[main] - Time to get a second room!', Game.rooms.length, Game.gcl.level);
+
+    } else {
+        console.log(Game.rooms.length, Game.gcl.level);
     }
 
     // Testing githook Update
