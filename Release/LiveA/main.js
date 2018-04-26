@@ -61,7 +61,7 @@ module.exports.loop = function () {
     buildStorage.new(); // Check if you can build things
 
     for (let room in Game.rooms) {
-        let constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
+        let constructionTargets = Game.rooms[room].find(FIND_CONSTRUCTION_SITES);
         for (let i in constructionTargets) {
             constructionTargets[i].remove();
             console.log(constructionTargets[i], i);
