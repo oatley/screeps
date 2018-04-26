@@ -39,8 +39,11 @@ module.exports.loop = function () {
         });
         if (spawnTargets.length < 1) {
                 console.log('[main] - No spawn in', room);
+                // Create spawn
+                // continue
         }
-        console.log(room, spawnTargets.length);
+        // Do everything
+        //console.log(room, spawnTargets.length);
     }
     // Testing githook Update
     //Memory.data = {maxCreeps: 8, bodyParts: 3};
