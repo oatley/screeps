@@ -33,7 +33,8 @@ var buildWalls = {
                 wallY = 0;
             }
             // Line across all exits
-            for (let roomPos in room.memory.exits[side].positions) {
+            for (let i in room.memory.exits[side].positions) {
+                let roomPos = room.memory.exits[side].positions[i];
                 x = roomPos.x + wallX;
                 y = roomPos.y + wallY;
                 console.log(roomPos.roomName, x, y);
