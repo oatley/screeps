@@ -27,7 +27,7 @@ module.exports.loop = function () {
     }
 
     for (let room in Game.rooms) {
-        let spawns = Game.rooms[room].find(FIND_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);})
+        let spawns = Game.rooms[room].find(FIND_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         if (spawns.length < 1) {
                 console.log('[main] - No spawn in', room);
         }
