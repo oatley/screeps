@@ -55,8 +55,9 @@ module.exports.loop = function () {
     buildTowers.new(); // Check if you can build things
     buildStorage.new(); // Check if you can build things
 
-    //
-    buildWalls.new();
+    for (let room in Game.rooms) {
+        buildWalls.new(room);
+    }
 
     if (Memory.data.buildRoadTick == 100){
         console.log('[main] - buildRoads.buildToSource()');
