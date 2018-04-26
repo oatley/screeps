@@ -39,6 +39,8 @@ var buildWalls = {
                 y = roomPos.y + wallY;
                 console.log(roomPos.roomName, x, y);
             }
+            // Extra 2 on each side
+            console.log(room.memory.exits[side].positions[0], room.memory.exits[side].positions[room.memory.exits[side].positions.length]);
         }
 
 
