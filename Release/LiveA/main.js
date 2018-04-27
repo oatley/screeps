@@ -92,7 +92,7 @@ module.exports.loop = function () {
         }
 
         destroyRoads.destroy(Game.rooms[room]);
-        buildRoads.buildToRamparts(Game.rooms[room], forceRebuild = true);
+        //buildRoads.buildToRamparts(Game.rooms[room], forceRebuild = true);
 
         if (Memory.data.mainTick == 5){
             console.log('[main] - cleanMemory.clean()');
