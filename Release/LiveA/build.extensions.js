@@ -115,6 +115,7 @@ var buildExtensions = {
                     }
                 }
             }
+        }
     }
 };
 
