@@ -45,10 +45,10 @@ var creepHarvester = {
         var closestHostile = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 
 
-
-        //console.log(targetStorage, targetStorage.store.energy, targetStorage.storeCapacity);
-        // if creep energy cap is not full and creep is not building/upgrading = go get energy
-        if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
+        // If no courses have energy
+        if (creep.room.energyAvailable == 0) {
+            console.log('no energy');
+        } else if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
             //creep.say('energy');
             if ((closestHostile && creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity) || (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && creep.room.energyAvailable == 0)) {
