@@ -87,7 +87,7 @@ var creepHarvester = {
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
                 }
-            } else if (targetStorage.store < targetStorage.storeCapacity && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
+            } else if (targetStorage.store.energy < targetStorage.storeCapacity && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
                 // if structures energy cap is not full and not building = go fill structures
                 creep.memory.storing = true;
                 let transfer = creep.transfer(targetStorage, RESOURCE_ENERGY);
