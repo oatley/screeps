@@ -16,12 +16,14 @@ let destroyRoads = {
         for (let s in targetStructures) {
             for (let r in targetRoads) {
                 if (targetStructures[s].pos == targetRoads[r].pos) {
-                    console.log('FOUND ROAD UNDER STRUCTURE');
+                    console.log('[destroy.roads] - Destroying road under structure');
+                    targetRoads[r].destroy();
                 }
             }
             for (let r in targetConstructionRoads) {
                 if (targetStructures[s].pos == targetConstructionRoads[r].pos) {
-                    console.log('FOUND CONSTRUCTION ROAD UNDER STRUCTURE');
+                    console.log('[destroy.roads] - Destroying road construction site under structure');
+                    targetConstructionRoads.[r].remove();
                 }
             }
         }
