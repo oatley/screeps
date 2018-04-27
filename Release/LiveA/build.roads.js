@@ -352,7 +352,97 @@ let buildRoads = {
                 }
             }
         }
-    } //buildToRoomController
+    }, //buildToRoomController
+    buildToRamparts: function (room, forceRebuild = false) {
+        //Object.keys(Game.rooms)[0]
+        //let room = Game.rooms[Object.keys(Game.rooms)[0]];
+        //let roomController = room.controller;
+        let spawnTargets = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}
+        });
+        //let ramparts = [rampart];
+        let ramparts = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_RAMPART)}
+        });
+        // Create road around the rampart
+        let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        if (forceRebuild) {
+            room.memory.ramparts = {};
+        }
+
+        // Make the function accept arguments that let it build to other things
+        for ( let i in ramparts ) {
+            let rampartToUse = ramparts[i];
+            //console.log(rampartToUse.id);
+            let pathToSpawn = {};
+            // Create the path memory variable
+            if (!room.memory.ramparts) {
+                if (!room.memory) room.memory = {};
+                room.memory.ramparts = {};
+                console.log('[build.roads.ramparts] - creating new memory for ramparts');
+            }
+            //if (!room.memory.rampartTargets[rampartToUse.id]) {
+            if (!room.memory.ramparts[rampartToUse.id] ) {
+                rampartToUse.memory = room.memory.ramparts[rampartToUse.id] = {};
+                rampartToUse.memory.createdPath = false;
+                //pathToSpawn = PathFinder.search(spawnTargets[0].pos, rampartToUse.pos, {range: 2});
+                pathToSpawn = room.findPath(spawnTargets[0].pos, rampartToUse.pos, {range: 1, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
+                rampartToUse.memory.pathToSpawn = pathToSpawn;
+                console.log('[build.roads.ramparts] - creating new memory for rampart ids');
+            } else {
+                //console.log('didntwork');
+                rampartToUse.memory = room.memory.ramparts[rampartToUse.id]
+                pathToSpawn = rampartToUse.memory.pathToSpawn;
+            }
+            if(!room.memory.ramparts[rampartToUse.id].createdPath) {
+
+                if (forceRebuild) {
+                    room.memory.ramparts[rampartToUse.id].createdPath = true;
+                }
+
+                for ( let i  in pathToSpawn ) {
+                    let construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
+                    if ( construct == OK ){
+                        console.log('[build.roads.ramparts] - construction site created');
+                        room.memory.ramparts[rampartToUse.id].createdPath = true;
+                    } else if (construct == ERR_RCL_NOT_ENOUGH) {
+                        console.log('[build.roads.ramparts] - ERR_RCL_NOT_ENOUGH' + construct.toString());
+                    } else if (construct == ERR_INVALID_TARGET) {
+                        //console.log('[build.roads.ramparts] - ERR_INVALID_TARGET' + construct.toString());
+                        room.memory.ramparts[rampartToUse.id].createdPath = true;
+                    } else {
+                        console.log('[build.roads.ramparts] - something went wrong' + construct.toString());
+                    }
+                }
+                for (let r in roadNum) {
+                    let roadX = rampartToUse.pos.x + roadNum[r].x;
+                    let roadY = rampartToUse.pos.y + roadNum[r].y;
+                    let roadConstruct = room.createConstructionSite(roadX, roadY, STRUCTURE_ROAD);
+                    if (roadConstruct == OK) {
+                        console.log('[build.roads.ramparts] - build road around each rampart');
+                    } else {
+                        //console.log('[build.ramparts] - bAHHHHHHHHH');
+                        console.log("[build.roads.ramparts] - no space to build surrounding road" + roadConstruct.toString());
+                    }
+                }
+                for (let s in sources) {
+                    let sourceToUse = sources[s];
+                    let pathToSource = {};
+                    pathToSource = room.findPath(sourceToUse.pos, rampartToUse.pos, {range: 2, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
+                    for (r in pathToSource) {
+                        let roadConstruct = room.createConstructionSite(pathToSource[i]['x'], pathToSource[i]['y'], STRUCTURE_ROAD);
+                        if (roadConstruct == OK) {
+                            console.log('[build.roads.ramparts] - construction site rampart -> sources');
+                        } else {
+                            //console.log('[build.ramparts] - bAHHHHHHHHH');
+                            console.log('[build.roads.ramparts] -  failed to build rampart -> sources', roadConstruct);
+                        }
+                    }
+                }
+            }
+        }
+    } //buildToRamparts
 };
 
 module.exports = buildRoads;
