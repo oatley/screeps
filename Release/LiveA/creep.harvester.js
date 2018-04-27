@@ -5,7 +5,13 @@ var creepHarvester = {
 
     work: function (creep) {
 
-        var targetStructures = creep.room.find(FIND_STRUCTURES, {
+        /*var targetStructures = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
+                    }
+        });*/
+        var targetStructure = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION ||
                                 structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
@@ -63,17 +69,11 @@ var creepHarvester = {
                 gatherEnergy.gather(creep);
             }
         } else { // have a full load of energy (may or may not be building/upgrading)
-            if ((creep.carry.energy == creep.carryCapacity) && targetStructures.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            if (targetStructure > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 creep.memory.storing = true;
-                let randomEnergyStorage = creep.memory.randomEnergyStorage;
-                if (randomEnergyStorage >= targetStructures.length || (targetStructures.length > 1 && randomEnergyStorage == 0)) {
-                    randomEnergyStorage = Math.round(Math.random(0, targetStructures.length) * targetStructures.length);
-                    creep.memory.randomEnergyStorage = randomEnergyStorage;
-                }
-                //console.log('[creep.harvester] - Creep ' + creep.name + ' storing energy in:', randomEnergyStorage.toString() + '/' + targetStructures.length .toString());
-                let transfer = creep.transfer(targetStructures[randomEnergyStorage], RESOURCE_ENERGY);
+                let transfer = creep.transfer(targetStructure, RESOURCE_ENERGY);
                 if(transfer == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetStructures[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
+                    creep.moveTo(targetStructure, {visualizePathStyle: {stroke: '#ffffff'}});
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
                 }
