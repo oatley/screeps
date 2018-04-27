@@ -11,11 +11,7 @@ var creepHarvester = {
                                 structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
                     }
         });
-        var targetStorage = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE);// && structure.energy < structure.energyCapacity;
-                    }
-        });
+        var targetStorage = creep.room.storage;
 
         var targetTowers = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
