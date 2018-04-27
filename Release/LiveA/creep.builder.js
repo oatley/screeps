@@ -59,7 +59,23 @@ var creepBuilder = {
             }
 
         } else { // have a full load of energy (may or may not be building/upgrading)
-            if (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            if (targetConstruction.length > 0 && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 8000) {
+                // if structures energy cap is full set and construction sites exist = go build(set building true)
+                //creep.say('build');
+                // Build extensions before anything else
+                if (targetConstructionExtensions > 0) {
+                    var tryBuild = creep.build(targetConstructionExtensions[0]);
+                } else {
+                    var tryBuild = creep.build(targetConstruction[0]);
+                }
+                if( tryBuild == ERR_NOT_IN_RANGE) {
+                    creep.memory.building = true;
+                    creep.moveTo(targetConstruction[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                } else if (tryBuild == ERR_RCL_NOT_ENOUGH) { // Room level too low to finish building
+                    creep.memory.building = false;
+                    creep.memory.upgrading = true;
+                }
+            } else if (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 //creep.say('DANGER');
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
@@ -80,22 +96,6 @@ var creepBuilder = {
                     creep.memory.storing = false;
                     randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));
                     creep.memory.randomEnergyStorage = randomEnergyStorage;
-                }
-            } else if (targetConstruction.length > 0 && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 8000) {
-                // if structures energy cap is full set and construction sites exist = go build(set building true)
-                //creep.say('build');
-                // Build extensions before anything else
-                if (targetConstructionExtensions > 0) {
-                    var tryBuild = creep.build(targetConstructionExtensions[0]);
-                } else {
-                    var tryBuild = creep.build(targetConstruction[0]);
-                }
-                if( tryBuild == ERR_NOT_IN_RANGE) {
-                    creep.memory.building = true;
-                    creep.moveTo(targetConstruction[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                } else if (tryBuild == ERR_RCL_NOT_ENOUGH) { // Room level too low to finish building
-                    creep.memory.building = false;
-                    creep.memory.upgrading = true;
                 }
             } else {
                 //creep.say('upgrade');

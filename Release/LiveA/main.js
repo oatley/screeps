@@ -17,9 +17,9 @@ var findExits = require('find.exits');
 module.exports.loop = function () {
 
     // ToDo list
-    // - 1x Creep type builder, takes from storage builds/repairs
-    // - 1x Creep type upgrader, takes from storage and upgrades the roomController
-    // - 5x Creep type harvester, takes
+    // - (DONE) 1x Creep type builder, takes from storage builds/repairs
+    // - (DONE) 1x Creep type upgrader, takes from storage and upgrades the roomController
+    // - (DONE) 4x Creep type harvester, takes
     // - x1 Creep type explorer, claims room, and then suicides
     // - (DONE) Energy storage building (harvesters should store in here)
     // - Backup redis and mongodb and mods
