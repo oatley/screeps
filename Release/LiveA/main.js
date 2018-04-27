@@ -37,7 +37,7 @@ module.exports.loop = function () {
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
         let extensions = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_STRUCTURES, {
-                    filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION}
+                    filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
         });
         if (extensions.length >= 30) {
             // 2 harvesters
