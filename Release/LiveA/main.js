@@ -36,7 +36,6 @@ module.exports.loop = function () {
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
         Memory.data.maxCreeps = 6;
-        Memory.data.maxCreeps = 3;
     }
 
 
@@ -48,7 +47,7 @@ module.exports.loop = function () {
 
     // Run each tower every tick
     towerAction.run();
-    spawnCreeper.spawn(Game.spawns['Spawn1']); 
+    spawnCreeper.spawn(Game.spawns['Spawn1']);
     // Run each creep every tick
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
