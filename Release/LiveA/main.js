@@ -92,12 +92,13 @@ module.exports.loop = function () {
             buildStorage.new(Game.rooms[room]); // Check if you can build things
         }
 
-        if (Memory.data.buildRoadForceTick > 10000) {
+        if (Memory.data.buildRoadForceTick >= 10000) {
             console.log('[main] - forcing a rebuild of all roads');
             Game.rooms[room].memory.sources = {};
             Game.rooms[room].memory.towers = {};
             Game.rooms[room].memory.extensions = {};
             Game.rooms[room].memory.controller = {};
+            Memory.data.buildRoadForceTick = 0;
         }
 
         if (Memory.data.buildRoadTick == 100) {
