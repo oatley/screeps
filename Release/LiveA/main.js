@@ -12,7 +12,7 @@ var creepExplorer = require('creep.explorer');
 var creepUpgrader = require('creep.upgrader');
 var towerAction = require('tower.action');
 var findExits = require('find.exits');
-
+var destroyRoads = require('destroy.roads');
 
 module.exports.loop = function () {
 
@@ -84,12 +84,14 @@ module.exports.loop = function () {
 
     // Slow tasks for base building, run each task every 25 ticks
     for (let room in Game.rooms) {
-
-
-        if (!Game.rooms[room].controller.owner) {
-            
+        let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
+        });
+        if (!Game.rooms[room].controller.owner || spawnTargets.length < 1) {
             continue;
         }
+
+        destroyRoads.destroy(Game.rooms[room]);
 
         if (Memory.data.mainTick == 5){
             console.log('[main] - cleanMemory.clean()');
@@ -155,18 +157,4 @@ module.exports.loop = function () {
     } else {
         //console.log(Object.keys(Game.rooms).length, Game.gcl.level);
     }
-
-    for (let room in Game.rooms) {
-        let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
-                    filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
-        });
-        if (spawnTargets.length < 1) {
-                console.log('[main] - No spawn in', room);
-                // Create spawn
-                // continue
-        }
-        // Do everything
-        //console.log(room, spawnTargets.length);
-    }
-
 }
