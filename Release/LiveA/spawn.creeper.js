@@ -12,7 +12,7 @@ var spawnCreeper = {
 
 
         // Testing
-console.log('happening');
+console.log('happening1');
         // Do not spawn if too many creeps
         if (false || allCreeps.length >= Memory.data.maxCreeps) {
             return;
@@ -20,9 +20,10 @@ console.log('happening');
 
         //console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
         //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1);
-
+console.log('happening2');
         // Enough energy to build the fattest creep ever?
         if ( true ||  spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
+            console.log('happening3');
             var energyToUse = spawn.room.energyAvailable;
             var opts = [CARRY, MOVE, WORK];
             var bodyCarry = 1;
