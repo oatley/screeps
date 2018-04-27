@@ -35,6 +35,8 @@ module.exports.loop = function () {
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
+        Memory.data.maxCreeps = 6;
+        Memory.data.maxCreeps = 3;
     }
 
 
