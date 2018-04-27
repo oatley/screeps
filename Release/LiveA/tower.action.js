@@ -12,7 +12,7 @@ var towerAction = {
                 //console.log(towerTargets[tower]);
                 var closestDamagedStructure = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) =>  (structure.hits < structure.hitsMax && structure.structureType == STRUCTURE_ROAD) ||
-                                            (structure.hits < 300000 &&  structure.structureType == STRUCTURE_RAMPART) ||
+                                            (structure.hits < 100000 &&  structure.structureType == STRUCTURE_RAMPART) ||
                                             (structure.hits < 100000 &&  structure.structureType == STRUCTURE_WALL)
                 });
                 var closestHostile = towerTargets[tower].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
