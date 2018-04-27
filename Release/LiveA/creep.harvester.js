@@ -63,27 +63,7 @@ var creepHarvester = {
                 gatherEnergy.gather(creep);
             }
         } else { // have a full load of energy (may or may not be building/upgrading)
-            // AHHH FIND_HOSTILE_CREEPS EMERGENCY
-            /*if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
-                //creep.say('DANGER');
-                creep.memory.storing = true;
-                let randomEnergyStorage = creep.memory.randomEnergyStorage;
-                if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
-                    randomEnergyStorage = Math.round(Math.random(0, targetTowers.length) * targetTowers.length);
-                    creep.memory.randomEnergyStorage = randomEnergyStorage;
-                }
-                //console.log('[creep.harvester] - Creep ' + creep.name + ' storing energy in:', randomEnergyStorage.toString() + '/' + targetStructures.length .toString());
-                let transfer = creep.transfer(targetTowers[randomEnergyStorage], RESOURCE_ENERGY);
-                if(transfer == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetTowers[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
-                } else if (transfer == ERR_FULL && !closestHostile) {
-                    creep.memory.storing = false;
-                }
-            } else*/ if (targetStructures.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
-                // if structures energy cap is not full and not building = go fill structures
-                //creep.say('store');
-                //creep.memory.building = false;
-                //creep.memory.upgrading = false;
+            if ((creep.carry.energy == creep.carryCapacity) && targetStructures.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
                 if (randomEnergyStorage >= targetStructures.length || (targetStructures.length > 1 && randomEnergyStorage == 0)) {

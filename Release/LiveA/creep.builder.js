@@ -44,13 +44,13 @@ var creepBuilder = {
 
         var closestHostile = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 
-        console.log('why you no build?');
+        //console.log('why you no build?');
 
         //console.log(targetStorage, targetStorage.store.energy, targetStorage.storeCapacity);
         // if creep energy cap is not full and creep is not building/upgrading = go get energy
         if (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
-            creep.say('WITHDRAW');
+            //creep.say('WITHDRAW');
             let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity-creep.carry.energy);
             if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
                 gatherEnergy.gather();
@@ -61,7 +61,7 @@ var creepBuilder = {
         } else { // have a full load of energy (may or may not be building/upgrading)
             if (targetConstruction.length > 0 && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 8000) {
                 // if structures energy cap is full set and construction sites exist = go build(set building true)
-                creep.say('build');
+                //creep.say('build');
                 // Build extensions before anything else
                 if (targetConstructionExtensions > 0) {
                     var tryBuild = creep.build(targetConstructionExtensions[0]);
@@ -76,7 +76,7 @@ var creepBuilder = {
                     creep.memory.upgrading = true;
                 }
             } else if (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
-                creep.say('towers');
+                //creep.say('towers');
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
                 if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
