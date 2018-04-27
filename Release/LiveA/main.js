@@ -115,7 +115,7 @@ module.exports.loop = function () {
             Memory.data.mainTick = 0;
         }
 
-        if (Memory.data.buildRoadForceTick >= 100) {
+        if (Memory.data.buildRoadForceTick >= 10000) {
             console.log('[main] - forcing a rebuild of all roads');
             Game.rooms[room].memory.sources = {};
             Game.rooms[room].memory.towers = {};
