@@ -36,7 +36,21 @@ module.exports.loop = function () {
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
-        Memory.data.maxCreeps = 6;
+        let extensions = creep.room(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION}
+        });
+        if (extensions.length >= 30) {
+            // 2 harvesters
+            // 2 builder
+            // 2 upgraders
+            Memory.data.maxCreeps = 6;
+        } else if (extensions.length >= 20) {
+            Memory.data.maxCreeps = 8;
+        } else if (extensions.length >= 10) {
+            Memory.data.maxCreeps = 10;
+        } else {
+            Memory.data.maxCreeps = 12;
+        }
     }
 
 
