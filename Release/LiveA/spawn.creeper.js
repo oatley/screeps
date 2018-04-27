@@ -26,9 +26,11 @@ var spawnCreeper = {
             energyToUse -= 50;
             // Add one work
             energyToUse -= 100;
-
-             // Create memories to assign roles
-            if ( false ) { //allExplorers.length == 0 && energyToUse >= 650){
+            // Create memories to assign roles
+            if (allCreeps.length <= 2) {
+                var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
+                var creepName = 'Worker' + idnum;
+            } else if ( false ) { //allExplorers.length == 0 && energyToUse >= 650){
                 var insertMemory = { memory: { roleid: idnum, role: 'explorer', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Explorer' + idnum;
                 energyToUse -= 650;
