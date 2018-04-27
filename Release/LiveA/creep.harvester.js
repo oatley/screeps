@@ -87,12 +87,12 @@ var creepHarvester = {
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
                 }
-            } else if (targetStorage.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
+            } else if (targetStorage.store < targetStorage.storeCapacity && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
                 // if structures energy cap is not full and not building = go fill structures
                 creep.memory.storing = true;
-                let transfer = creep.transfer(targetStorage[0], RESOURCE_ENERGY);
+                let transfer = creep.transfer(targetStorage, RESOURCE_ENERGY);
                 if(transfer == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetStorage[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                    creep.moveTo(targetStorage, {visualizePathStyle: {stroke: '#ffffff'}});
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
                 }
