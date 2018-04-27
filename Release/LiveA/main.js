@@ -19,7 +19,7 @@ module.exports.loop = function () {
     // - 1x Creep type upgrader, takes from storage and upgrades the roomController
     // - 5x Creep type harvester, takes
     // - x1 Creep type explorer, claims room, and then suicides
-    // - Energy storage building (harvesters should store in here)
+    // - (DONE) Energy storage building (harvesters should store in here)
     // - Backup redis and mongodb and mods
     // - If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
     // - Fix the static number of creeps and scale down as they get more bodyParts
@@ -28,10 +28,13 @@ module.exports.loop = function () {
 
 
     // Optimize road code
+    Memory.data = {};
     if (!Memory.data) {
-        Memory.data = {maxCreeps: 6, bodyParts: 3, buildRoadTick: 0};
+        Memory.data = {maxCreeps: 6, bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0};
     } else {
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
+        Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
+        Memory.data.mainTick = Memory.data.mainTick + 1;
     }
 
 
@@ -69,34 +72,50 @@ module.exports.loop = function () {
             constructionTargets[i].destroy();
             console.log(constructionTargets[i], i);
         }*/
-        if ((Memory.data.buildRoadTick % 10) == 0){
+        if (Memory.data.mainTick == 5){
             console.log('[main] - cleanMemory.clean()');
             cleanMemory.clean(); // Clean dead creeps from memory
+        } else if (Memory.data.mainTick == 10){
             console.log('[main] - findExits.updateMemoryLocations()');
             findExits.updateMemoryLocations(Game.rooms[room]);
+        } else if (Memory.data.mainTick == 15){
+            console.log('[main] - spawnCreeper.spawn()');
             spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
+        } else if (Memory.data.mainTick == 20){
+            console.log('[main] - buildExtensions.new()');
             buildExtensions.new(Game.rooms[room]); // Check if you can build things
-            //console.log('---------------------------------');
+        } else if (Memory.data.mainTick == 25){
+            console.log('[main] - buildTowers.new()');
             buildTowers.new(); // Check if you can build things
+        } else if (Memory.data.mainTick == 30){
+            console.log('[main] - buildStorage.new()');
             buildStorage.new(); // Check if you can build things
         }
 
-        if (Memory.data.buildRoadTick == 15) {
+        if (Memory.data.buildRoadForceTick > 10000) {
+            console.log('[main] - forcing a rebuild of all roads');
+            Game.rooms[room].memory.sources = {};
+            Game.rooms[room].memory.towers = {};
+            Game.rooms[room].memory.extensions = {};
+            Game.rooms[room].memory.controller = {};
+        }
+
+        if (Memory.data.buildRoadTick == 100) {
             console.log('[main] - buildRoads.buildToSource()');
             buildWalls.new(Game.rooms[room]);
-        } else if (Memory.data.buildRoadTick == 25 ) {
+        } else if (Memory.data.buildRoadTick == 200) {
             console.log('[main] - buildRoads.buildToSource()');
-            buildRoads.buildToSource();
-        } else if (Memory.data.buildRoadTick == 35) {
+            buildRoads.buildToSource(Game.rooms[room]);
+        } else if (Memory.data.buildRoadTick == 300) {
             console.log('[main] - buildRoads.buildToExtension()');
-            buildRoads.buildToExtension();
-        } else if (Memory.data.buildRoadTick == 45) {
+            buildRoads.buildToExtension(Game.rooms[room]);
+        } else if (Memory.data.buildRoadTick == 400) {
             console.log('[main] - buildRoads.buildToTower()');
-            buildRoads.buildToTower();
-        } else if (Memory.data.buildRoadTick == 55) {
+            buildRoads.buildToTower(Game.rooms[room]);
+        } else if (Memory.data.buildRoadTick == 500) {
             console.log('[main] - buildRoads.buildToRoomController()');
-            buildRoads.buildToRoomController();
-        } else if (Memory.data.buildRoadTick > 55) {
+            buildRoads.buildToRoomController(Game.rooms[room]);
+        } else if (Memory.data.buildRoadTick > 500) {
             console.log('[main] - reset memory road build timer');
             Memory.data.buildRoadTick = 0;
         }

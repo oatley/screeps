@@ -1,9 +1,9 @@
 Source.prototype.memory = undefined;
 var buildRoads = {
-    buildToSource: function (forceRebuild = false) {
+    buildToSource: function (room, forceRebuild = false) {
 
         // Static room object for now
-        var room = Game.rooms[Object.keys(Game.rooms)[0]];
+        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
 
 
         var spawnTargets = room.find(FIND_STRUCTURES, {
@@ -27,6 +27,9 @@ var buildRoads = {
             return;
         }
 
+        if (forceRebuild) {
+            room.memory.sources = {};
+        }
 
         for (var i in sources) {
             var sourceToUse = sources[i];
@@ -55,7 +58,7 @@ var buildRoads = {
 
             //return;
 
-            if(!room.memory.sources[sourceToUse.id].createdPath || forceRebuild) {
+            if(!room.memory.sources[sourceToUse.id].createdPath) {
                 console.log('[build.roads.sources] - create a new path here');
 
                 if (forceRebuild) {
@@ -71,6 +74,7 @@ var buildRoads = {
                         console.log("[build.roads.sources] - ERR_RCL_NOT_ENOUGH" + construct.toString());
                     }else if (construct == ERR_INVALID_TARGET) {
                         //console.log("[build.roads] - ERR_INVALID_TARGET" + construct.toString());
+                        room.memory.sources[sourceToUse.id].createdPath = true;
                     } else {
                         console.log("[build.roads.sources] - something went wrong" + construct.toString());
                     }
@@ -88,9 +92,9 @@ var buildRoads = {
             }
         }
     },
-    buildToExtension: function (forceRebuild = false) {
+    buildToExtension: function (room, forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
-        var room = Game.rooms[Object.keys(Game.rooms)[0]];
+        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
         var spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
@@ -107,6 +111,10 @@ var buildRoads = {
         // Create road around the extension
         //let roadNum = [{x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}, {x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        if (forceRebuild) {
+            room.memory.extensions = {};
+        }
 
         // Make the function accept arguments that let it build to other things
         for ( var i in extensions ) {
@@ -131,7 +139,7 @@ var buildRoads = {
                 pathToSpawn = extensionToUse.memory.pathToSpawn;
             }
 
-            if(!room.memory.extensions[extensionToUse.id].createdPath || forceRebuild) {
+            if(!room.memory.extensions[extensionToUse.id].createdPath) {
                 //console.log('create a new path here');
                 if (forceRebuild) {
                     room.memory.extensions[extensionToUse.id].createdPath = true;
@@ -145,7 +153,7 @@ var buildRoads = {
                     } else if (construct == ERR_RCL_NOT_ENOUGH) {
                         console.log('[build.roads.extensions] - ERR_RCL_NOT_ENOUGH' + construct.toString());
                     } else if (construct == ERR_INVALID_TARGET) {
-                        console.log('[build.roads.extensions] - ERR_INVALID_TARGET' + construct.toString());
+                        //console.log('[build.roads.extensions] - ERR_INVALID_TARGET' + construct.toString());
                         room.memory.extensions[extensionToUse.id].createdPath = true;
                     } else {
                         console.log('[build.roads.extensions] - something went wrong' + construct.toString());
@@ -165,9 +173,9 @@ var buildRoads = {
             }
         }
     }, // buildToExtension
-    buildToTower: function (forceRebuild = false) {
+    buildToTower: function (room, forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
-        var room = Game.rooms[Object.keys(Game.rooms)[0]];
+        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
         var spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
@@ -179,6 +187,10 @@ var buildRoads = {
 
         // Create road around the tower
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        if (forceRebuild) {
+            room.memory.towers = {};
+        }
 
         // Make the function accept arguments that let it build to other things
         for ( var i in towers ) {
@@ -204,7 +216,12 @@ var buildRoads = {
                 towerToUse.memory = room.memory.towers[towerToUse.id]
                 pathToSpawn = towerToUse.memory.pathToSpawn;
             }
-            if(!room.memory.towers[towerToUse.id].createdPath || forceRebuild) {
+            if(!room.memory.towers[towerToUse.id].createdPath) {
+
+                if (forceRebuild) {
+                    room.memory.towers[towerToUse.id].createdPath = true;
+                }
+
                 for ( var i  in pathToSpawn ) {
                     var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
                     if ( construct == OK ){
@@ -213,7 +230,8 @@ var buildRoads = {
                     } else if (construct == ERR_RCL_NOT_ENOUGH) {
                         console.log('[build.roads.towers] - ERR_RCL_NOT_ENOUGH' + construct.toString());
                     } else if (construct == ERR_INVALID_TARGET) {
-                        console.log('[build.roads.towers] - ERR_INVALID_TARGET' + construct.toString());
+                        //console.log('[build.roads.towers] - ERR_INVALID_TARGET' + construct.toString());
+                        room.memory.towers[towerToUse.id].createdPath = true;
                     } else {
                         console.log('[build.roads.towers] - something went wrong' + construct.toString());
                     }
@@ -246,9 +264,9 @@ var buildRoads = {
             }
         }
     }, //buildToTower
-    buildToRoomController: function (forceRebuild = false) {
+    buildToRoomController: function (room, forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
-        var room = Game.rooms[Object.keys(Game.rooms)[0]];
+        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
         let roomController = room.controller;
         var spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
@@ -258,6 +276,10 @@ var buildRoads = {
 
         // Create road around the roomController
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        if (forceRebuild) {
+            room.memory.roomControllers = {};
+        }
 
         // Make the function accept arguments that let it build to other things
         for ( var i in roomControllers ) {
@@ -283,7 +305,12 @@ var buildRoads = {
                 roomControllerToUse.memory = room.memory.roomControllers[roomControllerToUse.id]
                 pathToSpawn = roomControllerToUse.memory.pathToSpawn;
             }
-            if(!room.memory.roomControllers[roomControllerToUse.id].createdPath || forceRebuild) {
+            if(!room.memory.roomControllers[roomControllerToUse.id].createdPath) {
+
+                if (forceRebuild) {
+                    room.memory.roomControllers[roomControllerToUse.id].createdPath = true;
+                }
+
                 for ( var i  in pathToSpawn ) {
                     var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
                     if ( construct == OK ){
@@ -292,7 +319,7 @@ var buildRoads = {
                     } else if (construct == ERR_RCL_NOT_ENOUGH) {
                         console.log('[build.roads.roomControllers] - ERR_RCL_NOT_ENOUGH' + construct.toString());
                     } else if (construct == ERR_INVALID_TARGET) {
-                        console.log('[build.roads.roomControllers] - ERR_INVALID_TARGET' + construct.toString());
+                        //console.log('[build.roads.roomControllers] - ERR_INVALID_TARGET' + construct.toString());
                         room.memory.roomControllers[roomControllerToUse.id].createdPath = true;
                     } else {
                         console.log('[build.roads.roomControllers] - something went wrong' + construct.toString());
