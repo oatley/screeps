@@ -360,12 +360,19 @@ let buildRoads = {
         let spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}
         });
-        //let ramparts = [rampart];
+        var towerTargets = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
+        });
         let ramparts = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_RAMPART)}
         });
         // Create road around the rampart
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        // Do not try and build walls if you are unable to defend yourself anyway
+        if (room.controller.level < 3 || towerTargets.length < 1) {
+            return;
+        }
 
         if (forceRebuild) {
             room.memory.ramparts = {};
@@ -424,20 +431,6 @@ let buildRoads = {
                     } else {
                         //console.log('[build.ramparts] - bAHHHHHHHHH');
                         console.log("[build.roads.ramparts] - no space to build surrounding road" + roadConstruct.toString());
-                    }
-                }
-                for (let s in sources) {
-                    let sourceToUse = sources[s];
-                    let pathToSource = {};
-                    pathToSource = room.findPath(sourceToUse.pos, rampartToUse.pos, {range: 2, ignoreCreeps: true, swampCost: 1, ignoreRoads: true});
-                    for (r in pathToSource) {
-                        let roadConstruct = room.createConstructionSite(pathToSource[i]['x'], pathToSource[i]['y'], STRUCTURE_ROAD);
-                        if (roadConstruct == OK) {
-                            console.log('[build.roads.ramparts] - construction site rampart -> sources');
-                        } else {
-                            //console.log('[build.ramparts] - bAHHHHHHHHH');
-                            console.log('[build.roads.ramparts] -  failed to build rampart -> sources', roadConstruct);
-                        }
                     }
                 }
             }

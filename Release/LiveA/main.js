@@ -120,7 +120,8 @@ module.exports.loop = function () {
             Game.rooms[room].memory.sources = {};
             Game.rooms[room].memory.towers = {};
             Game.rooms[room].memory.extensions = {};
-            Game.rooms[room].memory.controller = {};
+            Game.rooms[room].memory.roomControllers = {};
+            Game.rooms[room].memory.ramparts = {};
             Memory.data.buildRoadForceTick = 0;
             Memory.data.buildRoadTick = 0;
             Memory.data.mainTick = 0;
@@ -142,7 +143,10 @@ module.exports.loop = function () {
         } else if (Memory.data.buildRoadTick == 500) {
             console.log('[main] - buildRoads.buildToRoomController()');
             buildRoads.buildToRoomController(Game.rooms[room]);
-        } else if (Memory.data.buildRoadTick > 500) {
+        } else if (Memory.data.buildRoadTick == 600) {
+            console.log('[main] - buildRoads.buildToRamparts');
+            buildRoads.buildToRamparts(Game.rooms[room]);
+        } else if (Memory.data.buildRoadTick > 600) {
             console.log('[main] - reset memory road build timer');
             Memory.data.buildRoadTick = 0;
         }
