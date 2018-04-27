@@ -2,7 +2,7 @@
 // you might need to delete these roads otherwise they will break econ by repair costs
 
 let destroyRoads = {
-    destroy: function () {
+    destroy: function (room) {
         let targetRoads = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_ROAD);}
         });
