@@ -4,7 +4,7 @@ let gatherEnergy = {
     gather: function  (creep) {
         let sources = creep.room.find(FIND_SOURCES, {
                         filter: (source) => {
-                            return (source)
+                            return (source) && source.energy > 0
                         }
         });
         let sourceToUse = sources[0];

@@ -40,9 +40,9 @@ module.exports.loop = function () {
                     filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
         });
         if (extensions.length >= 30) {
-            // 2 harvesters
+            // 3 harvesters
             // 2 builder
-            // 2 upgraders
+            // 1 upgraders
             Memory.data.maxCreeps = 6;
         } else if (extensions.length >= 20) {
             Memory.data.maxCreeps = 8;
