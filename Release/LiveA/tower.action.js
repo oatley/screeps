@@ -16,12 +16,8 @@ var towerAction = {
                                             (structure.hits < 100000 &&  structure.structureType == STRUCTURE_WALL)
                 });
                 var closestHostile = towerTargets[tower].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-                if(closestDamagedStructure && !closestHostile) {
-                    if (closestDamagedRampart) {
-                        let repair = towerTargets[tower].repair(closestDamagedRampart);
-                    } else {
-                        let repair = towerTargets[tower].repair(closestDamagedStructure);
-                    }
+                if(closestDamagedRampart && !closestHostile) {
+                    let repair = towerTargets[tower].repair(closestDamagedRampart);
                 }
                 if(closestHostile) {
                     towerTargets[tower].attack(closestHostile);
