@@ -51,7 +51,7 @@ var creepBuilder = {
         if (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
             creep.say('WITHDRAW');
-            let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity);
+            let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity-creep.carry.energy);
             if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
                 gatherEnergy.gather();
             } else if (withdraw == ERR_NOT_IN_RANGE) {
