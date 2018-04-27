@@ -54,7 +54,7 @@ module.exports.loop = function () {
         //creep.memory.randomEnergyStorage = 0;
         if ( creep.memory.role == 'worker') {
             creepHarvester.work(creep);
-        else if ( creep.memory.role == 'builder') {
+        } else if ( creep.memory.role == 'builder') {
             creepBuilder.work(creep);
         } else if ( creep.memory.role == 'explorer') {
             creep.say('explore');
