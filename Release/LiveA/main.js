@@ -7,6 +7,7 @@ var buildWalls = require('build.walls');
 var buildRoads = require('build.roads');
 var buildStorage = require('build.storage');
 var creepHarvester = require('creep.harvester');
+var creepBuilder = require('creep.builder');
 var creepExplorer = require('creep.explorer');
 var towerAction = require('tower.action');
 var findExits = require('find.exits');
@@ -53,6 +54,8 @@ module.exports.loop = function () {
         //creep.memory.randomEnergyStorage = 0;
         if ( creep.memory.role == 'worker') {
             creepHarvester.work(creep);
+        else if ( creep.memory.role == 'builder') {
+            creepBuilder.work(creep);
         } else if ( creep.memory.role == 'explorer') {
             creep.say('explore');
             creepExplorer.explore(creep, roomToExplore);
