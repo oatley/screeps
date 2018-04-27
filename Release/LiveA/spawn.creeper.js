@@ -7,6 +7,9 @@ var spawnCreeper = {
         var allCreeps = _.filter(Game.creeps, (creep) => true);
         var allExplorers = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer');
         var allBuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+        var allWorkers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
+        var allUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+
 
         // Do not spawn if too many creeps
         if (allCreeps.length > Memory.data.maxCreeps) {
@@ -27,7 +30,7 @@ var spawnCreeper = {
             // Add one work
             energyToUse -= 100;
             // Create memories to assign roles
-            if (allCreeps.length <= 2) {
+            if (allWorkers.length <= 2) {
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
             } else if ( false ) { //allExplorers.length == 0 && energyToUse >= 650){
@@ -43,6 +46,9 @@ var spawnCreeper = {
                 energyToUse -= 50;
                 bodyWork += 1; // This is just done to make sure builders can travel fast off road
                 opts.push(MOVE);
+            } else if (allUpgraders.length == 0) {//allBuilders.length == 0) {
+                var insertMemory = { memory: { roleid: idnum, role: 'upgrader', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
+                var creepName = 'Builder' + idnum;
             } else {
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
