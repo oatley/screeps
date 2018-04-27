@@ -18,8 +18,8 @@ var spawnCreeper = {
             return;
         }
 
-        console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
-        console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1);
+        //console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
+        //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1);
 
         // Enough energy to build the fattest creep ever?
         if ( spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
