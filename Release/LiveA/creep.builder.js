@@ -51,7 +51,7 @@ var creepBuilder = {
         var closestHostile = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 
         //console.log('why you no build?');
-
+        console.log(targetTower.energy , (targetTower.energyCapacity / 2));
         //console.log(targetStorage, targetStorage.store.energy, targetStorage.storeCapacity);
         // if creep energy cap is not full and creep is not building/upgrading = go get energy
         if (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
@@ -90,7 +90,7 @@ var creepBuilder = {
                 } else if (tryBuild == ERR_RCL_NOT_ENOUGH) { // Room level too low to finish building
                     creep.memory.building = false;
                 }
-            } else if (targetTower.energy < (targetTower.energyCapacity/2) && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            } else if (targetTower.energy < (targetTower.energyCapacity / 2) && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 //creep.say('towers');
                 creep.memory.storing = true;
                 let transfer = creep.transfer(targetTower, RESOURCE_ENERGY);
@@ -102,7 +102,7 @@ var creepBuilder = {
             } else if (closestDamagedStructure && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 let repair = creep.repair(closestDamagedStructure);
                 if (repair == OK) {
-                    creep.memory.building = true;    
+                    creep.memory.building = true;
                 }
                 else if (repair == ERR_NOT_IN_RANGE) {
                     creep.memory.building = true;
