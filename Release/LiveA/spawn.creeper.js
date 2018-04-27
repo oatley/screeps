@@ -14,11 +14,11 @@ var spawnCreeper = {
 
 
         // Do not spawn if too many creeps
-        if (allCreeps.length > Memory.data.maxCreeps) {
+        if (allCreeps.length >= Memory.data.maxCreeps) {
             return;
         }
 
-
+        console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1);
 
         // Enough energy to build the fattest creep ever?
         if ( spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
@@ -44,13 +44,13 @@ var spawnCreeper = {
                 bodyWork += 2;
                 opts.push(MOVE);
                 opts.push(CLAIM);
-            } else if (allBuilders.length == 0) {//allBuilders.length == 0) {
+            } else if (allBuilders.length < 1) {//allBuilders.length == 0) {
                 var insertMemory = { memory: { roleid: idnum, role: 'builder', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Builder' + idnum;
                 energyToUse -= 50;
                 bodyWork += 1; // This is just done to make sure builders can travel fast off road
                 opts.push(MOVE);
-            } else if (allUpgraders.length == 0) {//allBuilders.length == 0) {
+            } else if (allUpgraders.length < 1) {//allBuilders.length == 0) {
                 var insertMemory = { memory: { roleid: idnum, role: 'upgrader', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Upgrader' + idnum;
             } else {
