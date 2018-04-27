@@ -1,7 +1,8 @@
 // Imports
-var gatherEnergy = require('gather.energy');
-
-var creepBuilder = {
+let gatherEnergy = require('gather.energy');
+let creepHarvester = require('creep.harvester');
+let creepUpgrader = require('creep.upgrader');
+let creepBuilder = {
 
     work: function (creep) {
 
@@ -110,11 +111,11 @@ var creepBuilder = {
                 } else {
                     creep.memory.building = false;
                 }
-            } else {
-                //creep.say('upgrade');
-                creep.memory.upgrading = true;
-                if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            } else { // What should idle builders do?
+                if ((Number(creep.memory.roleid) % 2) == 0) {
+                    creepUpgrader.work(creep);
+                } else {
+                    creepHarvester.work(creep);
                 }
             }
         }
