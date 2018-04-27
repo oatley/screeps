@@ -1,21 +1,21 @@
 Source.prototype.memory = undefined;
-var buildRoads = {
+let buildRoads = {
     buildToSource: function (room, forceRebuild = false) {
 
         // Static room object for now
-        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
+        //let room = Game.rooms[Object.keys(Game.rooms)[0]];
 
 
-        var spawnTargets = room.find(FIND_STRUCTURES, {
+        let spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
-        var towerTargets = room.find(FIND_STRUCTURES, {
+        let towerTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
         });
-        var extensionTargets = room.find(FIND_STRUCTURES, {
+        let extensionTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION);}
         });
-        var sources = room.find(FIND_SOURCES);
+        let sources = room.find(FIND_SOURCES);
 
         // Create road around the tower
         //let roadNum = [{x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}, {x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
@@ -31,10 +31,10 @@ var buildRoads = {
             room.memory.sources = {};
         }
 
-        for (var i in sources) {
-            var sourceToUse = sources[i];
-            var pathToSpawn = {};
-            // Create the path memory variable
+        for (let i in sources) {
+            let sourceToUse = sources[i];
+            let pathToSpawn = {};
+            // Create the path memory letiable
             if (!room.memory.sources) {
                 if (!room.memory) room.memory = {};
                 room.memory.sources = {};
@@ -65,8 +65,8 @@ var buildRoads = {
                     room.memory.sources[sourceToUse.id].createdPath = true;
                 }
 
-                for ( var i  in pathToSpawn ) {
-                    var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD);
+                for ( let i  in pathToSpawn ) {
+                    let construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD);
                     if ( construct == OK ){
                         console.log("[build.roads.sources] - construction site created");
                         room.memory.sources[sourceToUse.id].createdPath = true;
@@ -94,17 +94,17 @@ var buildRoads = {
     },
     buildToExtension: function (room, forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
-        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
-        var spawnTargets = room.find(FIND_STRUCTURES, {
+        //let room = Game.rooms[Object.keys(Game.rooms)[0]];
+        let spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
-        var towerTargets = room.find(FIND_STRUCTURES, {
+        let towerTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
         });
-        var extensions = room.find(FIND_STRUCTURES, {
+        let extensions = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION);}
         });
-        var roads = room.find(FIND_STRUCTURES, {
+        let roads = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_ROAD);}
         });
 
@@ -117,9 +117,9 @@ var buildRoads = {
         }
 
         // Make the function accept arguments that let it build to other things
-        for ( var i in extensions ) {
-            var extensionToUse = extensions[i];
-            var pathToSpawn = {};
+        for ( let i in extensions ) {
+            let extensionToUse = extensions[i];
+            let pathToSpawn = {};
             // Create the path memory variable
             if (!room.memory.extensions) {
                 if (!room.memory) room.memory = {};
@@ -145,8 +145,8 @@ var buildRoads = {
                     room.memory.extensions[extensionToUse.id].createdPath = true;
                 }
 
-                for ( var i  in pathToSpawn ) {
-                    var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
+                for ( let i  in pathToSpawn ) {
+                    let construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
                     if ( construct == OK ){
                         console.log('[build.roads.extensions] - construction site created');
                         room.memory.extensions[extensionToUse.id].createdPath = true;
@@ -175,15 +175,15 @@ var buildRoads = {
     }, // buildToExtension
     buildToTower: function (room, forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
-        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
-        var spawnTargets = room.find(FIND_STRUCTURES, {
+        //let room = Game.rooms[Object.keys(Game.rooms)[0]];
+        let spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
-        var towers = room.find(FIND_STRUCTURES, {
+        let towers = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
         });
 
-        var sources = room.find(FIND_SOURCES);
+        let sources = room.find(FIND_SOURCES);
 
         // Create road around the tower
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
@@ -193,10 +193,10 @@ var buildRoads = {
         }
 
         // Make the function accept arguments that let it build to other things
-        for ( var i in towers ) {
-            var towerToUse = towers[i];
+        for ( let i in towers ) {
+            let towerToUse = towers[i];
             //console.log(towerToUse.id);
-            var pathToSpawn = {};
+            let pathToSpawn = {};
             // Create the path memory variable
             if (!room.memory.towers) {
                 if (!room.memory) room.memory = {};
@@ -222,8 +222,8 @@ var buildRoads = {
                     room.memory.towers[towerToUse.id].createdPath = true;
                 }
 
-                for ( var i  in pathToSpawn ) {
-                    var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
+                for ( let i  in pathToSpawn ) {
+                    let construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
                     if ( construct == OK ){
                         console.log('[build.roads.towers] - construction site created');
                         room.memory.towers[towerToUse.id].createdPath = true;
@@ -266,13 +266,13 @@ var buildRoads = {
     }, //buildToTower
     buildToRoomController: function (room, forceRebuild = false) {
         //Object.keys(Game.rooms)[0]
-        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
+        //let room = Game.rooms[Object.keys(Game.rooms)[0]];
         let roomController = room.controller;
-        var spawnTargets = room.find(FIND_STRUCTURES, {
+        let spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
-        var roomControllers = [roomController];
-        var sources = room.find(FIND_SOURCES);
+        let roomControllers = [roomController];
+        let sources = room.find(FIND_SOURCES);
 
         // Create road around the roomController
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
@@ -282,10 +282,10 @@ var buildRoads = {
         }
 
         // Make the function accept arguments that let it build to other things
-        for ( var i in roomControllers ) {
-            var roomControllerToUse = roomControllers[i];
+        for ( let i in roomControllers ) {
+            let roomControllerToUse = roomControllers[i];
             //console.log(roomControllerToUse.id);
-            var pathToSpawn = {};
+            let pathToSpawn = {};
             // Create the path memory variable
             if (!room.memory.roomControllers) {
                 if (!room.memory) room.memory = {};
@@ -311,8 +311,8 @@ var buildRoads = {
                     room.memory.roomControllers[roomControllerToUse.id].createdPath = true;
                 }
 
-                for ( var i  in pathToSpawn ) {
-                    var construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
+                for ( let i  in pathToSpawn ) {
+                    let construct = room.createConstructionSite(pathToSpawn[i]['x'], pathToSpawn[i]['y'], STRUCTURE_ROAD, {swampCost: 1});
                     if ( construct == OK ){
                         console.log('[build.roads.roomControllers] - construction site created');
                         room.memory.roomControllers[roomControllerToUse.id].createdPath = true;
