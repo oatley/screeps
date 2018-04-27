@@ -52,13 +52,13 @@ var spawnCreeper = {
                 opts.push(MOVE);
             } else if (allUpgraders.length == 0) {//allBuilders.length == 0) {
                 var insertMemory = { memory: { roleid: idnum, role: 'upgrader', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
-                var creepName = 'Builder' + idnum;
+                var creepName = 'Upgrader' + idnum;
             } else {
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
             }
 
-        
+
 
             // Another check here, if work != 0 and work % 5 == 0 then add a carry and move
             while ( energyToUse >= 50 ) {
