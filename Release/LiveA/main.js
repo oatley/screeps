@@ -48,6 +48,7 @@ module.exports.loop = function () {
 
     // Run each tower every tick
     towerAction.run();
+    spawnCreeper.spawn(Game.spawns['Spawn1']); 
     // Run each creep every tick
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -84,8 +85,8 @@ module.exports.loop = function () {
             console.log('[main] - findExits.updateMemoryLocations()');
             findExits.updateMemoryLocations(Game.rooms[room]);
         } else if (Memory.data.mainTick == 15){
-            console.log('[main] - spawnCreeper.spawn()');
-            spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
+            //console.log('[main] - spawnCreeper.spawn()'); too slow for spawning
+            //spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
         } else if (Memory.data.mainTick == 20){
             console.log('[main] - buildExtensions.new()');
             buildExtensions.new(Game.rooms[room]); // Check if you can build things
