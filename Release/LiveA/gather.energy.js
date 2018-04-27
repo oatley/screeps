@@ -7,6 +7,7 @@ let gatherEnergy = {
                             return (source.energyAvailable > 0)
                         }
         });
+        console.log(sources, sources.length, sources[0]);
         if (sources.length > 1) {
             if ((Number(creep.memory.roleid) % 2) == 0) {
                 let sourceToUse = sources[1];
