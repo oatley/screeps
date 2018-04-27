@@ -99,9 +99,9 @@ var creepBuilder = {
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
                 }
-            } else if (closestDamagedStructure && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)
+            } else if (closestDamagedStructure && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 let repair = creep.repair(closestDamagedStructure);
-                if(repair == ERR_NOT_IN_RANGE) {
+                if (repair == ERR_NOT_IN_RANGE) {
                     creep.memory.building = true;
                     creep.moveTo(closestDamagedStructure, {visualizePathStyle: {stroke: '#ffffff'}});
                 } else {
