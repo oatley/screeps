@@ -59,6 +59,7 @@ var creepHarvester = {
         } else { // have a full load of energy (may or may not be building/upgrading)
             // AHHH FIND_HOSTILE_CREEPS EMERGENCY
             if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
+                creep.say('DANGER');
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
                 if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
@@ -100,6 +101,7 @@ var creepHarvester = {
                     creep.memory.storing = false;
                 }
             } else if (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
+                creep.say('TOWERS');
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
                 if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
