@@ -40,10 +40,10 @@ module.exports.loop = function () {
                     filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
         });
         if (extensions.length >= 30) {
-            // 3 harvesters
+            // 2 harvesters
             // 2 builder
             // 1 upgraders
-            Memory.data.maxCreeps = 6;
+            Memory.data.maxCreeps = 5;
         } else if (extensions.length >= 20) {
             Memory.data.maxCreeps = 8;
         } else if (extensions.length >= 10) {
@@ -84,15 +84,9 @@ module.exports.loop = function () {
 
     // Slow tasks for base building, run each task every 25 ticks
     for (let room in Game.rooms) {
-        // Delete walls and construction sites
-        //let constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
-        /*let constructionTargets = Game.rooms[room].find(FIND_STRUCTURES, {
-                    filter: (structure) => {return (structure.structureType == STRUCTURE_WALL);}
-        });
-        for (let i in constructionTargets) {
-            constructionTargets[i].destroy();
-            console.log(constructionTargets[i], i);
-        }*/
+        console.log(Game.rooms[room].controller.owner);
+
+
         if (Memory.data.mainTick == 5){
             console.log('[main] - cleanMemory.clean()');
             cleanMemory.clean(); // Clean dead creeps from memory
