@@ -68,12 +68,14 @@ var creepBuilder = {
                     randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));
                     creep.memory.randomEnergyStorage = randomEnergyStorage;
                 }
-                //console.log('[creep.harvester] - Creep ' + creep.name + ' storing energy in:', randomEnergyStorage.toString() + '/' + targetStructures.length .toString());
+                console.log(targetTowers[randomEnergyStorage], randomEnergyStorage);
                 let transfer = creep.transfer(targetTowers[randomEnergyStorage], RESOURCE_ENERGY);
                 if(transfer == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targetTowers[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
-                } else if (transfer == ERR_FULL && !closestHostile) {
+                } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
+                    randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));
+                    creep.memory.randomEnergyStorage = randomEnergyStorage;
                 }
                 if (creep.carry.energy == 0) {
                     randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));

@@ -11,14 +11,14 @@ var spawnCreeper = {
         var allUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
 
-        console.log('why not spawning', allCreeps.length, Memory.data.maxCreeps, allExplorers.length, allBuilders.length, allWorkers.length, allUpgraders.length);
+
 
         // Do not spawn if too many creeps
         if (allCreeps.length > Memory.data.maxCreeps) {
             return;
         }
 
-        console.log('why not spawning', allCreeps.length > Memory.data.maxCreeps);
+
 
         // Enough energy to build the fattest creep ever?
         if ( spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
@@ -58,7 +58,7 @@ var spawnCreeper = {
                 var creepName = 'Worker' + idnum;
             }
 
-            console.log('why not spawning', allCreeps.length > Memory.data.maxCreeps);
+        
 
             // Another check here, if work != 0 and work % 5 == 0 then add a carry and move
             while ( energyToUse >= 50 ) {
