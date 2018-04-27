@@ -35,7 +35,9 @@ var spawnCreeper = {
             // Add one work
             energyToUse -= 100;
             // Create memories to assign roles
+            console.log(allWorkers.length);
             if (allWorkers.length < 2) {
+                console.log(((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0), ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1), allWorkers[0].memory.roleid);
                 if (((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
                     idnum+=1;
                 }
