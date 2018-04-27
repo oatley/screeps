@@ -93,6 +93,8 @@ module.exports.loop = function () {
         } else if (Memory.data.mainTick == 30){
             console.log('[main] - buildStorage.new()');
             buildStorage.new(Game.rooms[room]); // Check if you can build things
+        } else if (Memory.data.mainTick > 30) {
+            Memory.data.mainTick = 0;
         }
 
         if (Memory.data.buildRoadForceTick >= 10000) {
@@ -102,6 +104,9 @@ module.exports.loop = function () {
             Game.rooms[room].memory.extensions = {};
             Game.rooms[room].memory.controller = {};
             Memory.data.buildRoadForceTick = 0;
+            Memory.data.buildRoadTick = 0;
+            Memory.data.mainTick = 0;
+
         }
 
         if (Memory.data.buildRoadTick == 100) {
