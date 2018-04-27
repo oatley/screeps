@@ -11,7 +11,7 @@ var spawnCreeper = {
         var allUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
 
-    
+
         // Do not spawn if too many creeps
         if (allCreeps.length >= Memory.data.maxCreeps) {
             return;
@@ -59,8 +59,6 @@ var spawnCreeper = {
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
             }
-
-            return;
 
             // Another check here, if work != 0 and work % 5 == 0 then add a carry and move
             while ( energyToUse >= 50 ) {
