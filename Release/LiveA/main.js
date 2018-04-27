@@ -29,7 +29,6 @@ module.exports.loop = function () {
 
 
     // Optimize road code
-    Memory.data = {};
     if (!Memory.data) {
         Memory.data = {maxCreeps: 6, bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0};
     } else {
