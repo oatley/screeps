@@ -7,15 +7,16 @@ let gatherEnergy = {
                             return (source)
                         }
         });
+        let sourceToUse = sources[0];
         console.log(sources, sources.length, sources[0]);
         if (sources.length > 1) {
             if ((Number(creep.memory.roleid) % 2) == 0) {
-                let sourceToUse = sources[1];
+                sourceToUse = sources[1];
             } else {
-                let sourceToUse = sources[0];
+                sourceToUse = sources[0];
             }
         } else if (sources.length > 0) {
-            let sourceToUse = sources[0];
+            sourceToUse = sources[0];
         } else {
             console.log('[gather.energy] - No energy left in room');
             return;
