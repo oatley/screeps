@@ -23,7 +23,7 @@ let destroyRoads = {
             for (let r in targetConstructionRoads) {
                 if (targetStructures[s].pos == targetConstructionRoads[r].pos) {
                     console.log('[destroy.roads] - Destroying road construction site under structure');
-                    targetConstructionRoads.[r].remove();
+                    targetConstructionRoads[r].remove();
                 }
             }
         }
