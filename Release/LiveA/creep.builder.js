@@ -101,7 +101,7 @@ var creepBuilder = {
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
                 }
-            } else if (closestDamagedStructure && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            } else if (closestDamagedStructure && !creep.memory.upgrading &&!creep.memory.storing && creep.room.controller.ticksToDowngrade >= 1000) {
                 let repair = creep.repair(closestDamagedStructure);
                 if (repair == OK) {
                     creep.memory.building = true;
