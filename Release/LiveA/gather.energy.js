@@ -8,7 +8,7 @@ var gatherEnergy = {
             var choice = Number(creep.memory.roleid) % 2;
             if ( choice == 0 ) {
                 sourceToUse = sources[0];
-                if (sourceToUse.energy == 0) {
+                if (sourceToUse.energyAvailable == 0) {
                     sourceToUse = sources[sources.length - 1];
                 }
             } else {
