@@ -28,7 +28,7 @@ var creepBuilder = {
         });
 
         var closestDamagedStructure = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) =>  ((structure.hits < 100000 &&  structure.structureType == STRUCTURE_RAMPART) ||
+            filter: (structure) =>  (structure.hits < 100000 &&  structure.structureType == STRUCTURE_RAMPART) ||
                                     (structure.hits < 100000 &&  structure.structureType == STRUCTURE_WALL)
         });
 
