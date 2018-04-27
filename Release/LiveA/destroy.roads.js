@@ -6,12 +6,12 @@ let destroyRoads = {
         let targetRoads = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_ROAD);}
         });
-        let targetConstructionRoads = creep.room.find(FIND_CONSTRUCTION_SITES, {
+        let targetConstructionRoads = room.find(FIND_CONSTRUCTION_SITES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_ROAD);}
 
         });
 
-        var targetStructures = creep.room.find(FIND_STRUCTURES);
+        var targetStructures = room.find(FIND_STRUCTURES);
 
         for (let s in targetStructures) {
             for (let r in targetRoads) {
