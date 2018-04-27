@@ -15,7 +15,7 @@ var creepBuilder = {
 
         var targetTower = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return structure.structureType == STRUCTURE_TOWER && structure.energy < structure.energyCapacity;
+                        return structure.structureType == STRUCTURE_TOWER && structure.energy < (structure.energyCapacity/2);
                     }
         });
 
@@ -92,7 +92,7 @@ var creepBuilder = {
                 } else if (tryBuild == ERR_RCL_NOT_ENOUGH) { // Room level too low to finish building
                     creep.memory.building = false;
                 }
-            } else if (targetTower.energy < (targetTower.energyCapacity / 2) && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            } else if (targetTower && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 //creep.say('towers');
                 creep.memory.storing = true;
                 let transfer = creep.transfer(targetTower, RESOURCE_ENERGY);
