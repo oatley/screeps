@@ -85,7 +85,7 @@ var creepBuilder = {
                     creep.memory.building = false;
                     creep.memory.upgrading = true;
                 }
-            } else if (targetTower && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            } else if (targetTower.energy < (targetTower.energyCapacity/2) && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 //creep.say('towers');
                 creep.memory.storing = true;
                 let transfer = creep.transfer(targetTower, RESOURCE_ENERGY);
@@ -93,11 +93,6 @@ var creepBuilder = {
                     creep.moveTo(targetTower, {visualizePathStyle: {stroke: '#ffffff'}});
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
-                }
-                if (creep.carry.energy == 0) {
-                    creep.memory.storing = false;
-                    randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));
-                    creep.memory.randomEnergyStorage = randomEnergyStorage;
                 }
             } else {
                 //creep.say('upgrade');
