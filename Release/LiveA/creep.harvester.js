@@ -46,7 +46,7 @@ var creepHarvester = {
 
 
 
-        console.log(targetStorage, lodash.sum(targetStorage.store), targetStorage.storeCapacity);
+        console.log(targetStorage, targetStorage.store.energy, targetStorage.storeCapacity);
         // if creep energy cap is not full and creep is not building/upgrading = go get energy
         if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
