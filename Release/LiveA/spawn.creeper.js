@@ -11,19 +11,16 @@ var spawnCreeper = {
         var allUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
 
-        // Testing
-console.log('happening1');
+    
         // Do not spawn if too many creeps
-        if (false && allCreeps.length >= Memory.data.maxCreeps) {
+        if (allCreeps.length >= Memory.data.maxCreeps) {
             return;
         }
 
         //console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
-        //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1);
-console.log('happening2');
+        //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1)
         // Enough energy to build the fattest creep ever?
-        if ( true ||  spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
-            console.log('happening3');
+        if (spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
             var energyToUse = spawn.room.energyAvailable;
             var opts = [CARRY, MOVE, WORK];
             var bodyCarry = 1;
@@ -36,13 +33,9 @@ console.log('happening2');
             // Add one work
             energyToUse -= 100;
             // Create memories to assign roles
-            console.log(allWorkers.length);
-            if (true || allWorkers.length < 2) {
-                console.log(((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0), ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1), allWorkers[0].memory.roleid);
+            if (allWorkers.length < 2) {
                 if (((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
-                    console.log('happening', allWorkers[0].memory.roleid, idnum);
                     idnum = Number(idnum) + 1;
-                    console.log('happening', allWorkers[0].memory.roleid, idnum);
                 }
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
