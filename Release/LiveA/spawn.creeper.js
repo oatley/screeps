@@ -40,8 +40,9 @@ console.log('happening2');
             if (true || allWorkers.length < 2) {
                 console.log(((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0), ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1), allWorkers[0].memory.roleid);
                 if (((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
-                    console.log('happening');
+                    console.log('happening', allWorkers[0].memory.roleid, idnum);
                     idnum+=1;
+                    console.log('happening', allWorkers[0].memory.roleid, idnum);
                 }
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
