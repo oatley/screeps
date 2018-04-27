@@ -50,7 +50,7 @@ var creepBuilder = {
         // if creep energy cap is not full and creep is not building/upgrading = go get energy
         if (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
-            creep.say('WITHDRAW');
+            //creep.say('WITHDRAW');
             let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity);
             if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
                 gatherEnergy.gather();
@@ -59,9 +59,8 @@ var creepBuilder = {
             }
 
         } else { // have a full load of energy (may or may not be building/upgrading)
-            // AHHH FIND_HOSTILE_CREEPS EMERGENCY
-            if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
-                creep.say('DANGER');
+            if (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+                //creep.say('DANGER');
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
                 if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
@@ -78,20 +77,9 @@ var creepBuilder = {
                     creep.memory.randomEnergyStorage = randomEnergyStorage;
                 }
                 if (creep.carry.energy == 0) {
+                    creep.memory.storing = false;
                     randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));
                     creep.memory.randomEnergyStorage = randomEnergyStorage;
-                }
-            } else if (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
-                creep.say('TOWERS');
-                creep.memory.storing = true;
-                let randomEnergyStorage = creep.memory.randomEnergyStorage;
-                if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
-                    randomEnergyStorage = Math.round(Math.random(0, targetTowers.length) * targetTowers.length);
-                    creep.memory.randomEnergyStorage = randomEnergyStorage;
-                }
-                //console.log('[creep.harvester] - Creep ' + creep.name + ' storing energy in:', randomEnergyStorage.toString() + '/' + targetStructures.length .toString());
-                if(creep.transfer(targetTowers[randomEnergyStorage], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetTowers[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             } else if (targetConstruction.length > 0 && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 8000) {
                 // if structures energy cap is full set and construction sites exist = go build(set building true)

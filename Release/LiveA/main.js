@@ -9,6 +9,7 @@ var buildStorage = require('build.storage');
 var creepHarvester = require('creep.harvester');
 var creepBuilder = require('creep.builder');
 var creepExplorer = require('creep.explorer');
+var creepUpgrader = require('creep.upgrader');
 var towerAction = require('tower.action');
 var findExits = require('find.exits');
 
