@@ -27,6 +27,12 @@ var creepBuilder = {
 
         });
 
+        var closestDamagedStructure = towerTargets[tower].pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) =>  ((structure.hits < 100000 &&  structure.structureType == STRUCTURE_RAMPART) ||
+                                    (structure.hits < 100000 &&  structure.structureType == STRUCTURE_WALL)
+        });
+
+
         // Set building and upgrading to false if you run out of energy
         if (creep.carry.energy == 0) {
             creep.memory.building = false;
@@ -83,7 +89,6 @@ var creepBuilder = {
                     creep.moveTo(targetConstruction[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 } else if (tryBuild == ERR_RCL_NOT_ENOUGH) { // Room level too low to finish building
                     creep.memory.building = false;
-                    creep.memory.upgrading = true;
                 }
             } else if (targetTower.energy < (targetTower.energyCapacity/2) && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 //creep.say('towers');
@@ -93,6 +98,14 @@ var creepBuilder = {
                     creep.moveTo(targetTower, {visualizePathStyle: {stroke: '#ffffff'}});
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
+                }
+            } else if (closestDamagedStructure && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)
+                let repair = creep.repair(closestDamagedStructure);
+                if(repair == ERR_NOT_IN_RANGE) {
+                    creep.memory.building = true;
+                    creep.moveTo(closestDamagedStructure, {visualizePathStyle: {stroke: '#ffffff'}});
+                } else {
+                    creep.memory.building = false;
                 }
             } else {
                 //creep.say('upgrade');
