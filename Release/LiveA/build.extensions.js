@@ -117,6 +117,6 @@ var buildExtensions = {
             }
         }
     }
-};
+}
 
 module.exports = buildExtensions;
