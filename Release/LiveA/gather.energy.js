@@ -1,22 +1,21 @@
 // Gather energy from multiple energy sources by spliting up creeps into 2 groups
 
-var gatherEnergy = {
+let gatherEnergy = {
     gather: function  (creep) {
-        var sources = creep.room.find(FIND_SOURCES);
-        var sourceToUse = sources[0];
-        if(sources.length > 1 && creep.memory.roleid != null) {
-            var choice = Number(creep.memory.roleid) % 2;
-            if ( choice == 0 ) {
-                sourceToUse = sources[0];
-                if (sourceToUse.energyAvailable == 0) {
-                    sourceToUse = sources[sources.length - 1];
-                }
-            } else {
-                sourceToUse = sources[sources.length - 1];
-                if (sourceToUse.energyAvailable == 0) {
-                    sourceToUse = sources[0];
-                }
+        let sources = creep.room.find(FIND_SOURCES, {
+                        filter: (source) => {
+                            return (source.energyAvailable > 0)
+                        }
+        });
+        if (sources.length > 1) {
+            if ((Number(creep.memory.roleid) % 2) == 0) {
+                let sourceToUse = sources[1];
             }
+        } (source.length > 0) {
+            let sourceToUse = sources[0];
+        } else {
+            console.log('[gather.energy] - No energy left in room');
+            return;
         }
         if(creep.harvest(sourceToUse) == ERR_NOT_IN_RANGE) {
             creep.moveTo(sourceToUse, {visualizePathStyle: {stroke: '#ffaa00'}});
