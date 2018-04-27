@@ -51,7 +51,7 @@ var creepHarvester = {
         if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
             //creep.say('energy');
-            if (closestHostile && creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity) {
+            if ((closestHostile && creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity) || (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && creep.room.energyAvailable == 0)) {
                 creep.say('WITHDRAW');
                 let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity);
                 if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
