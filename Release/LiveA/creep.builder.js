@@ -61,7 +61,7 @@ var creepBuilder = {
         } else { // have a full load of energy (may or may not be building/upgrading)
             if (targetConstruction.length > 0 && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 8000) {
                 // if structures energy cap is full set and construction sites exist = go build(set building true)
-                //creep.say('build');
+                creep.say('build');
                 // Build extensions before anything else
                 if (targetConstructionExtensions > 0) {
                     var tryBuild = creep.build(targetConstructionExtensions[0]);
