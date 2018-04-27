@@ -36,6 +36,9 @@ var spawnCreeper = {
             energyToUse -= 100;
             // Create memories to assign roles
             if (allWorkers.length < 2) {
+                if (((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1))) {
+                    idnum+=1;
+                }
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
             } else if ( false ) { //allExplorers.length == 0 && energyToUse >= 650){
