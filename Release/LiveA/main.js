@@ -61,6 +61,7 @@ module.exports.loop = function () {
 
 
     // Run each tower every tick
+    cleanMemory.clean(); // Clean dead creeps from memory
     towerAction.run();
     spawnCreeper.spawn(Game.spawns['Spawn1']);
     // Run each creep every tick
@@ -98,7 +99,7 @@ module.exports.loop = function () {
 
         if (Memory.data.mainTick == 5){
             console.log('[main] - cleanMemory.clean()');
-            cleanMemory.clean(); // Clean dead creeps from memory
+            //cleanMemory.clean(); // Clean dead creeps from memory
         } else if (Memory.data.mainTick == 10){
             console.log('[main] - findExits.updateMemoryLocations()');
             findExits.updateMemoryLocations(Game.rooms[room]);
