@@ -91,7 +91,6 @@ module.exports.loop = function () {
             continue;
         }
 
-        console.log(Memory.data.buildRoadTick);
         destroyRoads.destroy(Game.rooms[room]);
 
         if (Memory.data.mainTick == 5){
@@ -116,7 +115,7 @@ module.exports.loop = function () {
             Memory.data.mainTick = 0;
         }
 
-        if (Memory.data.buildRoadForceTick >= 10000) {
+        if (Memory.data.buildRoadForceTick >= 100) {
             console.log('[main] - forcing a rebuild of all roads');
             Game.rooms[room].memory.sources = {};
             Game.rooms[room].memory.towers = {};
