@@ -52,24 +52,10 @@ var creepHarvester = {
 
 
         // If no courses have energy
-        if (creep.room.energyAvailable == 0) {
-            console.log('no energy');
-        } else if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
-            // go get energy
-            //creep.say('energy');
-            if ((closestHostile && creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity) || (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && creep.room.energyAvailable == 0)) {
-                creep.say('WITHDRAW');
-                let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity);
-                if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
-                    gatherEnergy.gather();
-                } else if (withdraw == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.room.storage, {visualizePathStyle: {stroke: '#ffffff'}});
-                }
-            } else {
-                gatherEnergy.gather(creep);
-            }
+        if (creep.carry.energy < creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
+            gatherEnergy.gather(creep);
         } else { // have a full load of energy (may or may not be building/upgrading)
-            if (targetStructure > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            if (targetStructure && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 creep.memory.storing = true;
                 let transfer = creep.transfer(targetStructure, RESOURCE_ENERGY);
                 if(transfer == ERR_NOT_IN_RANGE) {
