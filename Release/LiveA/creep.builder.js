@@ -28,8 +28,8 @@ var creepBuilder = {
         });
 
         var closestDamagedStructure = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) =>  (structure.hits < 100000 &&  structure.structureType == STRUCTURE_RAMPART) ||
-                                    (structure.hits < 100000 &&  structure.structureType == STRUCTURE_WALL)
+            filter: (structure) =>  (structure.hits < 150000 &&  structure.structureType == STRUCTURE_RAMPART) ||
+                                    (structure.hits < 150000 &&  structure.structureType == STRUCTURE_WALL)
         });
 
 
