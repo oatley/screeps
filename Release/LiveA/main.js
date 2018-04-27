@@ -36,7 +36,7 @@ module.exports.loop = function () {
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
-        let extensions = creep.room(FIND_STRUCTURES, {
+        let extensions = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION}
         });
         if (extensions.length >= 30) {
