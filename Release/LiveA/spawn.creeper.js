@@ -11,7 +11,7 @@ var spawnCreeper = {
         var allUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
 
-        console.log('why not spawning', allCreeps.length > Memory.data.maxCreeps);
+        console.log('why not spawning', allCreeps.length, Memory.data.maxCreeps, allExplorers.length, allBuilders.length, allWorkers.length, allUpgraders.length);
 
         // Do not spawn if too many creeps
         if (allCreeps.length > Memory.data.maxCreeps) {
