@@ -1,8 +1,8 @@
 
 let buildStorage = {
 
-    new: function() {
-        let room = Game.rooms[Object.keys(Game.rooms)[0]];
+    new: function(room) {
+        //let room = Game.rooms[Object.keys(Game.rooms)[0]];
         let spawnTargets = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });

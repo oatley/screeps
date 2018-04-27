@@ -86,10 +86,10 @@ module.exports.loop = function () {
             buildExtensions.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick == 25){
             console.log('[main] - buildTowers.new()');
-            buildTowers.new(); // Check if you can build things
+            buildTowers.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick == 30){
             console.log('[main] - buildStorage.new()');
-            buildStorage.new(); // Check if you can build things
+            buildStorage.new(Game.rooms[room]); // Check if you can build things
         }
 
         if (Memory.data.buildRoadForceTick > 10000) {
