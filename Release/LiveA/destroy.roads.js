@@ -15,15 +15,15 @@ let destroyRoads = {
 
         for (let s in targetStructures) {
             for (let r in targetRoads) {
-                if (targetStructures[s].pos == targetRoads[r].pos) {
-                    console.log('[destroy.roads] - Destroying road under structure');
-                    targetRoads[r].destroy();
+                if (targetStructures[s].pos.x == targetRoads[r].pos.x && targetStructures[s].pos.y == targetRoads[r].pos.y) {
+                    console.log('[destroy.roads] - Destroying road under structure', targetStructures[s].pos.x, targetStructures[s].pos.y, targetRoads[r].pos.x, targetRoads[r].pos.y);
+                    //targetRoads[r].destroy();
                 }
             }
             for (let r in targetConstructionRoads) {
-                if (targetStructures[s].pos == targetConstructionRoads[r].pos) {
-                    console.log('[destroy.roads] - Destroying road construction site under structure');
-                    targetConstructionRoads[r].remove();
+                if (targetStructures[s].pos.x == targetConstructionRoads[r].pos.x && targetStructures[s].pos.y == targetConstructionRoads[r].pos.y) {
+                    console.log('[destroy.roads] - Destroying road construction site under structure',targetStructures[s].pos.x, targetStructures[s].pos.y, targetConstructionRoads[r].pos.x, targetConstructionRoads[r].pos.y);
+                    //targetConstructionRoads[r].remove();
                 }
             }
         }
