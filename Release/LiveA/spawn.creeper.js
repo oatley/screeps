@@ -12,7 +12,7 @@ var spawnCreeper = {
 
 
         // Testing
-
+console.log('happening');
         // Do not spawn if too many creeps
         if (false || allCreeps.length >= Memory.data.maxCreeps) {
             return;
