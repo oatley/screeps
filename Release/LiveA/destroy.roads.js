@@ -12,7 +12,7 @@ let destroyRoads = {
         });
 
         var targetStructures = room.find(FIND_STRUCTURES,{
-                    filter: (structure) => {return  (structure.structureType != STRUCTURE_RAMPART) ||
+                    filter: (structure) => {return  (structure.structureType != STRUCTURE_RAMPART) &&
                                                     (structure.structureType != STRUCTURE_ROAD)
                     }
         });
