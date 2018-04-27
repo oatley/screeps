@@ -109,7 +109,7 @@ var buildExtensions = {
                     } else if ( extConstruct == ERR_RCL_NOT_ENOUGH ){
                         //console.log('[build.extensions] - room level too low to build');
                     } else if ( extConstruct == ERR_INVALID_TARGET ) {
-                        //console.log('[build.extensions] - structure cannot be placed there', spawnX, spawnY, extensionTargets.length );
+                        console.log('[build.extensions] - structure cannot be placed there', spawnX2, spawnY2, extensionTargets.length );
                     } else {
                         console.log('[build.extensions] - something went wrong' + extConstruct.toString());
                     }
