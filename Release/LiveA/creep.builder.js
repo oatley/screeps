@@ -65,7 +65,7 @@ var creepBuilder = {
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
                 if (randomEnergyStorage >= targetTowers.length || (targetTowers.length > 1 && randomEnergyStorage == 0)) {
-                    randomEnergyStorage = Math.round(Math.random(0, targetTowers.length) * targetTowers.length);
+                    randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));
                     creep.memory.randomEnergyStorage = randomEnergyStorage;
                 }
                 //console.log('[creep.harvester] - Creep ' + creep.name + ' storing energy in:', randomEnergyStorage.toString() + '/' + targetStructures.length .toString());
@@ -74,6 +74,10 @@ var creepBuilder = {
                     creep.moveTo(targetTowers[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
                 } else if (transfer == ERR_FULL && !closestHostile) {
                     creep.memory.storing = false;
+                }
+                if (creep.carry.energy == 0) {
+                    randomEnergyStorage = Math.round(Math.random(0, targetTowers.length));
+                    creep.memory.randomEnergyStorage = randomEnergyStorage;
                 }
             } else if (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
                 creep.say('TOWERS');
