@@ -64,7 +64,7 @@ var creepHarvester = {
             }
         } else { // have a full load of energy (may or may not be building/upgrading)
             // AHHH FIND_HOSTILE_CREEPS EMERGENCY
-            if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
+            /*if (closestHostile && (targetTowers.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000)) {
                 //creep.say('DANGER');
                 creep.memory.storing = true;
                 let randomEnergyStorage = creep.memory.randomEnergyStorage;
@@ -79,7 +79,7 @@ var creepHarvester = {
                 } else if (transfer == ERR_FULL && !closestHostile) {
                     creep.memory.storing = false;
                 }
-            } else if (targetStructures.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
+            } else*/ if (targetStructures.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 // if structures energy cap is not full and not building = go fill structures
                 //creep.say('store');
                 //creep.memory.building = false;
