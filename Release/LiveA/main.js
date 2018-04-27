@@ -84,8 +84,12 @@ module.exports.loop = function () {
 
     // Slow tasks for base building, run each task every 25 ticks
     for (let room in Game.rooms) {
-        console.log(Game.rooms[room].controller.owner);
 
+
+        if (!Game.rooms[room].controller.owner) {
+            
+            continue;
+        }
 
         if (Memory.data.mainTick == 5){
             console.log('[main] - cleanMemory.clean()');
