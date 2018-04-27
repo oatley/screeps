@@ -4,6 +4,7 @@ var gatherEnergy = {
     gather: function  (creep) {
         var sources = creep.room.find(FIND_SOURCES);
         var sourceToUse = sources[0];
+        console.log(creep.name, 'why you not gather');
         if(sources.length > 1 && creep.memory.roleid != null) {
             var choice = Number(creep.memory.roleid) % 2;
             if ( choice == 0 ) {
