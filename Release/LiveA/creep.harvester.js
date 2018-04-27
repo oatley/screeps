@@ -11,6 +11,11 @@ var creepHarvester = {
                                 structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
                     }
         });
+        var targetStorage = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_STORAGE) && structure.energy < structure.energyCapacity;
+                    }
+        });
 
         var targetTowers = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
@@ -82,6 +87,15 @@ var creepHarvester = {
                 let transfer = creep.transfer(targetStructures[randomEnergyStorage], RESOURCE_ENERGY);
                 if(transfer == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targetStructures[randomEnergyStorage], {visualizePathStyle: {stroke: '#ffffff'}});
+                } else if (transfer == ERR_FULL) {
+                    creep.memory.storing = false;
+                }
+            } else if (targetStorage.length > 0 && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 5000) {
+                // if structures energy cap is not full and not building = go fill structures
+                creep.memory.storing = true;
+                let transfer = creep.transfer(targetStorage[0], RESOURCE_ENERGY);
+                if(transfer == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targetStorage[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 } else if (transfer == ERR_FULL) {
                     creep.memory.storing = false;
                 }
