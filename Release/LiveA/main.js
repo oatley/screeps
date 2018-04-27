@@ -91,6 +91,7 @@ module.exports.loop = function () {
             continue;
         }
 
+        console.log(Memory.data.buildRoadTick);
         destroyRoads.destroy(Game.rooms[room]);
 
         if (Memory.data.mainTick == 5){
