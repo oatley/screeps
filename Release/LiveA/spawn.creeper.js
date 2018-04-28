@@ -34,18 +34,9 @@ var spawnCreeper = {
             energyToUse -= 100;
             energyToUse -= 500; // Try and improve econ
 
-            if (!allWorkers[0].memory) {
-                console.log('ahhh');
-            } else {
-
-                console.log('ahhh');
-
-
-            }
-
             // Create memories to assign roles
             if (allWorkers.length < 2) {
-                if ((allWorkers[0] && allWorkers[0].memory) && ((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
+                if (((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
                     idnum = Number(idnum) + 1;
                 }
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
