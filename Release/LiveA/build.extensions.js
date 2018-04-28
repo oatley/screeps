@@ -42,6 +42,7 @@ var buildExtensions = {
         }*/
 
         let distance = [3, 7];
+        let distanceFromSpawn = 0;
 
         // Control extension direction to place relative to spawn
         let extDir = '';
