@@ -55,15 +55,21 @@ let creepBuilder = {
         //console.log('why you no build?');
         //console.log(targetStorage, targetStorage.store.energy, targetStorage.storeCapacity);
         // if creep energy cap is not full and creep is not building/upgrading = go get energy
-        if (creep.carry.energy < creep.carryCapacity && creep.room.storage.store.energy > creep.carryCapacity && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
+        if (creep.carry.energy < creep.carryCapacity  && !creep.memory.building && !creep.memory.upgrading && !creep.memory.storing) {
             // go get energy
             //creep.say('WITHDRAW');
-            let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity-creep.carry.energy);
-            if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
+            if ((creep.room.storage) && creep.room.storage.store.energy > creep.carryCapacity) {
+                let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity-creep.carry.energy);
+                if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
+
+                } else if (withdraw == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(creep.room.storage, {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+            } else {
                 gatherEnergy.gather();
-            } else if (withdraw == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.storage, {visualizePathStyle: {stroke: '#ffffff'}});
             }
+
+
 
         } else { // have a full load of energy (may or may not be building/upgrading)
             if (targetStructure  && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
