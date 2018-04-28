@@ -98,7 +98,7 @@ var buildExtensions = {
                     if ( extConstruct == OK ) {
                         console.log('[build.extensions] - construction site created');
                     } else if ( extConstruct == ERR_RCL_NOT_ENOUGH ){
-                        console.log('[build.extensions] - room level too low to build');
+                        //console.log('[build.extensions] - room level too low to build');
                     } else if ( extConstruct == ERR_INVALID_TARGET ) {
                         console.log('[build.extensions] - structure cannot be placed there', spawnX, spawnY, extensionTargets.length );
                     } else {
@@ -108,7 +108,7 @@ var buildExtensions = {
                     if ( extConstruct == OK ) {
                         console.log('[build.extensions] - construction site created');
                     } else if ( extConstruct == ERR_RCL_NOT_ENOUGH ){
-                        console.log('[build.extensions] - room level too low to build');
+                        //console.log('[build.extensions] - room level too low to build');
                     } else if ( extConstruct == ERR_INVALID_TARGET ) {
                         console.log('[build.extensions] - structure cannot be placed there', spawnX2, spawnY2, extensionTargets.length );
                     } else {
