@@ -36,7 +36,7 @@ var spawnCreeper = {
 
             // Create memories to assign roles
             if (allWorkers.length < 2) {
-                if (((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
+                if (allWorkers.length != 0 && ((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
                     idnum = Number(idnum) + 1;
                 }
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
@@ -49,6 +49,9 @@ var spawnCreeper = {
                 opts.push(MOVE);
                 opts.push(CLAIM);
             } else if (allBuilders.length < 2) {//allBuilders.length == 0) {
+                if (allBuilders.length != 0 && ((allBuilders[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allBuilders[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
+                    idnum = Number(idnum) + 1;
+                }
                 var insertMemory = { memory: { roleid: idnum, role: 'builder', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Builder' + idnum;
                 energyToUse -= 50;
