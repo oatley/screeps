@@ -1,18 +1,18 @@
 //Imports
-var cleanMemory = require('clean.memory');
-var spawnCreeper = require('spawn.creeper');
-var buildExtensions = require('build.extensions');
-var buildTowers = require('build.towers');
-var buildWalls = require('build.walls');
-var buildRoads = require('build.roads');
-var buildStorage = require('build.storage');
-var creepHarvester = require('creep.harvester');
-var creepBuilder = require('creep.builder');
-var creepExplorer = require('creep.explorer');
-var creepUpgrader = require('creep.upgrader');
-var towerAction = require('tower.action');
-var findExits = require('find.exits');
-var destroyRoads = require('destroy.roads');
+let cleanMemory = require('clean.memory');
+let spawnCreeper = require('spawn.creeper');
+let buildExtensions = require('build.extensions');
+let buildTowers = require('build.towers');
+let buildWalls = require('build.walls');
+let buildRoads = require('build.roads');
+let buildStorage = require('build.storage');
+let creepHarvester = require('creep.harvester');
+let creepBuilder = require('creep.builder');
+let creepExplorer = require('creep.explorer');
+let creepUpgrader = require('creep.upgrader');
+let towerAction = require('tower.action');
+let findExits = require('find.exits');
+let destroyRoads = require('destroy.roads');
 
 module.exports.loop = function () {
 
@@ -23,8 +23,8 @@ module.exports.loop = function () {
     // - x1 Creep type explorer, claims room, and then suicides
     // - (DONE) Energy storage building (harvesters should store in here)
     // - Backup redis and mongodb and mods
-    // - If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
-    // - Fix the static number of creeps and scale down as they get more bodyParts
+    // - (NOPE) If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
+    // - (DONE) Fix the static number of creeps and scale down as they get more bodyParts
     // - Upgrade scripts to support multi room
     // - Use the delays ticker timer to optimize cpu performance
 
@@ -65,8 +65,8 @@ module.exports.loop = function () {
     towerAction.run();
     spawnCreeper.spawn(Game.spawns['Spawn1']);
     // Run each creep every tick
-    for (var name in Game.creeps) {
-        var creep = Game.creeps[name];
+    for (let name in Game.creeps) {
+        let creep = Game.creeps[name];
         // Memory upgrade
         //creep.memory.randomEnergyStorage = 0;
         if ( creep.memory.role == 'worker') {
@@ -85,7 +85,10 @@ module.exports.loop = function () {
 
     // Slow tasks for base building, run each task every 25 ticks
     for (let room in Game.rooms) {
+        // Weird conditions to skip
         if (!room) continue;
+
+        // If creeps enter a room you don't own, don't try and build in it
         let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
@@ -93,33 +96,32 @@ module.exports.loop = function () {
             continue;
         }
 
+        // Run every tick
         destroyRoads.destroy(Game.rooms[room]);
+
+        // Debugs
         //buildRoads.buildToRamparts(Game.rooms[room], forceRebuild = true);
         //buildRoads.buildToExtension(Game.rooms[room], forceRebuild = true);
-        buildExtensions.new(Game.rooms[room]); // Check if you can build things
+        //buildExtensions.new(Game.rooms[room]); // Check if you can build things
 
+        // Run these non critical base building scripts slowly
         if (Memory.data.mainTick == 5){
-            console.log('[main] - cleanMemory.clean()');
-            //cleanMemory.clean(); // Clean dead creeps from memory
-        } else if (Memory.data.mainTick == 10){
             console.log('[main] - findExits.updateMemoryLocations()');
             findExits.updateMemoryLocations(Game.rooms[room]);
-        } else if (Memory.data.mainTick == 15){
-            //console.log('[main] - spawnCreeper.spawn()'); too slow for spawning
-            //spawnCreeper.spawn(Game.spawns['Spawn1']); // Check if you can spawn things
-        } else if (Memory.data.mainTick == 20){
+        } else if (Memory.data.mainTick == 10){
             console.log('[main] - buildExtensions.new()');
             buildExtensions.new(Game.rooms[room]); // Check if you can build things
-        } else if (Memory.data.mainTick == 25){
+        } else if (Memory.data.mainTick == 15){
             console.log('[main] - buildTowers.new()');
             buildTowers.new(Game.rooms[room]); // Check if you can build things
-        } else if (Memory.data.mainTick == 30){
+        } else if (Memory.data.mainTick == 20){
             console.log('[main] - buildStorage.new()');
             buildStorage.new(Game.rooms[room]); // Check if you can build things
-        } else if (Memory.data.mainTick > 30) {
+        } else if (Memory.data.mainTick > 25) {
             Memory.data.mainTick = 0;
         }
 
+        // Wipe memory to rebuild roads that have been lost for some reason
         if (Memory.data.buildRoadForceTick >= 10000) {
             console.log('[main] - forcing a rebuild of all roads');
             Game.rooms[room].memory.sources = {};
@@ -133,6 +135,7 @@ module.exports.loop = function () {
 
         }
 
+        // Building walls and roads this is not important, high cpu pathfinding
         if (Memory.data.buildRoadTick == 100) {
             console.log('[main] - buildRoads.buildToSource()');
             buildWalls.new(Game.rooms[room]);

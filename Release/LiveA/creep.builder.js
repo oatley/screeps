@@ -68,9 +68,6 @@ let creepBuilder = {
             } else {
                 gatherEnergy.gather(creep);
             }
-
-
-
         } else { // have a full load of energy (may or may not be building/upgrading)
             if (targetStructure  && !creep.memory.building && !creep.memory.upgrading && creep.room.controller.ticksToDowngrade >= 1000) {
                 creep.memory.storing = true;
