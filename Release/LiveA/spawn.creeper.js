@@ -51,7 +51,7 @@ var spawnCreeper = {
                 opts.push(MOVE);
                 opts.push(CLAIM);
             } else if (allBuilders.length < 2) {//allBuilders.length == 0) {
-                if (allWorkers.length != 0) {
+                if (allBuilder.length != 0) {
                     if (((allBuilders[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allBuilders[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
                         idnum = Number(idnum) + 1;
                     }
