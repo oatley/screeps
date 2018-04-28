@@ -66,7 +66,7 @@ let creepBuilder = {
                     creep.moveTo(creep.room.storage, {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             } else {
-                gatherEnergy.gather();
+                gatherEnergy.gather(creep);
             }
 
 
