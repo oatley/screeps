@@ -85,6 +85,7 @@ module.exports.loop = function () {
 
     // Slow tasks for base building, run each task every 25 ticks
     for (let room in Game.rooms) {
+        if (!room) continue;
         let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
