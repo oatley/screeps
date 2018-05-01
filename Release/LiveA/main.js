@@ -89,7 +89,7 @@ module.exports.loop = function () {
         if (!room) continue;
 
         //targetStorage.store.energy < targetStorage.storeCapacity
-        console.log(Game.rooms[room].storage.store.energy / Game.rooms[room].storage.storeCapacity * 100);
+        //console.log(Game.rooms[room].storage.store.energy / Game.rooms[room].storage.storeCapacity * 100);
 
         // If creeps enter a room you don't own, don't try and build in it
         let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {

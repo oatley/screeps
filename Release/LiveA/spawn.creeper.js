@@ -9,7 +9,6 @@ var spawnCreeper = {
         var allBuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         var allWorkers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
         var allUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        let storageStorePercentage = spawn.room.storage.store.energy / spawn.room.storage.storeCapacity * 100;
 
 
         // Do not spawn if too many creeps
@@ -61,7 +60,7 @@ var spawnCreeper = {
                 energyToUse -= 50;
                 bodyWork += 1; // This is just done to make sure builders can travel fast off road
                 opts.push(MOVE);
-            } else if (allUpgraders.length < 1 || storageStorePercentage > 80) {//allBuilders.length == 0) {
+            } else if (allUpgraders.length < 1) {//allBuilders.length == 0) {
                 var insertMemory = { memory: { roleid: idnum, role: 'upgrader', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Upgrader' + idnum;
             } else {
