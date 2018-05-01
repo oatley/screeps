@@ -100,7 +100,7 @@ module.exports.loop = function () {
         }
 
         // Run every tick
-        destroyRoads.destroy(Game.rooms[room]);
+
 
         // Debugs
         //buildRoads.buildToRamparts(Game.rooms[room], forceRebuild = true);
@@ -121,6 +121,9 @@ module.exports.loop = function () {
             console.log('[main] - buildStorage.new()');
             buildStorage.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick > 25) {
+            console.log('[main] - destroyRoads.destroy()');
+            destroyRoads.destroy(Game.rooms[room]);
+        } else if (Memory.data.mainTick > 30) {
             Memory.data.mainTick = 0;
         }
 
