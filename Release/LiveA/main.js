@@ -22,7 +22,7 @@ module.exports.loop = function () {
     // - (DONE) 4x Creep type harvester, takes
     // - x1 Creep type explorer, claims room, and then suicides
     // - (DONE) Energy storage building (harvesters should store in here)
-    // - Backup redis and mongodb and mods
+    // - (DONE) Backup redis and mongodb and mods
     // - (NOPE) If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
     // - (DONE) Fix the static number of creeps and scale down as they get more bodyParts
     // - Upgrade scripts to support multi room
@@ -100,7 +100,7 @@ module.exports.loop = function () {
         }
 
         // Run every tick
-
+        console.log(spawnTargets);
 
         // Debugs
         //buildRoads.buildToRamparts(Game.rooms[room], forceRebuild = true);
