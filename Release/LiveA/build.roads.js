@@ -112,6 +112,11 @@ let buildRoads = {
         //let roadNum = [{x: 1, y: 1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: -1, y: -1}, {x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
 
+        // Skip building roads if you are a noob without extensions
+        if (room.controller.level <= 2 && extensions <= 5) {
+            return;
+        }
+
         if (forceRebuild) {
             room.memory.extensions = {};
         }
@@ -182,11 +187,18 @@ let buildRoads = {
         let towers = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
         });
-
+        let extensionTargets = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION);}
+        });
         let sources = room.find(FIND_SOURCES);
 
         // Create road around the tower
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        // Skip building roads if you are a noob without extensions
+        if (room.controller.level <= 2 && extensionTargets <= 5) {
+            return;
+        }
 
         if (forceRebuild) {
             room.memory.towers = {};
@@ -273,9 +285,16 @@ let buildRoads = {
         });
         let roomControllers = [roomController];
         let sources = room.find(FIND_SOURCES);
-
+        let extensionTargets = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION);}
+        });
         // Create road around the roomController
         let roadNum = [{x: 0, y: 1}, {x: 1, y: 0}, {x: 0, y: -1}, {x: -1, y: 0}];
+
+        // Skip building roads if you are a noob without extensions
+        if (room.controller.level <= 2 && extensionTargets <= 5) {
+            return;
+        }
 
         if (forceRebuild) {
             room.memory.roomControllers = {};
