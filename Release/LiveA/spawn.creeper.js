@@ -69,7 +69,7 @@ var spawnCreeper = {
             }
 
             // Another check here, if work != 0 and work % 5 == 0 then add a carry and move
-            while (energyToUse >= 100 && energyToUse >= energyToUse/2 && opts.length < 50 ) {
+            while (energyToUse >= 100 && opts.length < 35 ) {
 
                 // If movement speed is at full and one remaining slot left, just stop, don't waste on an extra +1 tick
                 //if ( (energyToUse == 50 || energyToUse == 100) && ((bodyWork + bodyCarry / 2) == bodyMove )) {
