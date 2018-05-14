@@ -17,6 +17,7 @@ var spawnCreeper = {
         }
 
         // Check if we need an Explorer, check if there is a room in expandRooms that is not in Game.rooms
+        console.log(Memory.data.expandRooms.length, Memory.data.expandRooms);
         if (Memory.data.expandRooms.length > 0) {
             for (let i in Game.rooms) {
                 if (Memory.data.expandRooms.indexOf(Game.rooms[i].name) > -1) {
