@@ -31,7 +31,7 @@ var spawnCreeper = {
             }
         }
 
-        console.log('Explore the rooms = ', roomToExplore, Memory.data.expandRooms.length);
+        console.log('Explore the rooms = ', roomToExplore, Memory.data.expandRooms);
 
         if (allCreeps.length >= Memory.data.maxCreeps) {
             return;
