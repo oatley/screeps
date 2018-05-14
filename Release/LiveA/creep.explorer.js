@@ -33,7 +33,7 @@ var creepExplorer = {
             } else if (tryClaim == 0) {
                 console.log('explorer just claimed room: ' + room);
             } else {
-                console.log('something went wrong with explorer');
+                console.log('something went wrong with explorer', tryClaim);
             }
         }
     }
