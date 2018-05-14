@@ -30,7 +30,7 @@ var creepExplorer = {
                 //gatherEnergy.gather(creep);
                 console.log('bro why are you here you are low level');
             } else if (tryClaim == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Game.rooms[room].find(STRUCTURE_CONTROLLER));
+                creep.moveTo(Game.rooms[room].controller;
             } else if (tryClaim == 0) {
                 console.log('explorer just claimed room: ' + room);
             } else {
