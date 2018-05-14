@@ -47,6 +47,9 @@ let creepBuilder = {
             creep.memory.upgrading = false;
             creep.memory.storing = false;
         }
+        if (creep.memory.role == 'explorer') {
+            creep.memory.upgrading = false;
+        }
 
 
         var closestHostile = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
@@ -114,6 +117,7 @@ let creepBuilder = {
                 }
             } else { // What should idle builders do?
                 // Builders cannot harvest it breaks them in infinite loop
+
                 creepUpgrader.work(creep);
                 /*if ((Number(creep.memory.roleid) % 2) == 0) {
                     creepUpgrader.work(creep);
