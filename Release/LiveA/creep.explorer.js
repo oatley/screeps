@@ -23,14 +23,14 @@ var creepExplorer = {
 
 
         } else { // Not the owner of the room
-            var tryClaim = creep.claimController(Game.rooms[room].find(STRUCTURE_CONTROLLER));
+            let tryClaim = creep.claimController(Game.rooms[room].find(STRUCTURE_CONTROLLER));
             if (tryClaim == ERR_GCL_NOT_ENOUGH) { // Global Control level not high enough
                 // Maybe harvest something
                 //gatherEnergy.gather(creep);
                 console.log('bro why are you here you are low level');
             } else if (tryClaim == ERR_NOT_IN_RANGE) {
                 creep.moveTo(Game.rooms[room].find(STRUCTURE_CONTROLLER));
-            } else if (tryCLaim == 0) {
+            } else if (tryClaim == 0) {
                 console.log('explorer just claimed room: ' + room);
             } else {
                 console.log('something went wrong with explorer');
