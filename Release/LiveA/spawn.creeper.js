@@ -16,6 +16,18 @@ var spawnCreeper = {
             return;
         }
 
+        // Check if we need an Explorer, check if there is a room in expandRooms that is not in Game.rooms
+        if (Memory.data.expandRooms.length > 0) {
+            for (let i in Game.rooms) {
+                if (Memory.data.expandRooms.indexOf(Game.rooms[i].name) > -1) {
+                    console.log('[explore detection] - expand to room', Game.rooms[i].name);
+                }
+                //console.log('[explore detection]', Memory.data.expandRooms[i]);
+
+            }
+            Memory.data.expandRooms
+            Game.rooms
+        }
         //console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
         //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1)
         // Enough energy to build the fattest creep ever?
@@ -42,7 +54,7 @@ var spawnCreeper = {
                 }
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
-            } else if ( false ) { //allExplorers.length == 0 && energyToUse >= 650){
+            } else if ( false && allExplorers.length < 1 && energyToUse >= 800  ) { //allExplorers.length == 0 && energyToUse >= 650){
                 var insertMemory = { memory: { roleid: idnum, role: 'explorer', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Explorer' + idnum;
                 energyToUse -= 650;
@@ -69,7 +81,7 @@ var spawnCreeper = {
             }
 
             // Another check here, if work != 0 and work % 5 == 0 then add a carry and move
-            while (energyToUse >= 100 && opts.length < 35 ) {
+            while (energyToUse >= 100 && opts.length < 25 ) {
 
                 // If movement speed is at full and one remaining slot left, just stop, don't waste on an extra +1 tick
                 //if ( (energyToUse == 50 || energyToUse == 100) && ((bodyWork + bodyCarry / 2) == bodyMove )) {
