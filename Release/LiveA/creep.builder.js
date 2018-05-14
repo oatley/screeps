@@ -40,6 +40,9 @@ let creepBuilder = {
                 creep.say('banished');
                 var position = new RoomPosition(25, 25, creep.memory.banish); // might need to find a better path
                 creep.moveTo(position, {visualizePathStyle: {stroke: '#ffffff'}});
+                creep.memory.building = false;
+                creep.memory.upgrading = false;
+                creep.memory.storing = false;
                 return;
             }
         }
