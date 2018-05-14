@@ -104,7 +104,7 @@ var spawnCreeper = {
                 console.log('[spawn.creeper] Spawning new ' + creepName);
                 spawn.spawnCreep(opts, creepName, insertMemory);
             } else {
-                console.log('[spawn.creeper] Unable to spawn creep', spawncreep, opts);
+                console.log('[spawn.creeper] Unable to spawn creep', spawncreep, opts, opts.length, creepName);
             }
         }
 	}
