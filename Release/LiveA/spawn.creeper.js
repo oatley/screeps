@@ -19,6 +19,7 @@ var spawnCreeper = {
         let roomToExplore = true;
         if (Memory.data.expandRooms.length > 0) {
             for (let i in Game.rooms) {
+                console.log(Memory.data.expandRooms.indexOf(Game.rooms[i].name), Memory.data.expandRooms, Game.rooms[i].name);
                 if (Memory.data.expandRooms.indexOf(Game.rooms[i].name) > -1) {
                     console.log('[explore detection] - expand to room', Game.rooms[i].name);
                     roomToExplore = false;
