@@ -7,6 +7,7 @@ var creepExplorer = {
     explore: function (creep, room) {
         // If explorer is not in the right room then go there
         if (creep.room.name != room) {
+            creep.say('explore');
             var position = new RoomPosition(25, 25, room);
             creep.moveTo(position, {visualizePathStyle: {stroke: '#ffffff'}});
             return;
