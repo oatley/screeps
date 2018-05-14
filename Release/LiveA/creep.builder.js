@@ -34,6 +34,17 @@ let creepBuilder = {
         });
 
 
+        // Creep has been banished to build a new spawn in another room until death
+        if (creep.memory.banish) {
+            if (creep.room.name != creep.memory.banish) {
+                creep.say('banished');
+                var position = new RoomPosition(25, 25, creep.memory.banish); // might need to find a better path
+                creep.moveTo(position, {visualizePathStyle: {stroke: '#ffffff'}});
+                return;
+            }
+        }
+
+
         // Set building and upgrading to false if you run out of energy
         if (creep.carry.energy == 0) {
             creep.memory.building = false;
@@ -118,12 +129,15 @@ let creepBuilder = {
             } else { // What should idle builders do?
                 // Builders cannot harvest it breaks them in infinite loop
 
+                // Can builders get banished to a neighbor room if we own that room and there are no creeps in it and theres a construction site?
+                for (let room in Game.rooms) {
+                    if (Game.rooms[room].find(FIND_CONSTRUCTION_SITES).length > 0 && Game.rooms[room].find (FIND_MY_CREEPS).length == 0 && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username) &&  (Game.rooms[room].controller.owner.username == 'oatley')) {
+                        creep.memory.banish = room;
+                    }
+                }
+
                 creepUpgrader.work(creep);
-                /*if ((Number(creep.memory.roleid) % 2) == 0) {
-                    creepUpgrader.work(creep);
-                } else {
-                    creepHarvester.work(creep);
-                }*/
+
             }
         }
     }
