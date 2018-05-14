@@ -12,29 +12,26 @@ var spawnCreeper = {
 
 
         // Do not spawn if too many creeps
+        if (allCreeps.length >= Memory.data.maxCreeps) {
+            return;
+        }
 
 
         // Check if we need an Explorer, check if there is a room in expandRooms that is not in Game.rooms
-        console.log(Memory.data.expandRooms.length, Memory.data.expandRooms);
         let roomToExplore = false;
         if (Memory.data.expandRooms.length > 0) {
             for (let i in Game.rooms) {
                 //console.log(Memory.data.expandRooms.indexOf(Game.rooms[i].name), Memory.data.expandRooms, Game.rooms[i].name);
                 let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
-                if (index > -1) {
+                if (index > -1 && Game.rooms[i].controller.owner == 'oatley') { // Maybe move username to a memory variable or something
                     console.log('[explore detection] - already in Game.rooms deleting', Game.rooms[i].name);
                     Memory.data.expandRooms.splice(index, 1);
                 }
             }
-            if (Memory.data.expandRooms.length > 0) {
+            if (Memory.data.expandRooms.length > 0 && Game.rooms.length < Game.gcl.level) {
                 roomToExplore = true;
+                //console.log('Explore the rooms = ', roomToExplore, Memory.data.expandRooms);
             }
-        }
-
-        console.log('Explore the rooms = ', roomToExplore, Memory.data.expandRooms);
-
-        if (allCreeps.length >= Memory.data.maxCreeps) {
-            return;
         }
 
         //console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
@@ -63,7 +60,7 @@ var spawnCreeper = {
                 }
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
-            } else if ( false && allExplorers.length < 1 && energyToUse >= 800  ) { //allExplorers.length == 0 && energyToUse >= 650){
+            } else if ( roomToExplore && allExplorers.length < 1 && energyToUse >= 800  ) { //allExplorers.length == 0 && energyToUse >= 650){
                 var insertMemory = { memory: { roleid: idnum, role: 'explorer', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Explorer' + idnum;
                 energyToUse -= 650;

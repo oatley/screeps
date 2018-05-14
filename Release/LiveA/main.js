@@ -77,8 +77,10 @@ module.exports.loop = function () {
         } else if ( creep.memory.role == 'upgrader') {
             creepUpgrader.work(creep);
         } else if ( creep.memory.role == 'explorer') {
-            creep.say('explore');
-            creepExplorer.explore(creep, roomToExplore);
+            if (Memory.data.expandRooms.length > 0) {
+                creep.say('explore');
+                creepExplorer.explore(creep, Memory.data.expandRooms[0]);
+            }
         } else {
             creepHarvester.work(creep);
         }
