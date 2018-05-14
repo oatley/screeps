@@ -14,7 +14,7 @@ var creepExplorer = {
         // Inside the room it should be in
 
         //console.log(Game.rooms[room].controller.owner.username == 'oatley', Game.rooms[room].controller.owner.username);
-        if ((Game.rooms[room].controller) && Game.rooms[room].controller.owner.username == 'oatley') { // Static username because why the hell not? Fight me!
+        if ((Game.rooms[room].controller.owner) && Game.rooms[room].controller.owner.username == 'oatley') { // Static username because why the hell not? Fight me!
             console.log('explorer you own this room');
             // check if spawn exists and build it if it doesn't
             if (creep.carry.energy < creep.carryCapacity) {
