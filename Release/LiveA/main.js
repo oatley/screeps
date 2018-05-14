@@ -33,7 +33,7 @@ module.exports.loop = function () {
     if (!Memory.data) {
         Memory.data = {bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0, expandRooms: []};
     } else {
-        if (!Memory.data.expandRooms) {
+        if (Memory.data.expandRooms < 1) {
             Memory.data.expandRooms = ['W4N8', 'W5N8'];
         }
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
@@ -87,9 +87,10 @@ module.exports.loop = function () {
             creepUpgrader.work(creep);
         } else if ( creep.memory.role == 'explorer') {
             if (Memory.data.expandRooms.length > 0) {
-                creepExplorer.explore(creep, Memory.data.expandRooms[0]);
+                creep.memory.roomToExplore = Memory.data.expandRooms[0];
+                creepExplorer.explore(creep);
             } else {
-                creepExplorer.explore(creep, 'youdonegood');
+                creepExplorer.explore(creep);
             }
         } else {
             creepHarvester.work(creep);

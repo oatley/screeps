@@ -4,11 +4,11 @@ let creepBuilder = require('creep.builder');
 
 var creepExplorer = {
 
-    explore: function (creep, room) {
+    explore: function (creep) {
         // If explorer is not in the right room then go there
-        if (creep.room.name != room) {
+        if (creep.room.name != creep.memory.roomToExplore) {
             creep.say('explore');
-            var position = new RoomPosition(25, 25, room);
+            var position = new RoomPosition(25, 25, room); // might need to find a better path
             creep.moveTo(position, {visualizePathStyle: {stroke: '#ffffff'}});
             return;
         }
