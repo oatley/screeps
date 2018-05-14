@@ -119,7 +119,7 @@ let creepBuilder = {
                     creepUpgrader.work(creep);
                 } else {
                     creepHarvester.work(creep);
-                }*
+                }*/ 
             }
         }
     }
