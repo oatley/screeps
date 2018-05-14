@@ -110,7 +110,7 @@ module.exports.loop = function () {
         //buildRoads.buildToRamparts(Game.rooms[room], forceRebuild = true);
         //buildRoads.buildToExtension(Game.rooms[room], forceRebuild = true);
         //buildExtensions.new(Game.rooms[room]); // Check if you can build things
-        console.log(Memory.data.mainTick);
+        //console.log(Memory.data.mainTick);
         // Run these non critical base building scripts slowly
         if (Memory.data.mainTick == 5){
             console.log('[main] - findExits.updateMemoryLocations()');
