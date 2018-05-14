@@ -31,8 +31,11 @@ module.exports.loop = function () {
 
     // Optimize road code
     if (!Memory.data) {
-        Memory.data = {maxCreeps: 6, bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0};
+        Memory.data = {maxCreeps: 6, bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0, expandRooms: []};
     } else {
+        if (!Memory.data.expandRooms) {
+            Memory.data.expandRooms = ['W4N8'];
+        }
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
@@ -54,8 +57,6 @@ module.exports.loop = function () {
     }
 
 
-    // Testing githook Update
-    //Memory.data = {maxCreeps: 8, bodyParts: 3};
 
 
 
