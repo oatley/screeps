@@ -102,14 +102,14 @@ module.exports.loop = function () {
         // Run every tick
         //console.log(spawnTargets[0]);
         for (let spawn in spawnTargets) {
-            spawnCreeper.spawn(spawnTargets[spawn]);    
+            spawnCreeper.spawn(spawnTargets[spawn]);
         }
 
         // Debugs
         //buildRoads.buildToRamparts(Game.rooms[room], forceRebuild = true);
         //buildRoads.buildToExtension(Game.rooms[room], forceRebuild = true);
         //buildExtensions.new(Game.rooms[room]); // Check if you can build things
-
+        console.log(Memory.data.mainTick);
         // Run these non critical base building scripts slowly
         if (Memory.data.mainTick == 5){
             console.log('[main] - findExits.updateMemoryLocations()');
@@ -124,8 +124,8 @@ module.exports.loop = function () {
             console.log('[main] - buildStorage.new()');
             buildStorage.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick > 25) {
-            console.log('[main] - destroyRoads.destroy()');
-            destroyRoads.destroy(Game.rooms[room]);
+            //console.log('[main] - destroyRoads.destroy()');
+            //destroyRoads.destroy(Game.rooms[room]);
         } else if (Memory.data.mainTick > 30) {
             Memory.data.mainTick = 0;
         }
