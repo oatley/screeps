@@ -113,11 +113,13 @@ let creepBuilder = {
                     creep.memory.building = false;
                 }
             } else { // What should idle builders do?
-                if ((Number(creep.memory.roleid) % 2) == 0) {
+                // Builders cannot harvest it breaks them in infinite loop
+                creepUpgrader.work(creep);
+                /*if ((Number(creep.memory.roleid) % 2) == 0) {
                     creepUpgrader.work(creep);
                 } else {
                     creepHarvester.work(creep);
-                }
+                }*
             }
         }
     }
