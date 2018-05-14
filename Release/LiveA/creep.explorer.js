@@ -23,7 +23,34 @@ var creepExplorer = {
                 console.log('explorer is harvesting');
                 creepHarvester.work(creep);
             } else {
-
+                // Build a spawn
+                let spawnTargets = room.find(FIND_STRUCTURES, {
+                            filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
+                });
+                let constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
+                let sources = room.find(FIND_SOURCES);
+                let distance = 10;
+                let spawnx = sources[0].pos.x;
+                let spawny = sources[0].pos.y;
+                let x;
+                let y;
+                while (spawnTargets.length == 0 && constructionTargets.length == 0 && distance > 2) { // create a spawn
+                    constructionTargets = room.find(FIND_CONSTRUCTION_SITES);
+                    x = spawnx + distance;
+                    y = spawny;
+                    if (Game.rooms[room].createConstructionSite(x, y, STRUCTURE_SPAWN) == 0) break;
+                    x = spawnx - distance;
+                    y = spawny;
+                    if (Game.rooms[room].createConstructionSite(x, y, STRUCTURE_SPAWN) == 0) break;
+                    x = spawnx;
+                    y = spawny + distance;
+                    if (Game.rooms[room].createConstructionSite(x, y, STRUCTURE_SPAWN) == 0) break;
+                    x = spawnx;
+                    y = spawny - distance;
+                    if (Game.rooms[room].createConstructionSite(x, y, STRUCTURE_SPAWN) == 0) break;
+                    distance -=1;
+                }
+                creepBuilder.work(creep);
             }
 
 
