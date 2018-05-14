@@ -39,20 +39,29 @@ module.exports.loop = function () {
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
-        let extensions = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_STRUCTURES, {
-                    filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
-        });
-        if (extensions.length >= 30) {
-            // 2 harvesters
-            // 2 builder
-            // 1 upgraders
-            Memory.data.maxCreeps = 5;
-        } else if (extensions.length >= 20) {
-            Memory.data.maxCreeps = 8;
-        } else if (extensions.length >= 10) {
-            Memory.data.maxCreeps = 10;
-        } else {
-            Memory.data.maxCreeps = 12;
+
+        // This doesn't work with multiple rooms
+        for (let room in Game.rooms) {
+            let extensions = Game.rooms[room].find(FIND_STRUCTURES, {
+                        filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
+            });
+            if (!Game.rooms[room].memory.maxCreeps) {
+                Game.rooms[room].memory.maxCreeps = 0;
+            }
+
+            if (extensions.length >= 30) {
+                // 2 harvesters
+                // 2 builder
+                // 1 upgraders
+                Game.rooms[room].memory.maxCreeps = 5;
+                //Memory.data.maxCreeps = 5;
+            } else if (extensions.length >= 20) {
+                Game.rooms[room].memory.maxCreeps = 8;
+            } else if (extensions.length >= 10) {
+                Game.rooms[room].memory.maxCreeps = 10;
+            } else {
+                Game.rooms[room].memory.maxCreeps = 12;
+            }
         }
     }
 
