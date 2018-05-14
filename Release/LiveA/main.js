@@ -33,7 +33,7 @@ module.exports.loop = function () {
     if (!Memory.data) {
         Memory.data = {maxCreeps: 6, bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0, expandRooms: []};
     } else {
-        if (!Memory.data.expandRooms < 1) {
+        if (!Memory.data.expandRooms) {
             Memory.data.expandRooms = ['W4N8', 'W5N8'];
         }
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
