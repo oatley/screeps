@@ -20,9 +20,7 @@ var spawnCreeper = {
         //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1)
         // Enough energy to build the fattest creep ever?
         if (spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
-
             var energyToUse = spawn.room.energyAvailable;
-            console.log('spawn - making a cree?', spawn.room.energyAvailable);
             var opts = [CARRY, MOVE, WORK];
             var bodyCarry = 1;
             var bodyMove = 1;
@@ -104,7 +102,7 @@ var spawnCreeper = {
                 console.log('[spawn.creeper] Spawning new ' + creepName);
                 spawn.spawnCreep(opts, creepName, insertMemory);
             } else {
-                console.log('[spawn.creeper] Unable to spawn creep', spawncreep, opts, opts.length, creepName);
+                //console.log('[spawn.creeper] Unable to spawn creep', spawncreep, opts, opts.length, creepName);
             }
         }
 	}
