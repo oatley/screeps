@@ -16,20 +16,22 @@ var spawnCreeper = {
 
         // Check if we need an Explorer, check if there is a room in expandRooms that is not in Game.rooms
         console.log(Memory.data.expandRooms.length, Memory.data.expandRooms);
-        let roomToExplore = true;
+        let roomToExplore = false;
         if (Memory.data.expandRooms.length > 0) {
             for (let i in Game.rooms) {
-                console.log(Memory.data.expandRooms.indexOf(Game.rooms[i].name), Memory.data.expandRooms, Game.rooms[i].name);
-                if (Memory.data.expandRooms.indexOf(Game.rooms[i].name) > -1) {
-                    console.log('[explore detection] - expand to room', Game.rooms[i].name);
-                    roomToExplore = false;
+                //console.log(Memory.data.expandRooms.indexOf(Game.rooms[i].name), Memory.data.expandRooms, Game.rooms[i].name);
+                let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
+                if (index > -1) {
+                    console.log('[explore detection] - already in Game.rooms deleting', Game.rooms[i].name);
+                    Memory.data.expandRooms.splice(index, 1);
                 }
-                //console.log('[explore detection]', Memory.data.expandRooms[i]);
-
             }
-            Memory.data.expandRooms
-            Game.rooms
+            if (Memory.data.expandRooms.length > 0) {
+                roomToExplore = true;
+            }
         }
+
+        console.log('Explore the rooms = ', roomToExplore, Memory.data.expandRooms.length);
 
         if (allCreeps.length >= Memory.data.maxCreeps) {
             return;
