@@ -1,10 +1,12 @@
 var gatherEnergy = require('gather.energy');
+let creepHarvester = require('creep.harvester');
+let creepBuilder = require('creep.builder');
 
 var creepExplorer = {
 
     explore: function (creep, room) {
         // If explorer is not in the right room then go there
-        if (creep.room.name != room.name) {
+        if (creep.room.name != room) {
             var position = new RoomPosition(25, 25, room);
             creep.moveTo(position, {visualizePathStyle: {stroke: '#ffffff'}});
             return;
@@ -13,6 +15,13 @@ var creepExplorer = {
         if (Game.rooms[room].controller.owner == 'oatley') { // Static username because why the hell not? Fight me!
             console.log('explorer you own this room');
             // check if spawn exists and build it if it doesn't
+            if (creep.carry.energy < creep.carryCapacity) {
+                creepHarvester.harvester(creep);
+            } else {
+
+            }
+
+
         } else { // Not the owner of the room
             var tryClaim = creep.claimController(Game.rooms[room].find(STRUCTURE_CONTROLLER));
             if (tryClaim == ERR_GCL_NOT_ENOUGH) { // Global Control level not high enough
