@@ -22,7 +22,7 @@ var creepExplorer = {
             if (creep.carry.energy < creep.carryCapacity) {
                 console.log('explorer is harvesting');
                 //creepHarvester.work(creep);
-                gatherEnergy.gather(creep);
+                //gatherEnergy.gather(creep);
                 creepBuilder.work(creep);
             } else {
                 // Build a spawn
