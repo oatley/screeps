@@ -18,7 +18,7 @@ var creepExplorer = {
             console.log('explorer you own this room');
             // check if spawn exists and build it if it doesn't
             if (creep.carry.energy < creep.carryCapacity) {
-                creepHarvester.harvester(creep);
+                creepHarvester.work(creep);
             } else {
 
             }
