@@ -12,7 +12,7 @@ var creepExplorer = {
             return;
         }
         // Inside the room it should be in
-        console.log(Game.rooms[room].controller.owner == 'oatley', Game.rooms[room].controller.owner);
+        console.log(Game.rooms[room].controller.owner == 'oatley', Game.rooms[room].controller.owner.username);
         if (Game.rooms[room].controller.owner == 'oatley') { // Static username because why the hell not? Fight me!
             console.log('explorer you own this room');
             // check if spawn exists and build it if it doesn't

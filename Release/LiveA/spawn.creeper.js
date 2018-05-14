@@ -23,7 +23,7 @@ var spawnCreeper = {
                 numberOfRooms += 1;
                 //console.log(Memory.data.expandRooms.indexOf(Game.rooms[i].name), Memory.data.expandRooms, Game.rooms[i].name);
                 let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
-                if (index > -1 && Game.rooms[i].controller.owner == 'oatley') { // Maybe move username to a memory variable or something
+                if (index > -1 && Game.rooms[i].controller.owner.username == 'oatley') { // Maybe move username to a memory variable or something
                     console.log('[explore detection] - already in Game.rooms deleting', Game.rooms[i].name);
                     Memory.data.expandRooms.splice(index, 1);
                 }
