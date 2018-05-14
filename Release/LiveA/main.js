@@ -123,7 +123,7 @@ module.exports.loop = function () {
         } else if (Memory.data.mainTick == 20){
             console.log('[main] - buildStorage.new()');
             buildStorage.new(Game.rooms[room]); // Check if you can build things
-        } else if (Memory.data.mainTick > 25) {
+        } else if (Memory.data.mainTick == 25) {
             //console.log('[main] - destroyRoads.destroy()');
             //destroyRoads.destroy(Game.rooms[room]);
         } else if (Memory.data.mainTick > 30) {
