@@ -127,6 +127,7 @@ module.exports.loop = function () {
             //console.log('[main] - destroyRoads.destroy()');
             //destroyRoads.destroy(Game.rooms[room]);
         } else if (Memory.data.mainTick > 30) {
+            console.log('is this running?');
             Memory.data.mainTick = 0;
         }
 
