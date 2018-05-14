@@ -12,9 +12,7 @@ var spawnCreeper = {
 
 
         // Do not spawn if too many creeps
-        if (allCreeps.length >= Memory.data.maxCreeps) {
-            return;
-        }
+
 
         // Check if we need an Explorer, check if there is a room in expandRooms that is not in Game.rooms
         console.log(Memory.data.expandRooms.length, Memory.data.expandRooms);
@@ -29,6 +27,11 @@ var spawnCreeper = {
             Memory.data.expandRooms
             Game.rooms
         }
+
+        if (allCreeps.length >= Memory.data.maxCreeps) {
+            return;
+        }
+
         //console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
         //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1)
         // Enough energy to build the fattest creep ever?
