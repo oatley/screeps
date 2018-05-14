@@ -21,7 +21,9 @@ var creepExplorer = {
             // check if spawn exists and build it if it doesn't
             if (creep.carry.energy < creep.carryCapacity) {
                 console.log('explorer is harvesting');
-                creepHarvester.work(creep);
+                //creepHarvester.work(creep);
+                gatherEnergy.gather(creep);
+                creepBuilder.work(creep);
             } else {
                 // Build a spawn
                 let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
