@@ -102,6 +102,7 @@ module.exports.loop = function () {
         // Run every tick
         //console.log(spawnTargets[0]);
         for (let spawn in spawnTargets) {
+            console.log('[main] - spawnCreeper.spawn()');
             spawnCreeper.spawn(spawnTargets[spawn]);
         }
 
@@ -124,10 +125,10 @@ module.exports.loop = function () {
             console.log('[main] - buildStorage.new()');
             buildStorage.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick == 25) {
-            //console.log('[main] - destroyRoads.destroy()');
-            //destroyRoads.destroy(Game.rooms[room]);
+            console.log('[main] - destroyRoads.destroy()');
+            destroyRoads.destroy(Game.rooms[room]);
         } else if (Memory.data.mainTick > 30) {
-            console.log('is this running?');
+            console.log('[main] - Memory.data.mainTick reset');
             Memory.data.mainTick = 0;
         }
 
