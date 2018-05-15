@@ -190,7 +190,7 @@ module.exports.loop = function () {
             let spawnTargets = Game.rooms[i].find(FIND_STRUCTURES, {
                         filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
             });
-            if (spawnTargets.length > 0 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner.username == 'oatley')) {
+            if (spawnTargets.length > 0 && (Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley')) {
                 let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
                 if (index > -1) {
                     Memory.data.expandRooms.splice(index, 1)
