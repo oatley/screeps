@@ -58,7 +58,7 @@ var spawnCreeper = {
             energyToUse -= 500; // Try and improve econ
 
             // Create memories to assign roles
-            console.log ('there are worker = ', allWorkers.length, 'so make workers');
+            console.log ('there are worker = ', allWorkers.length, 'so make workers', 'and there are builders = ', allBuilders.length);
             if (allWorkers.length < 2) {
                 console.log('make workers true');
                 if (allWorkers.length != 0) {
