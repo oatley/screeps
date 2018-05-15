@@ -87,18 +87,21 @@ module.exports.loop = function () {
         }
     }
 
+    let ownedRooms = [];
     // Slow tasks for base building, run each task every 25 ticks
     for (let room in Game.rooms) {
         // Weird conditions to skip
         if (!room) continue;
 
-        //targetStorage.store.energy < targetStorage.storeCapacity
-        //console.log(Game.rooms[room].storage.store.energy / Game.rooms[room].storage.storeCapacity * 100);
-
-        // If creeps enter a room you don't own, don't try and build in it
+        // Spawns
         let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
+        // Get all the rooms I "own"
+        if (spawnTargets.length > 0 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner.username == 'oatley')) {
+            ownedRooms.push(room);
+        }
+        // If creeps enter a room you don't own, don't try and build in it
         if (!Game.rooms[room].controller.owner || spawnTargets.length < 1) {
             continue;
         }
@@ -177,7 +180,8 @@ module.exports.loop = function () {
         }
     }
 
-    if (Object.keys(Game.rooms).length < Game.gcl.level) {
+
+    if (ownedRooms.length < Game.gcl.level) {
         //console.log('[main] - Time to get another room!', Object.keys(Game.rooms).length, Game.gcl.level);
         Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W5N7'];
 
