@@ -38,24 +38,24 @@ let buildTowers = {
             if (towerTargets.length > 0) {
                 spawnx = spawnTargets[0].pos.x - 10;
                 spawny = spawnTargets[0].pos.y;
-                console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y, spawnx, spawny);
+                //console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y, spawnx, spawny);
             } else {
                 spawnx = spawnTargets[0].pos.x + 10;
                 spawny = spawnTargets[0].pos.y;
-                console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y, spawnx, spawny);
+                //console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y, spawnx, spawny);
             }
             construct = room.createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
             console.log(spawnx, spawny);
             if ( construct == 0 ) {
                 console.log("[build] - construction site created");
-                console.log(spawnx, spawny);
+                //console.log(spawnx, spawny);
             } else if ( construct == -14 ) {
                 //console.log("[build] - room level too low to build");
             } else if ( construct == -7 ) {
                 console.log("[build] - structure cannot be placed there", spawnx, spawny, towerTargets.length );
                 // if it can't be placed there maybe increment random numbers until it finds a spot
-                spawnx = spawnx - 1;
-                spawny = spawny - 1;
+                spawnx = spawnx;
+                spawny = spawny + 10;
                 construct = room.createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
                 if ( construct == 0 ){
                     console.log("[build] - construction site created");
