@@ -56,11 +56,11 @@ module.exports.loop = function () {
                 Game.rooms[room].memory.maxCreeps = 5;
                 //Memory.data.maxCreeps = 5;
             } else if (extensions.length >= 20) {
-                Game.rooms[room].memory.maxCreeps = 8;
+                Game.rooms[room].memory.maxCreeps = 7;
             } else if (extensions.length >= 10) {
-                Game.rooms[room].memory.maxCreeps = 10;
+                Game.rooms[room].memory.maxCreeps = 8;
             } else {
-                Game.rooms[room].memory.maxCreeps = 12;
+                Game.rooms[room].memory.maxCreeps = 10;
             }
         }
     }
