@@ -6,10 +6,18 @@ var spawnCreeper = {
         var idnum = Math.round(Math.random() * 1000).toString();
         var allCreepsInGame = _.filter(Game.creeps, (creep) => true);
         let allCreeps = spawn.room.find (FIND_MY_CREEPS);
-        var allExplorers = spawn.room.find (FIND_MY_CREEPS, (creep) => creep.memory.role == 'explorer');
-        var allBuilders = spawn.room.find (FIND_MY_CREEPS, (creep) => creep.memory.role == 'builder');
-        var allWorkers = spawn.room.find (FIND_MY_CREEPS, (creep) => creep.memory.role == 'worker');
-        var allUpgraders = spawn.room.find (FIND_MY_CREEPS, (creep) => creep.memory.role == 'upgrader');
+        var allExplorers = spawn.room.find (FIND_MY_CREEPS, {
+                    filter: (creep) => {return (creep.memory.role == 'explorer');}
+        });
+        var allBuilders = spawn.room.find (FIND_MY_CREEPS, {
+                    filter: (creep) => {return (creep.memory.role == 'builder');}
+        });
+        var allWorkers = spawn.room.find (FIND_MY_CREEPS, {
+                    filter: (creep) => {return (creep.memory.role == 'worker');}
+        });
+        var allUpgraders = spawn.room.find (FIND_MY_CREEPS, {
+                    filter: (creep) => {return (creep.memory.role == 'upgrader');}
+        });
 
 
         // Do not spawn if too many creeps
