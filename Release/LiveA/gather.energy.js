@@ -30,7 +30,7 @@ let gatherEnergy = {
                 gatherEnergy.gather(creep);
         } else {
             let withdraw = creep.withdraw(creep.room.storage, RESOURCE_ENERGY, creep.carryCapacity);
-            else if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
+            if (withdraw == ERR_NOT_ENOUGH_RESOURCES) {
                 //gatherEnergy.gather();
                 creep.say('AHHHHHHHHH');
             } else if (withdraw == ERR_NOT_IN_RANGE) {
