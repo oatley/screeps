@@ -180,7 +180,7 @@ module.exports.loop = function () {
 
     if (Object.keys(Game.rooms).length < Game.gcl.level) {
         //console.log('[main] - Time to get another room!', Object.keys(Game.rooms).length, Game.gcl.level);
-        Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9'];
+        Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W5N7'];
 
         // Check if expandRooms exist with spawn and remove them
         for (let i in Game.rooms) {

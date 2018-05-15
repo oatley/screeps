@@ -17,10 +17,10 @@ var creepExplorer = {
 
         //console.log(Game.rooms[room].controller.owner.username == 'oatley', Game.rooms[room].controller.owner.username);
         if ((Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username) &&  (Game.rooms[room].controller.owner.username == 'oatley')) { // Static username because why the hell not? Fight me!
-            console.log('explorer you own this room');
+            //console.log('explorer you own this room');
             // check if spawn exists and build it if it doesn't
             if (creep.carry.energy < creep.carryCapacity) {
-                console.log('explorer is harvesting');
+                //console.log('explorer is harvesting');
                 //creepHarvester.work(creep);
                 //gatherEnergy.gather(creep);
                 creepBuilder.work(creep);
@@ -62,14 +62,14 @@ var creepExplorer = {
             if (tryClaim == ERR_GCL_NOT_ENOUGH) { // Global Control level not high enough
                 // Maybe harvest something
                 //gatherEnergy.gather(creep);
-                console.log('bro why are you here you are low level');
+                console.log('[creep.explorer] - bro why are you here you are low level');
             } else if (tryClaim == ERR_NOT_IN_RANGE) {
-                console.log('moving');
+                console.log('[creep.explorer] - moving');
                 creep.moveTo(Game.rooms[room].controller);
             } else if (tryClaim == 0) {
-                console.log('explorer just claimed room: ' + room);
+                console.log('[creep.explorer] - explorer just claimed room: ' + room);
             } else {
-                console.log('something went wrong with explorer', tryClaim);
+                console.log('[creep.explorer] - something went wrong with explorer', tryClaim);
             }
         }
     }
