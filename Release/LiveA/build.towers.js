@@ -37,14 +37,18 @@ var buildTowers = {
             if (towerTargets.length > 0) {
                 var spawnx = spawnTargets[0].pos.x - 10;
                 var spawny = spawnTargets[0].pos.y;
+                console.log(spawnx, spawny);
             } else {
                 var spawnx = spawnTargets[0].pos.x + 10;
                 var spawny = spawnTargets[0].pos.y;
+                console.log(spawnx, spawny);
             }
             var construct = room.createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
+            console.log(spawnx, spawny);
             if ( construct == 0 ) {
                 console.log("[build] - construction site created");
-            } else if ( construct == -14 ){
+                console.log(spawnx, spawny);
+            } else if ( construct == -14 ) {
                 //console.log("[build] - room level too low to build");
             } else if ( construct == -7 ) {
                 console.log("[build] - structure cannot be placed there", spawnx, spawny, towerTargets.length );
