@@ -36,6 +36,7 @@ module.exports.loop = function () {
         if (!Memory.data.expandRooms) {
             Memory.data.expandRooms = ['W4N8', 'W5N8'];
         }
+        console.log(Memory.data.expandRooms)
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
