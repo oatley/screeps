@@ -32,7 +32,7 @@ var spawnCreeper = {
                 roomToExplore = true;
                 //console.log('Explore the rooms = ', roomToExplore, Memory.data.expandRooms);
         }
-        
+
         // Enough energy to build the fattest creep ever?
         if (spawn.room.energyAvailable == spawn.room.energyCapacityAvailable || (allCreeps.length <= 2 && spawn.room.energyAvailable >= 300 )) {
             var energyToUse = spawn.room.energyAvailable;
@@ -46,7 +46,12 @@ var spawnCreeper = {
             energyToUse -= 50;
             // Add one work
             energyToUse -= 100;
-            energyToUse -= 500; // Try and improve econ
+            if (energyToUse > 1500) {
+                energyToUse -= 500; // Try and improve econ
+            } else if (energyToUse > 1000) {
+                energyToUse -= 250; // Try and improve econ
+            }
+
 
             // Create memories to assign roles
             //console.log ('there are worker = ', allWorkers.length, 'so make workers', 'and there are builders = ', allBuilders.length);
