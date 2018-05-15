@@ -184,7 +184,7 @@ module.exports.loop = function () {
 
         // Check if expandRooms exist with spawn and remove them
         for (let i in Game.rooms) {
-            console.log(Game.rooms[i].find(STRUCTURE_SPAWN).length > 0);
+            console.log(Game.rooms[i].find(STRUCTURE_SPAWN).length);
             if (Game.rooms[i].find(STRUCTURE_SPAWN).length > 0) {
                 let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
                 console.log(index);
