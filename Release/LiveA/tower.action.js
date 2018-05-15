@@ -1,8 +1,8 @@
 
 var towerAction = {
 
-    run: function () {
-        var towerTargets = Game.rooms[Object.keys(Game.rooms)[0]].find(FIND_STRUCTURES, {
+    run: function (room) {
+        var towerTargets = room.find(FIND_STRUCTURES, {
             filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER);}
         });
         for (var tower in towerTargets) {

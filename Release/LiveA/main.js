@@ -72,7 +72,7 @@ module.exports.loop = function () {
 
     // Run each tower every tick
     cleanMemory.clean(); // Clean dead creeps from memory
-    towerAction.run();
+
 
     // Run each creep every tick
     for (let name in Game.creeps) {
@@ -114,6 +114,7 @@ module.exports.loop = function () {
         }
 
         // Run every tick
+        towerAction.run(Game.rooms[room]);
         //console.log(spawnTargets[0]);
         for (let spawn in spawnTargets) {
             //console.log('[main] - spawnCreeper.spawn()', spawnTargets[spawn].room.name);
