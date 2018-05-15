@@ -180,7 +180,7 @@ module.exports.loop = function () {
 
     if (Object.keys(Game.rooms).length < Game.gcl.level) {
         //console.log('[main] - Time to get another room!', Object.keys(Game.rooms).length, Game.gcl.level);
-        Memory.data.expandRooms = ['W4N8', 'W5N8'];
+        Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9'];
 
         // Check if expandRooms exist with spawn and remove them
         for (let i in Game.rooms) {
@@ -189,13 +189,14 @@ module.exports.loop = function () {
             });
             if (spawnTargets.length > 0) {
                 let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
-                console.log(index);
                 if (index > -1) {
                     Memory.data.expandRooms.splice(index, 1)
                 }
             }
         }
-        console.log('Time to get new room', Memory.data.expandRooms);
+        if (Memory.data.expandRooms.length > 0) {
+            console.log('[main] - Expanding to new rooms', Memory.data.expandRooms);
+        }
     } else {
         //console.log(Object.keys(Game.rooms).length, Game.gcl.level);
     }
