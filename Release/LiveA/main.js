@@ -149,7 +149,7 @@ module.exports.loop = function () {
             Memory.data.buildRoadForceTick = 0;
             Memory.data.buildRoadTick = 0;
             Memory.data.mainTick = 0;
-            Memory.data.expandRooms = null;
+            Memory.data.expandRooms = [];
 
         }
 
