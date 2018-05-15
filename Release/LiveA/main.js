@@ -116,7 +116,7 @@ module.exports.loop = function () {
         // Run every tick
         //console.log(spawnTargets[0]);
         for (let spawn in spawnTargets) {
-            console.log('[main] - spawnCreeper.spawn()');
+            console.log('[main] - spawnCreeper.spawn()', spawnTargets[spawn].room.name);
             spawnCreeper.spawn(spawnTargets[spawn]);
         }
 
