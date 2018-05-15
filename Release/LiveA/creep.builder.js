@@ -138,7 +138,7 @@ let creepBuilder = {
                     let extensionTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                                 filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION);}
                     });
-                    if (Game.rooms[room].find(FIND_CONSTRUCTION_SITES).length > 0 && (Game.rooms[room].find (FIND_MY_CREEPS).length == 0 || extensionTargets.length <= 5) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username) &&  (Game.rooms[room].controller.owner.username == 'oatley')) {
+                    if (Game.rooms[room].find(FIND_CONSTRUCTION_SITES).length > 0 && (Game.rooms[room].find (FIND_MY_CREEPS).length == 0 || (Game.rooms[room].find (FIND_MY_CREEPS).length <= 12 && extensionTargets.length <= 5)) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username) &&  (Game.rooms[room].controller.owner.username == 'oatley')) {
                         creep.memory.banish = room;
                     }
                 }

@@ -16,28 +16,26 @@ let destroyRoads = require('destroy.roads');
 
 module.exports.loop = function () {
 
-    // ToDo list
+    // ToDo list (do it X4 now)
     // - (DONE) 1x Creep type builder, takes from storage builds/repairs
     // - (DONE) 1x Creep type upgrader, takes from storage and upgrades the roomController
     // - (DONE) 4x Creep type harvester, takes
-    // - x1 Creep type explorer, claims room, and then suicides
+    // - (DONE) x1 Creep type explorer, claims room, and then suicides(instead it turns into a builder)
     // - (DONE) Energy storage building (harvesters should store in here)
     // - (DONE) Backup redis and mongodb and mods
     // - (NOPE) If at max creeps, make the creeps renew instead of just dying, make a new memory renewing
     // - (DONE) Fix the static number of creeps and scale down as they get more bodyParts
-    // - Upgrade scripts to support multi room
-    // - Use the delays ticker timer to optimize cpu performance
+    // - (DONE) Upgrade scripts to support multi room
+    // - (DONE) Use the delays ticker timer to optimize cpu performance
 
 
-    // Optimize road code
+    // Optimize road code and memory
     if (!Memory.data) {
         Memory.data = {bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0, expandRooms: []};
     } else {
         if (!Memory.data.expandRooms) {
-            Memory.data.expandRooms = ['W4N8', 'W5N8'];
+            Memory.data.expandRooms = []; // Use gcl detection at bottom for correct time to get a room
         }
-        console.log(Memory.data.expandRooms
-        )
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
@@ -67,14 +65,8 @@ module.exports.loop = function () {
         }
     }
 
-
-
-
-
-
     // Run each tower every tick
     cleanMemory.clean(); // Clean dead creeps from memory
-
 
     // Run each creep every tick
     for (let name in Game.creeps) {
@@ -191,6 +183,8 @@ module.exports.loop = function () {
 
     if (Object.keys(Game.rooms).length < Game.gcl.level) {
         //console.log('[main] - Time to get another room!', Object.keys(Game.rooms).length, Game.gcl.level);
+        Memory.data.expandRooms = ['W4N8', 'W5N8'];
+        console.log('Time to get new room', Memory.data.expandRooms);
     } else {
         //console.log(Object.keys(Game.rooms).length, Game.gcl.level);
     }
