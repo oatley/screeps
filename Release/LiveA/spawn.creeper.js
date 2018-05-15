@@ -28,18 +28,7 @@ var spawnCreeper = {
 
         // Check if we need an Explorer, check if there is a room in expandRooms that is not in Game.rooms
         let roomToExplore = false;
-        let numberOfRooms = 0;
         if (Memory.data.expandRooms.length > 0) {
-            for (let i in Game.rooms) {
-                numberOfRooms += 1;
-                //console.log(Memory.data.expandRooms.indexOf(Game.rooms[i].name), Memory.data.expandRooms, Game.rooms[i].name);
-                let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
-                if (index > -1 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner) && (Game.rooms[i].controller.owner.username) && (Game.rooms[i].controller.owner.username == 'oatley')) { // Maybe move username to a memory variable or something
-                    console.log('[spawnCreeper] - exploration in Game.rooms deleting', Game.rooms[i].name);
-                    Memory.data.expandRooms.splice(index, 1);
-                }
-            }
-            if (Memory.data.expandRooms.length > 0 && numberOfRooms < Game.gcl.level) {
                 roomToExplore = true;
                 //console.log('Explore the rooms = ', roomToExplore, Memory.data.expandRooms);
             }

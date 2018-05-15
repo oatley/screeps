@@ -182,7 +182,8 @@ module.exports.loop = function () {
 
 
     if (ownedRooms.length < Game.gcl.level) {
-        //console.log('[main] - Time to get another room!', Object.keys(Game.rooms).length, Game.gcl.level);
+
+        // Check for valid rooms to expand to
         Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W5N7'];
 
         // Check if expandRooms exist with spawn and remove them
@@ -201,6 +202,7 @@ module.exports.loop = function () {
             console.log('[main] - Expanding to new rooms', Memory.data.expandRooms);
         }
     } else {
-        //console.log(Object.keys(Game.rooms).length, Game.gcl.level);
+        // GCL too low to expand
+        Memory.data.expandRooms = [];
     }
 }
