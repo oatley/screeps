@@ -46,12 +46,7 @@ var spawnCreeper = {
             energyToUse -= 50;
             // Add one work
             energyToUse -= 100;
-            if (energyToUse > 1500) {
-                energyToUse -= 500; // Try and improve econ
-            } else if (energyToUse > 1000) {
-                energyToUse -= 250; // Try and improve econ
-            }
-
+            energyToUse -= 500; // Try and improve econ
 
             // Create memories to assign roles
             //console.log ('there are worker = ', allWorkers.length, 'so make workers', 'and there are builders = ', allBuilders.length);
