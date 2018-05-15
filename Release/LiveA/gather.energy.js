@@ -18,7 +18,7 @@ let gatherEnergy = {
         } else if (sources.length > 0) {
             sourceToUse = sources[0];
         } else {
-            console.log('[gather.energy] - No energy left in room');
+            //console.log('[gather.energy] - No energy left in room');
             return;
         }
         if(creep.harvest(sourceToUse) == ERR_NOT_IN_RANGE) {
