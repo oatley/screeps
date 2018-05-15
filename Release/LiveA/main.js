@@ -128,22 +128,22 @@ module.exports.loop = function () {
         //console.log(Memory.data.mainTick);
         // Run these non critical base building scripts slowly
         if (Memory.data.mainTick == 5){
-            console.log('[main] - findExits.updateMemoryLocations()');
+            console.log('[main',room,'] - findExits.updateMemoryLocations()');
             findExits.updateMemoryLocations(Game.rooms[room]);
         } else if (Memory.data.mainTick == 10){
-            console.log('[main] - buildExtensions.new()');
+            console.log('[main',room,'] - buildExtensions.new()');
             buildExtensions.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick == 15){
-            console.log('[main] - buildTowers.new()');
+            console.log('[main',room,'] - buildTowers.new()');
             buildTowers.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick == 20){
-            console.log('[main] - buildStorage.new()');
+            console.log('[main',room,'] - buildStorage.new()');
             buildStorage.new(Game.rooms[room]); // Check if you can build things
         } else if (Memory.data.mainTick == 25) {
-            console.log('[main] - destroyRoads.destroy()');
+            console.log('[main',room,'] - destroyRoads.destroy()');
             destroyRoads.destroy(Game.rooms[room]);
         } else if (Memory.data.mainTick > 30) {
-            console.log('[main] - Memory.data.mainTick reset');
+            console.log('[main',room,'] - Memory.data.mainTick reset');
             Memory.data.mainTick = 0;
         }
 
@@ -164,25 +164,25 @@ module.exports.loop = function () {
 
         // Building walls and roads this is not important, high cpu pathfinding
         if (Memory.data.buildRoadTick == 100) {
-            console.log('[main] - buildRoads.buildToSource()');
+            console.log('[main',room,'] - buildRoads.buildToSource()');
             buildWalls.new(Game.rooms[room]);
         } else if (Memory.data.buildRoadTick == 200) {
-            console.log('[main] - buildRoads.buildToSource()');
+            console.log('[main',room,'] - buildRoads.buildToSource()');
             buildRoads.buildToSource(Game.rooms[room]);
         } else if (Memory.data.buildRoadTick == 300) {
-            console.log('[main] - buildRoads.buildToExtension()');
+            console.log('[main',room,'] - buildRoads.buildToExtension()');
             buildRoads.buildToExtension(Game.rooms[room]);
         } else if (Memory.data.buildRoadTick == 400) {
-            console.log('[main] - buildRoads.buildToTower()');
+            console.log('[main',room,'] - buildRoads.buildToTower()');
             buildRoads.buildToTower(Game.rooms[room]);
         } else if (Memory.data.buildRoadTick == 500) {
-            console.log('[main] - buildRoads.buildToRoomController()');
+            console.log('[main',room,'] - buildRoads.buildToRoomController()');
             buildRoads.buildToRoomController(Game.rooms[room]);
         } else if (Memory.data.buildRoadTick == 600) {
-            console.log('[main] - buildRoads.buildToRamparts');
+            console.log('[main',room,'] - buildRoads.buildToRamparts');
             buildRoads.buildToRamparts(Game.rooms[room]);
         } else if (Memory.data.buildRoadTick > 600) {
-            console.log('[main] - reset memory road build timer');
+            console.log('[main',room,'] - reset memory road build timer');
             Memory.data.buildRoadTick = 0;
         }
     }
