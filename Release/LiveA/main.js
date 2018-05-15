@@ -98,7 +98,7 @@ module.exports.loop = function () {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
         // Get all the rooms I "own"
-        if (spawnTargets.length > 0 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner.username == 'oatley')) {
+        if (spawnTargets.length > 0 && (Game.rooms[room].controller) && (Game.rooms[room].controller.owner.username == 'oatley')) {
             ownedRooms.push(room);
         }
         // If creeps enter a room you don't own, don't try and build in it
