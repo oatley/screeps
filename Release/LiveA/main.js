@@ -36,7 +36,7 @@ module.exports.loop = function () {
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
-
+        Memory.data.expandRooms = [];
         // This doesn't work with multiple rooms
         for (let room in Game.rooms) {
             let extensions = Game.rooms[room].find(FIND_STRUCTURES, {
