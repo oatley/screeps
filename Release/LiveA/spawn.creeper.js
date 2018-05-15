@@ -66,9 +66,9 @@ var spawnCreeper = {
             energyToUse -= 500; // Try and improve econ
 
             // Create memories to assign roles
-            console.log ('there are worker = ', allWorkers.length, 'so make workers', 'and there are builders = ', allBuilders.length);
+            //console.log ('there are worker = ', allWorkers.length, 'so make workers', 'and there are builders = ', allBuilders.length);
             if (allWorkers.length < 2) {
-                console.log('make workers true');
+                //console.log('make workers true');
                 if (allWorkers.length != 0) {
                     if (((allWorkers[0].memory.roleid % 2) == 0 && (idnum % 2) == 0) || ((allWorkers[0].memory.roleid % 2) == 1 && (idnum % 2) == 1)) {
                         idnum = Number(idnum) + 1;
@@ -98,7 +98,7 @@ var spawnCreeper = {
                 var insertMemory = { memory: { roleid: idnum, role: 'upgrader', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Upgrader' + idnum;
             } else {
-                console.log('alternate bad worker maker');
+                //console.log('alternate bad worker maker');
                 var insertMemory = { memory: { roleid: idnum, role: 'worker', building: false, upgrading: false, storing: false, randomEnergyStorage: 0 }};
                 var creepName = 'Worker' + idnum;
             }
