@@ -41,7 +41,7 @@ var buildTowers = {
                 var spawnx = spawnTargets[0].pos.x + 10;
                 var spawny = spawnTargets[0].pos.y;
             }
-            var construct = Game.rooms[Object.keys(Game.rooms)[0]].createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
+            var construct = room.createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
             if ( construct == 0 ) {
                 console.log("[build] - construction site created");
             } else if ( construct == -14 ){
@@ -51,7 +51,7 @@ var buildTowers = {
                 // if it can't be placed there maybe increment random numbers until it finds a spot
                 var spawnx = spawnx - 1;
                 var spawny = spawny - 1;
-                var construct = Game.rooms[Object.keys(Game.rooms)[0]].createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
+                var construct = room.createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
                 if ( construct == 0 ){
                     console.log("[build] - construction site created");
                 } else {

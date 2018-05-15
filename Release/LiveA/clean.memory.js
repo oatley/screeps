@@ -1,8 +1,7 @@
 var cleanMemory = {
-    clean: function() {
-        
-        var room = Game.rooms[Object.keys(Game.rooms)[0]];
-        
+    clean: function(room) {
+
+        //var room = Game.rooms[Object.keys(Game.rooms)[0]];
         for(var name in Memory.creeps) {
             if(!Game.creeps[name]) {
                 delete Memory.creeps[name];

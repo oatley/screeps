@@ -27,16 +27,22 @@ module.exports.loop = function () {
     // - (DONE) Fix the static number of creeps and scale down as they get more bodyParts
     // - (DONE) Upgrade scripts to support multi room
     // - (DONE) Use the delays ticker timer to optimize cpu performance
+    // - Place containers next to sources
+    // - Make a new refiller creep that only takes from containers and stores in link and storage
+    // - Maybe builders can be refillers or maybe a single new creep
+    // - Make harvesters slower and more optimized for sitting and storing in containers
+    // - Place a link next to the storage and the room controller
 
 
-    // Optimize road code and memory
+    // Check if memory structure has been created
     if (!Memory.data) {
         Memory.data = {bodyParts: 3, buildRoadTick: 0, buildRoadForceTick: 0, mainTick: 0, expandRooms: []};
     } else {
+        // Optimize road code to run every X ticks
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
-        // This doesn't work with multiple rooms
+        // Control the max number of creeps in a room
         for (let room in Game.rooms) {
             let extensions = Game.rooms[room].find(FIND_STRUCTURES, {
                         filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
@@ -44,13 +50,11 @@ module.exports.loop = function () {
             if (!Game.rooms[room].memory.maxCreeps) {
                 Game.rooms[room].memory.maxCreeps = 0;
             }
-
             if (extensions.length >= 30) {
                 // 2 harvesters
                 // 2 builder
                 // 1 upgraders
                 Game.rooms[room].memory.maxCreeps = 5;
-                //Memory.data.maxCreeps = 5;
             } else if (extensions.length >= 20) {
                 Game.rooms[room].memory.maxCreeps = 6;
             } else if (extensions.length >= 10) {
@@ -61,21 +65,16 @@ module.exports.loop = function () {
         }
     }
 
-    // Run each tower every tick
-    cleanMemory.clean(); // Clean dead creeps from memory
-
     // Run each creep every tick
     for (let name in Game.creeps) {
         let creep = Game.creeps[name];
-        // Memory upgrade
-        //creep.memory.randomEnergyStorage = 0;
-        if ( creep.memory.role == 'worker') {
+        if (creep.memory.role == 'worker') {
             creepHarvester.work(creep);
-        } else if ( creep.memory.role == 'builder') {
+        } else if (creep.memory.role == 'builder') {
             creepBuilder.work(creep);
-        } else if ( creep.memory.role == 'upgrader') {
+        } else if (creep.memory.role == 'upgrader') {
             creepUpgrader.work(creep);
-        } else if ( creep.memory.role == 'explorer') {
+        } else if (creep.memory.role == 'explorer') {
             if (Memory.data.expandRooms.length > 0) {
                 creep.memory.roomToExplore = Memory.data.expandRooms[0];
                 creepExplorer.explore(creep);
@@ -107,10 +106,9 @@ module.exports.loop = function () {
         }
 
         // Run every tick
-        towerAction.run(Game.rooms[room]);
-        //console.log(spawnTargets[0]);
+        towerAction.run(Game.rooms[room]); // Towers attack or repair
+        cleanMemory.clean(Game.rooms[room]); // Memory cleaned of old stuff
         for (let spawn in spawnTargets) {
-            //console.log('[main] - spawnCreeper.spawn()', spawnTargets[spawn].room.name);
             spawnCreeper.spawn(spawnTargets[spawn]);
         }
 
