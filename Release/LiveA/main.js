@@ -36,7 +36,8 @@ module.exports.loop = function () {
         if (!Memory.data.expandRooms) {
             Memory.data.expandRooms = ['W4N8', 'W5N8'];
         }
-        console.log(Memory.data.expandRooms)
+        console.log(Memory.data.expandRooms
+        )
         Memory.data.buildRoadTick = Memory.data.buildRoadTick + 1;
         Memory.data.buildRoadForceTick = Memory.data.buildRoadForceTick + 1;
         Memory.data.mainTick = Memory.data.mainTick + 1;
@@ -57,11 +58,11 @@ module.exports.loop = function () {
                 Game.rooms[room].memory.maxCreeps = 5;
                 //Memory.data.maxCreeps = 5;
             } else if (extensions.length >= 20) {
-                Game.rooms[room].memory.maxCreeps = 7;
+                Game.rooms[room].memory.maxCreeps = 6;
             } else if (extensions.length >= 10) {
-                Game.rooms[room].memory.maxCreeps = 8;
+                Game.rooms[room].memory.maxCreeps = 7;
             } else {
-                Game.rooms[room].memory.maxCreeps = 10;
+                Game.rooms[room].memory.maxCreeps = 8;
             }
         }
     }
