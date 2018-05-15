@@ -4,7 +4,8 @@ var spawnCreeper = {
     spawn: function(spawn) {
 
         var idnum = Math.round(Math.random() * 1000).toString();
-        var allCreeps = _.filter(Game.creeps, (creep) => true);
+        var allCreepsInGame = _.filter(Game.creeps, (creep) => true);
+        let allCreeps = spawn.room.find (FIND_MY_CREEPS);
         var allExplorers = _.filter(Game.creeps, (creep) => creep.memory.role == 'explorer');
         var allBuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         var allWorkers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
@@ -12,7 +13,9 @@ var spawnCreeper = {
 
 
         // Do not spawn if too many creeps
-
+        if (allCreeps.length >= spawn.room.memory.maxCreeps) {
+            return;
+        }
 
 
         // Check if we need an Explorer, check if there is a room in expandRooms that is not in Game.rooms
@@ -36,9 +39,6 @@ var spawnCreeper = {
         //console.log('roomToExplore', roomToExplore, allExplorers.length < 1, spawn.room.energyAvailable >= 800, numberOfRooms < Game.gcl.level, Memory.data.expandRooms.length > 0 );
 
 
-        if (allCreeps.length >= spawn.room.memory.maxCreeps) {
-            return;
-        }
 
         //console.log(allCreeps.length >= Memory.data.maxCreeps, allCreeps.length , Memory.data.maxCreeps);
         //console.log(allWorkers.length <= 2,allBuilders.length < 1, allUpgraders.length < 1)
