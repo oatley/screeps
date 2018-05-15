@@ -38,11 +38,11 @@ let buildTowers = {
             if (towerTargets.length > 0) {
                 spawnx = spawnTargets[0].pos.x - 10;
                 spawny = spawnTargets[0].pos.y;
-                console.log(spawnx, spawny);
+                console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y, spawnx, spawny);
             } else {
                 spawnx = spawnTargets[0].pos.x + 10;
                 spawny = spawnTargets[0].pos.y;
-                console.log(spawnx, spawny);
+                console.log(spawnTargets[0].pos.x, spawnTargets[0].pos.y, spawnx, spawny);
             }
             construct = room.createConstructionSite(spawnx, spawny, STRUCTURE_TOWER);
             console.log(spawnx, spawny);
