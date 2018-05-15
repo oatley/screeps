@@ -97,7 +97,7 @@ module.exports.loop = function () {
         let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
-        // Get all the rooms I "own"
+        // Get all the rooms I "own" again
         if (spawnTargets.length > 0 && (Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley')) {
             ownedRooms.push(room);
         }
