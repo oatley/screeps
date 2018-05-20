@@ -182,7 +182,14 @@ module.exports.loop = function () {
     if (ownedRooms.length < Game.gcl.level) {
 
         // Check for valid rooms to expand to
-        Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W5N7'];
+        if (Game.rooms[Object.keys(Game.rooms)[0]].length <= 4) {
+            // Private server
+            Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W5N7'];
+        } else {
+            // Public screeps
+            Memory.data.expandRooms = ['E19S33'];
+        }
+
 
         // Check if expandRooms exist with spawn and remove them
         for (let i in Game.rooms) {
