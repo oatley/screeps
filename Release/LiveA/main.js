@@ -82,7 +82,7 @@ module.exports.loop = function () {
             Game.rooms[room].memory.maxCreeps = 0;
         }
         if (extensions.length >= 30) {
-            let sources = creep.room.find(FIND_SOURCES);
+            let sources = Game.rooms[room].find(FIND_SOURCES);
             // 2 harvesters // 2 builder // 1 upgraders
             if (sources.length == 1) {
                 Game.rooms[room].memory.maxCreeps = 4;
