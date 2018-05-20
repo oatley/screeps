@@ -196,6 +196,7 @@ module.exports.loop = function () {
             let spawnTargets = Game.rooms[i].find(FIND_STRUCTURES, {
                         filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
             });
+            console.log(Game.rooms[i].controller, Game.rooms[i].controller.owner)
             if (spawnTargets.length > 0 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner) && (Game.rooms[i].controller.owner.username == 'oatley')) {
                 let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
                 if (index > -1) {
