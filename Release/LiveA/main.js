@@ -110,6 +110,7 @@ module.exports.loop = function () {
         if (spawnTargets.length > 0 && (Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley')) {
             ownedRooms.push(room);
         }
+        console.log(((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username != 'oatley')) || spawnTargets.length < 1);
         // If creeps enter a room you don't own, don't try and build in it
         if (((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username != 'oatley')) || spawnTargets.length < 1) {
             continue;
