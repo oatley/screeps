@@ -204,12 +204,12 @@ module.exports.loop = function () {
 
 
         // Check if expandRooms exist with spawn and remove them
-        for (let i in Game.rooms) {
-            let spawnTargets = Game.rooms[i].find(FIND_STRUCTURES, {
+        for (let room in Game.rooms) {
+            let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                         filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
             });
-            if (spawnTargets.length > 0 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley' || Game.rooms[room].controller.owner.username == 'oatsmonkey')) {
-                let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
+            if (spawnTargets.length > 0 && (Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley' || Game.rooms[room].controller.owner.username == 'oatsmonkey')) {
+                let index = Memory.data.expandRooms.indexOf(Game.rooms[room].name);
                 if (index > -1) {
                     Memory.data.expandRooms.splice(index, 1)
                 }
