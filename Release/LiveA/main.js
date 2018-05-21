@@ -93,8 +93,9 @@ module.exports.loop = function () {
 
     let ownedRooms = [];
     // Slow tasks for base building, run each task every 25 ticks
+    console.log(Game.rooms);
     for (let room in Game.rooms) {
-
+        console.log(room);
 
 
         // Weird conditions to skip
@@ -118,7 +119,7 @@ module.exports.loop = function () {
         cleanMemory.clean(Game.rooms[room]); // Memory cleaned of old stuff
         console.log(room);
         for (let spawn in spawnTargets) {
-            console.log('spawn', room, spawn)
+            console.log('spawn', room, spawn);
             spawnCreeper.spawn(spawnTargets[spawn]);
         }
 
