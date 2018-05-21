@@ -107,15 +107,11 @@ module.exports.loop = function () {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
         });
         // Get all the rooms I "own" again
-        if (spawnTargets.length > 0 && (Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley')) {
+        if (spawnTargets.length > 0 && (Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley' || Game.rooms[room].controller.owner.username == 'oatsmonkey')) {
             ownedRooms.push(room);
         }
-        console.log(spawnTargets.length < 1);
-        console.log(Game.rooms[room].controller, Game.rooms[room].controller.owner, Game.rooms[room].controller.owner.username);
-        console.log(Game.rooms[room].controller.owner.username != 'oatley');
-        console.log(((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username != 'oatley')) || spawnTargets.length < 1);
         // If creeps enter a room you don't own, don't try and build in it
-        if (((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username != 'oatley')) || spawnTargets.length < 1) {
+        if (((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley' || Game.rooms[room].controller.owner.username == 'oatsmonkey')) || spawnTargets.length < 1) {
             continue;
         }
 
@@ -212,7 +208,7 @@ module.exports.loop = function () {
             let spawnTargets = Game.rooms[i].find(FIND_STRUCTURES, {
                         filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
             });
-            if (spawnTargets.length > 0 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner) && (Game.rooms[i].controller.owner.username == 'oatley')) {
+            if (spawnTargets.length > 0 && (Game.rooms[i].controller) && (Game.rooms[i].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley' || Game.rooms[room].controller.owner.username == 'oatsmonkey')) {
                 let index = Memory.data.expandRooms.indexOf(Game.rooms[i].name);
                 if (index > -1) {
                     Memory.data.expandRooms.splice(index, 1)
