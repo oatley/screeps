@@ -95,13 +95,9 @@ module.exports.loop = function () {
     // Slow tasks for base building, run each task every 25 ticks
     console.log(Game.rooms);
     for (let room in Game.rooms) {
-        console.log(room);
-
 
         // Weird conditions to skip
         if (!room) continue;
-
-        console.log(!room);
         // Spawns
         let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
@@ -111,8 +107,10 @@ module.exports.loop = function () {
             ownedRooms.push(room);
         }
         // If creeps enter a room you don't own, don't try and build in it
-        if (((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username == 'oatley' || Game.rooms[room].controller.owner.username == 'oatsmonkey')) || spawnTargets.length < 1) {
-            continue;
+        if (((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username != 'oatley')) || spawnTargets.length < 1) {
+            if (((Game.rooms[room].controller) && (Game.rooms[room].controller.owner) && (Game.rooms[room].controller.owner.username != 'oatsmonkey')) || spawnTargets.length < 1) {
+                continue;
+            }
         }
 
         // Run every tick
