@@ -101,6 +101,7 @@ module.exports.loop = function () {
         // Weird conditions to skip
         if (!room) continue;
 
+        console.log(!room);
         // Spawns
         let spawnTargets = Game.rooms[room].find(FIND_STRUCTURES, {
                     filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN);}
