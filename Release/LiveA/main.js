@@ -116,7 +116,9 @@ module.exports.loop = function () {
         // Run every tick
         towerAction.run(Game.rooms[room]); // Towers attack or repair
         cleanMemory.clean(Game.rooms[room]); // Memory cleaned of old stuff
+        console.log(room);
         for (let spawn in spawnTargets) {
+            console.log('spawn', room, spawn)
             spawnCreeper.spawn(spawnTargets[spawn]);
         }
 
