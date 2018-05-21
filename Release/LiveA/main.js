@@ -45,7 +45,28 @@ module.exports.loop = function () {
         Memory.data.mainTick = Memory.data.mainTick + 1;
         // Control the max number of creeps in a room
         for (let room in Game.rooms) {
-
+            // Control the max number of creeps in a room
+            let extensions = Game.rooms[room].find(FIND_STRUCTURES, {
+                        filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
+            });
+            if (!Game.rooms[room].memory.maxCreeps) {
+                Game.rooms[room].memory.maxCreeps = 0;
+            }
+            if (extensions.length >= 30) {
+                let sources = Game.rooms[room].find(FIND_SOURCES);
+                // 2 harvesters // 2 builder // 1 upgraders
+                if (sources.length == 1) {
+                    Game.rooms[room].memory.maxCreeps = 4;
+                } else {
+                    Game.rooms[room].memory.maxCreeps = 5;
+                }
+            } else if (extensions.length >= 20) {
+                Game.rooms[room].memory.maxCreeps = 6;
+            } else if (extensions.length >= 10) {
+                Game.rooms[room].memory.maxCreeps = 7;
+            } else {
+                Game.rooms[room].memory.maxCreeps = 8;
+            }
         }
     }
 
@@ -74,28 +95,7 @@ module.exports.loop = function () {
     // Slow tasks for base building, run each task every 25 ticks
     for (let room in Game.rooms) {
 
-        // Control the max number of creeps in a room
-        let extensions = Game.rooms[room].find(FIND_STRUCTURES, {
-                    filter: (structure) => {return structure.structureType == STRUCTURE_EXTENSION}
-        });
-        if (!Game.rooms[room].memory.maxCreeps) {
-            Game.rooms[room].memory.maxCreeps = 0;
-        }
-        if (extensions.length >= 30) {
-            let sources = Game.rooms[room].find(FIND_SOURCES);
-            // 2 harvesters // 2 builder // 1 upgraders
-            if (sources.length == 1) {
-                Game.rooms[room].memory.maxCreeps = 4;
-            } else {
-                Game.rooms[room].memory.maxCreeps = 5;
-            }
-        } else if (extensions.length >= 20) {
-            Game.rooms[room].memory.maxCreeps = 6;
-        } else if (extensions.length >= 10) {
-            Game.rooms[room].memory.maxCreeps = 7;
-        } else {
-            Game.rooms[room].memory.maxCreeps = 8;
-        }
+
 
         // Weird conditions to skip
         if (!room) continue;
