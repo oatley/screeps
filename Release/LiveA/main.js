@@ -32,7 +32,8 @@ module.exports.loop = function () {
     // - Maybe builders can be refillers or maybe a single new creep
     // - Make harvesters slower and more optimized for sitting and storing in containers
     // - Place a link next to the storage and the room controller
-    // - If room only has 1 energy don't build 2 workers
+    // - (DONE) If room only has 1 energy don't build 2 workers
+    // - Instead of maxcreeps have maxUpgraders, maxWorkers, maxBuilders etc. Allow for adding extra upgraders if +200k econ
 
 
     // Check if memory structure has been created
