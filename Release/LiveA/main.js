@@ -195,7 +195,7 @@ module.exports.loop = function () {
         // Check for valid rooms to expand to
         if (Object.keys(Game.rooms)[0].length <= 4) {
             // Private server
-            Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W6N8'];
+            Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W6N8', 'W4N9'];
         } else {
             // Public screeps
             Memory.data.expandRooms = ['E19S33', 'E19S32'];
