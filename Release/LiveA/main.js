@@ -17,6 +17,7 @@ let destroyRoads = require('destroy.roads');
 module.exports.loop = function () {
 
     // ToDo list (do it X4 now)
+    // - (IMPORTANT DO NOW) Harvester performance is broken 30+ cpu
     // - (DONE) 1x Creep type builder, takes from storage builds/repairs
     // - (DONE) 1x Creep type upgrader, takes from storage and upgrades the roomController
     // - (DONE) 4x Creep type harvester, takes
@@ -27,6 +28,7 @@ module.exports.loop = function () {
     // - (DONE) Fix the static number of creeps and scale down as they get more bodyParts
     // - (DONE) Upgrade scripts to support multi room
     // - (DONE) Use the delays ticker timer to optimize cpu performance
+    // - Harvester performance is broken 30+ cpu
     // - Place containers next to sources
     // - Make a new refiller creep that only takes from containers and stores in link and storage
     // - Maybe builders can be refillers or maybe a single new creep
@@ -34,7 +36,7 @@ module.exports.loop = function () {
     // - Place a link next to the storage and the room controller
     // - (DONE) If room only has 1 energy don't build 2 workers
     // - Instead of maxcreeps have maxUpgraders, maxWorkers, maxBuilders etc. Allow for adding extra upgraders if +200k econ
-
+    // - (IMPORTANT DO NOW) Harvester performance is broken 30+ cpu
 
     // Check if memory structure has been created
     if (!Memory.data) {
