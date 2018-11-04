@@ -28,6 +28,7 @@ module.exports.loop = function () {
     // - (DONE) Fix the static number of creeps and scale down as they get more bodyParts
     // - (DONE) Upgrade scripts to support multi room
     // - (DONE) Use the delays ticker timer to optimize cpu performance
+    // - Found real performance issue is actually the base sending out infinite explorers
     // - Harvester performance is broken 30+ cpu
     // - Place containers next to sources
     // - Make a new refiller creep that only takes from containers and stores in link and storage
@@ -200,7 +201,7 @@ module.exports.loop = function () {
             Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W6N8', 'W4N9'];
         } else {
             // Public screeps
-            Memory.data.expandRooms = ['E19S33', 'E19S32'];
+            Memory.data.expandRooms = [];
         }
 
 
