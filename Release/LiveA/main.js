@@ -201,7 +201,7 @@ module.exports.loop = function () {
             Memory.data.expandRooms = ['W4N8', 'W5N8', 'W5N9', 'W6N8', 'W4N9'];
         } else {
             // Public screeps
-            Memory.data.expandRooms = [];
+            Memory.data.expandRooms = ['E11N24'];
         }
 
 
